@@ -15,6 +15,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+
+        // PARA EL SPLASH SCREEN
         TimerTask tarea = new TimerTask() {
             @Override
             public void run() {

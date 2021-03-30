@@ -20,6 +20,14 @@ public class MainActivity extends AppCompatActivity {
         Button joinNowButton = (Button) findViewById(R.id.main_join_now_btn);
         Button loginButton = (Button) findViewById(R.id.main_join_btn);
 
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // PARA EL SPLASH SCREEN
         TimerTask tarea = new TimerTask() {
             @Override

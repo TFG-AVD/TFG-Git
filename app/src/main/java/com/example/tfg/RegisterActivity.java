@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         InputName = (EditText) findViewById(R.id.register_username_input);
         InputPhoneNumber = (EditText) findViewById(R.id.register_password);
         InputPassword = (EditText) findViewById(R.id.register_telefono);
-        loadingbar = new AlertDialog(this);
+        //loadingbar = new AlertDialog(this);
 
         CreateAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot){
                 if (!(dataSnapshot.child("Users").child(phone).exists()))
                 {
-                    HashMap<String, Object> userdataMap = new HashMap<>(),
+                    HashMap<String, Object> userdataMap = new HashMap<>();
                     userdataMap.put("phone", phone);
                     userdataMap.put("password", password);
                     userdataMap.put("name", name);
@@ -131,9 +131,10 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError){
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
 
         });
     }

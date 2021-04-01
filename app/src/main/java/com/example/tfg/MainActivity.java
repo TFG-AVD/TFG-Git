@@ -29,16 +29,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // PARA EL SPLASH SCREEN
-        TimerTask tarea = new TimerTask() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(MainActivity.this, SplashActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        };
-        Timer tiempo = new Timer();
-        tiempo.schedule(tarea,4000);
+
+//        TimerTask tarea = new TimerTask() {
+//            @Override
+//            public void run() {
+//                Intent intent = new Intent(MainActivity.this, SplashActivity.class);
+//                startActivity(intent);
+//                finish();
+//                }
+//        };
+//       Timer tiempo = new Timer();
+//        tiempo.schedule(tarea,4000);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +59,6 @@ public class MainActivity extends AppCompatActivity {
         
     }
 
-    
+
 
 }

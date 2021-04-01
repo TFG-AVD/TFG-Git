@@ -72,10 +72,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         else
         {
-            loadingbar.setTitle("Crear cuenta.");
-            loadingbar.setMessage("Espere, estamos revisando las credenciales.");
-            loadingbar.setCanceledOnTouchOutside(false);
-            loadingbar.show();
+//            loadingbar.setTitle("Crear cuenta.");
+//            loadingbar.setMessage("Espere, estamos revisando las credenciales.");
+//            loadingbar.setCanceledOnTouchOutside(false);
+//            loadingbar.show();
 
             ValidatephoneNumber(name, phone, password);
         }
@@ -104,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     if(task.isSuccessful())
                                     {
                                         Toast.makeText(RegisterActivity.this, "Congratulations, your accound has been created.", Toast.LENGTH_SHORT);
-                                        loadingbar.dismiss();
+                                       // loadingbar.dismiss();
 
                                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                         startActivity(intent);

@@ -5,6 +5,6 @@ import com.example.tfg.Model.Users;
 public class Prevalent {
 
     private static Users usuarioOnline;
-    private static final String userKey ="UserKey";
-    private static final String passKey ="UserPass";
+    public static final String userKey ="UserKey";
+    public static final String passKey ="UserPass";
 }

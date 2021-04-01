@@ -1,17 +1,33 @@
 package com.example.tfg;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.example.tfg.Model.Users;
+import com.example.tfg.dominio.Prevalent;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import io.paperdb.Paper;
+
 public class MainActivity extends AppCompatActivity {
 
+    private ProgressBar loadingBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
         Button joinNowButton = (Button) findViewById(R.id.register_btn);
         Button loginButton = (Button) findViewById(R.id.login_btn);
+        loadingBar = new ProgressBar(this);
+
+        Paper.init(this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,9 +75,51 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        String UserKey = Paper.book().read(Prevalent.userKey);
+        String PassKey = Paper.book().read(Prevalent.passKey);
+
+        if (UserKey != "" && PassKey !=""){
+            if (!TextUtils.isEmpty(UserKey) && !TextUtils.isEmpty(PassKey)){
+                AllowAccess(UserKey, PassKey);
+            }
+        }
         
     }
 
+    private void AllowAccess(final String phone,final String password) {
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
+
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child("Users").child(phone).exists()) {
+                    Users userData = dataSnapshot.child("Users").child(phone).getValue(Users.class);
+                    if (userData.getPhone().equals(phone)) {
+                        if (userData.getPassword().equals(password)) {
+                            Toast.makeText(MainActivity.this, "Logged in succesfully", Toast.LENGTH_SHORT).show();
+                           // loadingBar.dismiss();
+
+                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                        }else{
+                           // loadingBar.dismiss();
+                            Toast.makeText(MainActivity.this, "Logged in succesfully", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } else {
+                    Toast.makeText(MainActivity.this, "Account with this " + phone + " number do not exists", Toast.LENGTH_SHORT).show();
+                    //loadingBar.dismiss();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError){
+
+            }
+        });
+    }
 
 
 }

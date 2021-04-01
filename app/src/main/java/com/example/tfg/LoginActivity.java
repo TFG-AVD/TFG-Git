@@ -4,14 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.tfg.Model.Users;
@@ -37,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         LoginButton = (Button) findViewById(R.id.login_btn);
         InputPassword = (EditText) findViewById(R.id.login_password);
         InputPhoneNumber = (EditText) findViewById(R.id.login_telefono);
-        loadingBar = new AlertDialog(this);
+        //loadingBar = new AlertDialog(this);
 
         LoginButton.setOnClickListener(new View.OnClickListener(){
             @Override

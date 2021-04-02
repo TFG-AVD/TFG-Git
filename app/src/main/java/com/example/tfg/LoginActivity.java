@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (userData.getPhone().equals(phone)) {
                         if (userData.getPassword().equals(password)) {
                             Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast.LENGTH_SHORT).show();
-                            loadingBar.dismiss();
+                           // loadingBar.dismiss();
 
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                             startActivity(intent);

@@ -1,4 +1,4 @@
-package com.example.tfg;
+package com.example.tfg.dominio;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.tfg.Model.Users;
-import com.example.tfg.dominio.Prevalent;
+import com.example.tfg.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

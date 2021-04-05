@@ -1,8 +1,10 @@
-package com.example.tfg;
+package com.example.tfg.dominio;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.tfg.R;
 
 public class SplashActivity extends AppCompatActivity {
 

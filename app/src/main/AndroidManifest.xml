@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TFG">
-        <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".MainActivity"  android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".dominio.HomeActivity"></activity>
+        <activity android:name=".dominio.RegisterActivity"></activity>
+        <activity android:name=".dominio.LoginActivity"></activity>
+        <activity android:name=".dominio.MainActivity"  android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -50,7 +50,7 @@
             android:id="@+id/sweathers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/sweater"/>
+            android:src="@drawable/sweather"/>
     </LinearLayout>
 
     <LinearLayout
@@ -85,7 +85,7 @@
             android:id="@+id/shoes"
             android:layout_width="70dp"
             android:layout_height="80dp"
-            android:src="@drawable/shoes"/>
+            android:src="@drawable/shoess"/>
     </LinearLayout>
 
     <LinearLayout
@@ -102,7 +102,7 @@
             android:id="@+id/headphones_handfree"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/headphones"/>
+            android:src="@drawable/headphoness"/>
 
         <ImageView
             android:id="@+id/laptop_pc"

@@ -141,7 +141,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
             }
         }).addOnSuccesListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
             @Override
-            public void onSucces(UploadTask.TaskSnapshot taskSnapshot){
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot){
                 Toast.makeText(AdminAddNewProductActivity.this, "Image uploaded succescfully", Toast.LENGTH_SHORT).show();
 
                 Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnap, Task<Uri>>(){
@@ -188,7 +188,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
                     startActivity(intent);
 
                     loadingBar.dismiss();
-                    Toast.makeText(AdminAddNewProductActivity.this, "Product added succesfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminAddNewProductActivity.this, "Product added successfully", Toast.LENGTH_SHORT).show();
                 }else{
                     loadingBar.dismiss();
                     String message = task.getException().toString();

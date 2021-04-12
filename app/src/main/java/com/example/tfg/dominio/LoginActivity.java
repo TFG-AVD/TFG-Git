@@ -1,8 +1,5 @@
 package com.example.tfg.dominio;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +10,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tfg.Model.Users;
 import com.example.tfg.R;
@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                                startActivity(intent);
                            }else if (parentDbName.equals("Users")){
                                Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast.LENGTH_SHORT).show();
-                               // loadingBar.dismiss();
+                               loadingBar.dismiss();
 
                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                startActivity(intent);

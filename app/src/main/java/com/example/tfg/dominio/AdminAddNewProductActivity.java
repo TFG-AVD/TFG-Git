@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -50,7 +51,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
 
         CategoryName = getIntent().getExtras().get("category").toString();
         ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
-        ProductImagesRef = FirebaseDatabase.getInstance().getReference().child("Products");
+        ProductImagesRef = FirebaseDatabase.getInstance().getReference().child("Products"); // es la misma que la de arriba gilipollas de mierda
 
         AddNewProductButton = (Button) findViewById(R.id.add_new_product);
         InputProductImage = (ImageView) findViewById(R.id.select_product_image);
@@ -130,16 +131,16 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
 
         StorageReference filePath = ProductImagesRef.child(ImageUri.getLastPathSegment() + productRandomKey + ".jpg");
 
-        final UploadTask uploadTask = filePath = filePath.putFile(ImageUri);
+        final UploadTask uploadTask =  filePath.putFile(ImageUri);
 
         uploadTask.addOnFailureListener(new OnFailureListener(){
             @Override
             public void onFailure(@NonNull Exception e){
                 String message = e.toString();
                 Toast.makeText(AdminAddNewProductActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
-                loadingBar.dismiss();
+               // loadingBar.dismiss();
             }
-        }).addOnSuccesListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot){
                 Toast.makeText(AdminAddNewProductActivity.this, "Image uploaded succescfully", Toast.LENGTH_SHORT).show();

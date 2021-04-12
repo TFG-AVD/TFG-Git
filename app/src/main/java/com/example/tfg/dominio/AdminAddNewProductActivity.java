@@ -51,7 +51,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
 
         CategoryName = getIntent().getExtras().get("category").toString();
         ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
-        ProductImagesRef = FirebaseDatabase.getInstance().getReference().child("Products"); // es la misma que la de arriba gilipollas de mierda
+        ProductRef = FirebaseDatabase.getInstance().getReference().child("Products"); // es la misma que la de arriba gilipollas de mierda
 
         AddNewProductButton = (Button) findViewById(R.id.add_new_product);
         InputProductImage = (ImageView) findViewById(R.id.select_product_image);
@@ -125,7 +125,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         saveCurrentDate = currentDate.format(calendar.getTime());
 
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-        saveCurrentDate = currentTime.format(calendar.getTime());
+        saveCurrentTime = currentTime.format(calendar.getTime());
 
         productRandomKey = saveCurrentDate + saveCurrentTime;
 
@@ -143,9 +143,9 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot){
-                Toast.makeText(AdminAddNewProductActivity.this, "Image uploaded succescfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminAddNewProductActivity.this, "Image uploaded succesfully", Toast.LENGTH_SHORT).show();
 
-                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnap, Task<Uri>>(){
+                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>(){
                     @Override
                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception{
                         if (!task.isSuccessful()){

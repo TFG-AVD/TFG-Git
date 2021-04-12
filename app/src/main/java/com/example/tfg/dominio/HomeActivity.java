@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Menu;
 
 import com.example.tfg.R;
+import com.example.tfg.dominio.ui.SettingsActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -73,12 +74,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.nav_logout){
+        if(id == R.id.nav_cart){
+
+        }
+        else if (id == R.id.nav_logout){
             Paper.book().destroy();
             Intent intent = new Intent(HomeActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
+        }
+        else if (id == R.id.nav_settings){
+            Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+            startActivity(intent);
         }
         return false;
     }

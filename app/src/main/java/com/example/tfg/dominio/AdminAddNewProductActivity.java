@@ -189,7 +189,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
                     startActivity(intent);
 
                     loadingBar.dismiss();
-                    Toast.makeText(AdminAddNewProductActivity.this, "Product added succesfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminAddNewProductActivity.this, "Product added successfully", Toast.LENGTH_SHORT).show();
                 }else{
                     loadingBar.dismiss();
                     String message = task.getException().toString();

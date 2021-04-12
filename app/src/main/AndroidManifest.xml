@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TFG">
-        <activity android:name=".dominio.ui.SettingsActivity"></activity>
+        <activity android:name=".dominio.CardActivity"></activity>
+        <activity android:name=".dominio.ui.SettingsActivity" />
         <activity
             android:name=".dominio.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/Theme.TFG.NoActionBar"></activity>
+            android:theme="@style/Theme.TFG.NoActionBar" />
         <activity android:name=".dominio.RegisterActivity" />
         <activity android:name=".dominio.LoginActivity" />
         <activity

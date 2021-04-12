@@ -121,20 +121,20 @@ public class LoginActivity extends AppCompatActivity {
                                startActivity(intent);
                            }else if (parentDbName.equals("Users")){
                                Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast.LENGTH_SHORT).show();
-                               loadingBar.dismiss();
+                               //loadingBar.dismiss();
 
                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                Prevalent.usuarioOnline = userData;
                                startActivity(intent);
                            }
                         }else{
-                            loadingBar.dismiss();
+                            //loadingBar.dismiss();
                             Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {
                     Toast.makeText(LoginActivity.this, "Account with this " + phone + " number do not exists", Toast.LENGTH_SHORT).show();
-                    loadingBar.dismiss();
+                    //loadingBar.dismiss();
                 }
             }
             @Override

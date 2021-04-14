@@ -99,13 +99,13 @@ public class SettingsActivity extends AppCompatActivity {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
 
         HashMap<String, Object> userMap = new HashMap<>();
-        userMap.put("name", fullNameEditText.getText().toString());
-        userMap.put("address", addressEditText.getText().toString());
-        userMap.put("phoneOrder", userPhoneEditText.getText().toString());
+        userMap.put("nombre", fullNameEditText.getText().toString());
+        userMap.put("dirección", addressEditText.getText().toString());
+        userMap.put("número de teléfono", userPhoneEditText.getText().toString());
         ref.child(Prevalent.usuarioOnline.getPhone()).updateChildren(userMap);
 
         startActivity(new Intent(SettingsActivity.this, MainActivity.class));
-        Toast.makeText(SettingsActivity.this, "Profile info updated successfullt", Toast.LENGTH_SHORT).show();
+        Toast.makeText(SettingsActivity.this, "Información del perfil actualizada", Toast.LENGTH_SHORT).show();
         finish();
     }
 
@@ -119,7 +119,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             profileImageView.setImageURI(imageUri);
         }else{
-            Toast.makeText(this, "Error, try again", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error, inténtelo de nuevo", Toast.LENGTH_SHORT).show();
 
             startActivity(new Intent(SettingsActivity.this, SettingsActivity.class));
             finish();
@@ -129,11 +129,11 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void userInfoSaved() {
         if (TextUtils.isEmpty(fullNameEditText.getText().toString())) {
-            Toast.makeText(this, "Name is mandatory.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "El Nombre es obligatorio.", Toast.LENGTH_SHORT).show();
         }else if(TextUtils.isEmpty(addressEditText.getText().toString())) {
-            Toast.makeText(this, "address is mandatory.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "La Dirección es obligatoria.", Toast.LENGTH_SHORT).show();
         }else if(TextUtils.isEmpty(userPhoneEditText.getText().toString())) {
-            Toast.makeText(this, "address is mandatory.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "El Número es obligatorio.", Toast.LENGTH_SHORT).show();
         }else if(checker.equals("clicked")){
             uploadImage();
         }

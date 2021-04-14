@@ -37,7 +37,6 @@ dependencies {
     implementation 'io.paperdb:paperdb:2.7.1'
     implementation 'com.google.firebase:firebase-core:19.4.0'
     implementation 'com.google.firebase:firebase-database:19.4.0'
-    implementation 'com.google.firebase:firebase-storage:19.4.0'
     implementation 'com.firebaseui:firebase-ui-database:3.2.2'
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'

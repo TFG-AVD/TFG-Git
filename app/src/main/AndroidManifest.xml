@@ -13,6 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TFG">
         <activity android:name=".dominio.CardActivity"></activity>
+        <activity android:name=".dominio.AdminCategoryActivity"></activity>
+        <activity android:name=".dominio.AdminAddNewProductActivity"></activity>
         <activity android:name=".dominio.ui.SettingsActivity" />
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat"/>

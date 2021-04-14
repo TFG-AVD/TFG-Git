@@ -19,7 +19,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle saveInstanceState) {
 
         super.onCreate(saveInstanceState);
-        //setContentView(R.layout.activity_admin_category);
+        setContentView(R.layout.activity_admin_category);
 
         tShirt = (ImageView) findViewById(R.id.t_shirts);
         sportShirts = (ImageView) findViewById(R.id.sport_t_shirts);

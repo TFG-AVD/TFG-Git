@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                 LoginUser();
             }
         });
+
         AdminLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,13 +116,13 @@ public class LoginActivity extends AppCompatActivity {
                         if (userData.getPassword().equals(password)) {
                            if (parentDbName.equals("Admins")){
                                Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast.LENGTH_SHORT).show();
-                               // loadingBar.dismiss();
 
                                Intent intent = new Intent(LoginActivity.this, AdminCategoryActivity.class);
+
                                startActivity(intent);
+
                            }else if (parentDbName.equals("Users")){
                                Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast.LENGTH_SHORT).show();
-                               //loadingBar.dismiss();
 
                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                Prevalent.usuarioOnline = userData;

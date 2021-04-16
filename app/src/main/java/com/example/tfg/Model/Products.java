@@ -14,6 +14,9 @@ public class Products {
         this.date = date;
         this.time = time;
     }
+    public Products() {
+
+    }
 
     public String getPname() {
         return pname;

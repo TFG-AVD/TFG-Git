@@ -188,10 +188,10 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
                     Intent intent = new Intent(AdminAddNewProductActivity.this, AdminCategoryActivity.class);
                     startActivity(intent);
 
-                    loadingBar.dismiss();
+                   // loadingBar.dismiss();
                     Toast.makeText(AdminAddNewProductActivity.this, "Product added successfully", Toast.LENGTH_SHORT).show();
                 }else{
-                    loadingBar.dismiss();
+                   // loadingBar.dismiss();
                     String message = task.getException().toString();
                     Toast.makeText(AdminAddNewProductActivity.this, "Error" + message, Toast.LENGTH_SHORT).show();
                 }

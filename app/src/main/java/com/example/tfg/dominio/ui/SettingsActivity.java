@@ -99,9 +99,9 @@ public class SettingsActivity extends AppCompatActivity {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
 
         HashMap<String, Object> userMap = new HashMap<>();
-        userMap.put("nombre", fullNameEditText.getText().toString());
+        userMap.put("name", fullNameEditText.getText().toString());
         userMap.put("dirección", addressEditText.getText().toString());
-        userMap.put("número de teléfono", userPhoneEditText.getText().toString());
+        userMap.put("phone", userPhoneEditText.getText().toString());
         ref.child(Prevalent.usuarioOnline.getPhone()).updateChildren(userMap);
 
         startActivity(new Intent(SettingsActivity.this, MainActivity.class));

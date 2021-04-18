@@ -40,7 +40,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
-                intent.putExtra("category", "tShirts");
+                intent.putExtra("category", "Camisetas");
                 startActivity(intent);
             }
 
@@ -50,7 +50,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
-                intent.putExtra("category", "Sports tShirts");
+                intent.putExtra("category", "Camisetas de deporte");
                 startActivity(intent);
             }
 
@@ -60,7 +60,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
-                intent.putExtra("category", "Female Dresses");
+                intent.putExtra("category", "Vestidos");
                 startActivity(intent);
             }
 
@@ -70,7 +70,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
-                intent.putExtra("category", "Sweathers");
+                intent.putExtra("category", "Sudaderas");
                 startActivity(intent);
             }
 
@@ -80,7 +80,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
-                intent.putExtra("category", "Glasses");
+                intent.putExtra("category", "Lentes");
                 startActivity(intent);
             }
 
@@ -90,7 +90,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
-                intent.putExtra("category", "Hats Caps");
+                intent.putExtra("category", "Gorras");
                 startActivity(intent);
             }
 
@@ -100,7 +100,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
-                intent.putExtra("category", "Wallets Bags Purses");
+                intent.putExtra("category", "Carteras Mochilas Bolsos");
                 startActivity(intent);
             }
 
@@ -110,7 +110,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
-                intent.putExtra("category", "Shoes");
+                intent.putExtra("category", "Calzado");
                 startActivity(intent);
             }
 
@@ -120,7 +120,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
-                intent.putExtra("category", "HeadPhones HandFree");
+                intent.putExtra("category", "Auriculares inalámbricos");
                 startActivity(intent);
             }
 
@@ -130,7 +130,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
-                intent.putExtra("category", "Laptops");
+                intent.putExtra("category", "Portátiles");
                 startActivity(intent);
             }
 
@@ -140,7 +140,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
-                intent.putExtra("category", "Watches");
+                intent.putExtra("category", "Relojes");
                 startActivity(intent);
             }
 
@@ -150,7 +150,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
-                intent.putExtra("category", "Mobile Phones");
+                intent.putExtra("category", "Teléfonos móviles");
                 startActivity(intent);
             }
 

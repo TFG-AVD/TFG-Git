@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     Users userData = dataSnapshot.child("Users").child(phone).getValue(Users.class);
                     if (userData.getPhone().equals(phone)) {
                         if (userData.getPassword().equals(password)) {
-                            Toast.makeText(MainActivity.this, "Logged in succesfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Login con éxito", Toast.LENGTH_SHORT).show();
                            // loadingBar.dismiss();
 
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
                         }else{
                            // loadingBar.dismiss();
-                            Toast.makeText(MainActivity.this, "Logged in succesfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Login con éxito", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {

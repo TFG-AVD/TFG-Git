@@ -82,10 +82,10 @@ public class LoginActivity extends AppCompatActivity {
         String password = InputPassword.getText().toString();
 
         if(TextUtils.isEmpty(phone)){
-            Toast.makeText(this, "please write your phone number", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "escriba su número de teléfono", Toast.LENGTH_LONG).show();
 
         }else if (TextUtils.isEmpty(password)){
-            Toast.makeText(this, "please write your password", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "escriba su contraseña", Toast.LENGTH_LONG).show();
 
         }else{
 //            loadingBar.setTitle("Login account");
@@ -134,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 } else {
-                    Toast.makeText(LoginActivity.this, "La cuenta con este numero:  " + phone + " , no existe", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "La cuenta con este número:  " + phone + " , no existe", Toast.LENGTH_SHORT).show();
                     //loadingBar.dismiss();
                 }
             }

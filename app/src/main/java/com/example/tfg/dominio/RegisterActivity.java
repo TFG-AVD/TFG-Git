@@ -103,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 {
                                     if(task.isSuccessful())
                                     {
-                                        Toast.makeText(RegisterActivity.this, "Congratulations, your accound has been created.", Toast.LENGTH_SHORT);
+                                        Toast.makeText(RegisterActivity.this, "Cuenta creada con éxito", Toast.LENGTH_SHORT);
                                        // loadingbar.dismiss();
 
                                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
@@ -112,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     else
                                     {
                                         loadingbar.dismiss();
-                                        Toast.makeText(RegisterActivity.this, "Network Error: Please try again some time...", Toast.LENGTH_SHORT);
+                                        Toast.makeText(RegisterActivity.this, "Error de conexión: Inténtelo más tarde...", Toast.LENGTH_SHORT);
                                     }
                                 }
 
@@ -121,9 +121,9 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(RegisterActivity.this, "This " + phone + " already exist", Toast.LENGTH_SHORT);
+                    Toast.makeText(RegisterActivity.this, "Este número de teléfono: " + phone + " ya existe", Toast.LENGTH_SHORT);
                     loadingbar.dismiss();
-                    Toast.makeText(RegisterActivity.this, "Please try again using another phone number", Toast.LENGTH_SHORT);
+                    Toast.makeText(RegisterActivity.this, "Por favor inténtelo con otro número de teléfono", Toast.LENGTH_SHORT);
 
                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                     startActivity(intent);

@@ -40,7 +40,7 @@
         android:inputType="textMultiLine"
         android:layout_marginTop="6dp"
         android:padding="20dp"
-        android:hint="Descripción del Producto..."
+        android:hint="Descripción del producto..."
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
         />
@@ -59,7 +59,7 @@
         android:layout_marginLeft="45dp"
         android:layout_marginTop="84dp"
         android:layout_marginRight="45dp"
-        android:hint="Precio del Producto..."
+        android:hint="Precio del producto..."
         android:inputType="textMultiLine"
         android:padding="20dp" />
 
@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_price"
-        android:text="Añadir Producto"
+        android:text="Añadir producto"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
         android:padding="17dp"

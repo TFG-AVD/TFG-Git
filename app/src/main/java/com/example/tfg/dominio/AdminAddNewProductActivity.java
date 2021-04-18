@@ -50,7 +50,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
 
         CategoryName = getIntent().getExtras().get("category").toString();
         ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
-        ProductRef = FirebaseDatabase.getInstance().getReference().child("Products"); // es la misma que la de arriba gilipollas de mierda
+        ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
         AddNewProductButton = (Button) findViewById(R.id.add_new_product);
         InputProductImage = (ImageView) findViewById(R.id.select_product_image);
@@ -97,24 +97,24 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         Pname = InputProductName.getText().toString();
 
         if (ImageUri == null){
-            Toast.makeText(this, "Product image is mandatory", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "La imagen del producto es obligatoria", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(Description)){
-            Toast.makeText(this, "Please write product description", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Escriba la descripción del producto", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(Price)){
-            Toast.makeText(this, "Please write product price", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Escriba el precio del producto", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(Pname)){
-            Toast.makeText(this, "Please write product name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Escriba el nombre del producto", Toast.LENGTH_SHORT).show();
         }else{
             StoreProductInformation();
         }
     }
 
     private void StoreProductInformation(){
-        //loadingBar.setTitle("Add new product");
-        //loadingBar.setMessage("Please wait, adding product");
+        //loadingBar.setTitle("Añadir producto nuevo");
+        //loadingBar.setMessage("Por favor, espere, añadiendo producto");
         //loadingBar.setCanceledOnTouchOutside(false);
         //loadingBar.show();
 
@@ -142,7 +142,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot){
-                Toast.makeText(AdminAddNewProductActivity.this, "Image uploaded succesfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminAddNewProductActivity.this, "Imagen actualizada con éxito", Toast.LENGTH_SHORT).show();
 
                 Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>(){
                     @Override
@@ -159,7 +159,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             downloadImageUrl = task.getResult().toString();
 
-                            Toast.makeText(AdminAddNewProductActivity.this, "got the Product image url succesfully", Toast.LENGTH_SHORT).show(); //21:18
+                            Toast.makeText(AdminAddNewProductActivity.this, "URL de imagen encontrado", Toast.LENGTH_SHORT).show(); //21:18
 
                             SaveProductInfoToDatabase();
                         }
@@ -188,7 +188,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
                     startActivity(intent);
 
                    // loadingBar.dismiss();
-                    Toast.makeText(AdminAddNewProductActivity.this, "Product added successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminAddNewProductActivity.this, "Producto añadido con éxito", Toast.LENGTH_SHORT).show();
                 }else{
                    // loadingBar.dismiss();
                     String message = task.getException().toString();

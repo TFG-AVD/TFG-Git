@@ -38,6 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
     private CircleImageView profileImageView;
     private EditText fullNameEditText, userPhoneEditText, addressEditText;
     private TextView profileChangeTextBtn, closeTextBtn, saveTextButton;
+    private static final int GalleryPick = 1;
 
     private Uri imageUri;
     private String myUrl = "";
@@ -84,11 +85,10 @@ public class SettingsActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                checker = "clicked";
-
-                CropImage.activity(imageUri)
-                        .setAspectRatio(1, 1)
-                        .start(SettingsActivity.this);
+                Intent galleryIntent = new Intent();
+                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+                galleryIntent.setType("image/*");
+                startActivityForResult(galleryIntent, GalleryPick);
             }
         });
     }
@@ -179,7 +179,7 @@ public class SettingsActivity extends AppCompatActivity {
 
 
                                 startActivity(new Intent(SettingsActivity.this, MainActivity.class));
-                                Toast.makeText(SettingsActivity.this, "Profile Info update successfully.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SettingsActivity.this, "Información de perfil actualizada.", Toast.LENGTH_SHORT).show();
                                 finish();
                             } else {
 

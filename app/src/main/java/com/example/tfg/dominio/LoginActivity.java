@@ -115,14 +115,14 @@ public class LoginActivity extends AppCompatActivity {
                     if (userData.getPhone().equals(phone)) {
                         if (userData.getPassword().equals(password)) {
                            if (parentDbName.equals("Admins")){
-                               Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast.LENGTH_SHORT).show();
+                               Toast.makeText(LoginActivity.this, "¡BIENVENIDO!", Toast.LENGTH_SHORT).show();
 
                                Intent intent = new Intent(LoginActivity.this, AdminCategoryActivity.class);
 
                                startActivity(intent);
 
                            }else if (parentDbName.equals("Users")){
-                               Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast.LENGTH_SHORT).show();
+                               Toast.makeText(LoginActivity.this, "¡BIENVENIDO!", Toast.LENGTH_SHORT).show();
 
                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                Prevalent.usuarioOnline = userData;
@@ -130,11 +130,11 @@ public class LoginActivity extends AppCompatActivity {
                            }
                         }else{
                             //loadingBar.dismiss();
-                            Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Error", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {
-                    Toast.makeText(LoginActivity.this, "Account with this " + phone + " number do not exists", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "La cuenta con este numero:  " + phone + " , no existe", Toast.LENGTH_SHORT).show();
                     //loadingBar.dismiss();
                 }
             }

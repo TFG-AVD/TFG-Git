@@ -7,14 +7,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
     private FloatingActionButton addToCartBtn;
     private ImageView productImage;
-    private Button masBtn, menosBtn;
-    private TextView productCount, productPrice, productDescription, productName;
+    private ElegantNumberButton numberButton;
+    private TextView productPrice, productDescription, productName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_details);
 
         addToCartBtn =  (FloatingActionButton) findViewById(R.id.add_product_cart_btn);
-        productCount = (TextView) findViewById(R.id.product_count);
+        numberButton = (ElegantNumberButton) findViewById(R.id.number_btn);
         productImage = (ImageView) findViewById(R.id.product_image_details);
         productName = (TextView) findViewById(R.id.product_name_details);
         productDescription = (TextView) findViewById(R.id.product_description_details);

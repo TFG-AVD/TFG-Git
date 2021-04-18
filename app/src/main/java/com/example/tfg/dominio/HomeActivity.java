@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.tfg.Model.Products;
+import com.example.tfg.ProductDetailsActivity;
 import com.example.tfg.R;
 import com.example.tfg.ViewHolder.ProductViewHolder;
 import com.example.tfg.SettingsActivity;
@@ -115,6 +116,15 @@ public class HomeActivity extends AppCompatActivity
                         holder.txtProductDescription.setText(model.getDescription());
                         holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
+
+                        holder.itemView.setOnClickListener(new View.OnClickListener(){
+                            @Override
+                            public void onClick(View view){
+                                Intent intent = new Intent(HomeActivity.this, ProductDetailsActivity.class);
+                                intent.putExtra("pid", model.getPid());
+                                startActivity(intent);
+                            }
+                        });
                     }
 
                     @NonNull

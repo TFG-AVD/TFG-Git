@@ -84,7 +84,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         cartMap.put("discount", "");
 
         cartListRef.child("User View").child(Prevalent.usuarioOnline.getPhone())
-                .child("Prodcuts").child(productID)
+                .child("Products").child(productID)
                 .updateChildren(cartMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

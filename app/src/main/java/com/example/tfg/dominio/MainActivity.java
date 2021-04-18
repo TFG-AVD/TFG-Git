@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button joinNowButton = (Button) findViewById(R.id.register_btn);
         Button loginButton = (Button) findViewById(R.id.login_btn);
-        loadingBar = new ProgressBar(this);
+
 
         Paper.init(this);
 

@@ -49,6 +49,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
 

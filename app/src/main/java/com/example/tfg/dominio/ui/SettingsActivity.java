@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tfg.R;
+import com.example.tfg.dominio.HomeActivity;
 import com.example.tfg.dominio.MainActivity;
 import com.example.tfg.dominio.Prevalent;
 import com.google.android.gms.tasks.Continuation;
@@ -104,7 +105,7 @@ public class SettingsActivity extends AppCompatActivity {
         userMap.put("phone", userPhoneEditText.getText().toString());
         ref.child(Prevalent.usuarioOnline.getPhone()).updateChildren(userMap);
 
-        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+        startActivity(new Intent(SettingsActivity.this, HomeActivity.class));
         Toast.makeText(SettingsActivity.this, "Información del perfil actualizada", Toast.LENGTH_SHORT).show();
         finish();
     }
@@ -140,6 +141,8 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void uploadImage() {
+
+        // Cambiar al alertdialog de mario
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Update profile");
         progressDialog.setMessage("Please wait while we upload your account information");
@@ -176,19 +179,19 @@ public class SettingsActivity extends AppCompatActivity {
                         userMap.put("image", myUrl);
                         ref.child(Prevalent.usuarioOnline.getPhone()).updateChildren(userMap);
 
-                        progressDialog.dismiss();
+                        //progressDialog.dismiss();
 
                         startActivity(new Intent(SettingsActivity.this, MainActivity.class));
-                        Toast.makeText(SettingsActivity.this, "Profile info updated successfullt", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SettingsActivity.this, "Perfil actualizado con exito", Toast.LENGTH_SHORT).show();
                         finish();
                     }else{
-                        progressDialog.dismiss();
+                       // progressDialog.dismiss();
                         Toast.makeText(SettingsActivity.this, "Error", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }else{
-            Toast.makeText(this, "Image is not selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Imagen no detectada", Toast.LENGTH_SHORT).show();
         }
     }
 

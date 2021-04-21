@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tfg.ConfirmFinalOrderActivity;
 import com.example.tfg.Model.Cart;
 import com.example.tfg.ProductDetailsActivity;
 import com.example.tfg.R;
@@ -49,6 +50,19 @@ public class CartActivity extends AppCompatActivity {
 
         nextBtn = (Button) findViewById(R.id.next_cart_btn);
         txtTotal = (TextView) findViewById(R.id.total_price);
+
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txtTotal.setText("Total price = $" + String.valueOf(overTotalPrice));
+
+                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrderActivity.class);
+                intent.putExtra("Total price", String.valueOf(overTotalPrice));
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
     @Override
@@ -79,6 +93,9 @@ public class CartActivity extends AppCompatActivity {
                                 };
                         AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
                         builder.setTitle("Opciones de carrito");
+
+                        int onetyprProductPrice = ((Integer.valueOf(cart.getPrice()))) * Integer.valueOf(cart.getQuantity());
+                        overTotalPrice = overTotalPrice + onetyprProductPrice;
 
                         builder.setItems(options, new DialogInterface.OnClickListener() {
                             @Override

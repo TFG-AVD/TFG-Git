@@ -10,9 +10,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        >
-        <activity android:name=".ProductDetailsActivity"></activity>
+        android:supportsRtl="true">
+        <activity android:name=".ConfirmFinalOrderActivity"></activity>
+        <activity android:name=".ProductDetailsActivity" />
         <activity android:name=".dominio.CartActivity" />
         <activity android:name=".dominio.AdminCategoryActivity" />
         <activity android:name=".dominio.AdminAddNewProductActivity" />

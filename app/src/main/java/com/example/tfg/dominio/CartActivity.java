@@ -31,8 +31,11 @@ public class CartActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
+
     private Button nextBtn;
     private TextView txtTotal;
+
+    private int overTotalPrice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

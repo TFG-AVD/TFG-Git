@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tfg.Interface.ItemClickListener;
 import com.example.tfg.R;
 
-public class CardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView txtProductName, txtProductPrice, txtProductQuantity;
     private ItemClickListener itemClickListener;
 
-    public CardViewHolder(@NonNull View itemView) {
+    public CartViewHolder(@NonNull View itemView) {
         super(itemView);
 
         txtProductName = itemView.findViewById(R.id.cart_product_name);

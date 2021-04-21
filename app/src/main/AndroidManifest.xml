@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         >
         <activity android:name=".ProductDetailsActivity"></activity>
-        <activity android:name=".dominio.CardActivity" />
+        <activity android:name=".dominio.CartActivity" />
         <activity android:name=".dominio.AdminCategoryActivity" />
         <activity android:name=".dominio.AdminAddNewProductActivity" />
         <activity android:name=".SettingsActivity" />

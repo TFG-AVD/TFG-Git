@@ -14,13 +14,13 @@ import android.widget.TextView;
 
 import com.example.tfg.Model.Cart;
 import com.example.tfg.R;
-import com.example.tfg.ViewHolder.CardViewHolder;
+import com.example.tfg.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CardActivity extends AppCompatActivity {
+public class CartActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -30,14 +30,14 @@ public class CardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_card);
+        setContentView(R.layout.activity_cart);
 
-        recyclerView = findViewById(R.id.card_list);
+        recyclerView = findViewById(R.id.cart_list);
         recyclerView.setHasFixedSize(true);
         layoutManager =  new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        nextBtn = (Button) findViewById(R.id.next_card_btn);
+        nextBtn = (Button) findViewById(R.id.next_cart_btn);
         txtTotal = (TextView) findViewById(R.id.total_price);
     }
 
@@ -45,27 +45,27 @@ public class CardActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        final DatabaseReference cardListRef = FirebaseDatabase.getInstance().getReference().child("Lista de carrito");
+        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Lista de carrito");
 
         FirebaseRecyclerOptions<Cart> options =
-                new FirebaseRecyclerOptions.Builder<Cart>().setQuery(cardListRef.child("User View")
+                new FirebaseRecyclerOptions.Builder<Cart>().setQuery(cartListRef.child("User View")
                         .child(Prevalent.usuarioOnline.getPhone())
                         .child("Products"), Cart.class).build();
 
-        FirebaseRecyclerAdapter<Cart, CardViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CardViewHolder>(options) {
+        FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull CardViewHolder cardViewHolder, int i, @NonNull Cart cart) {
-                cardViewHolder.txtProductQuantity.setText("Cantidad = " + cart.getQuantity());
-                cardViewHolder.txtProductPrice.setText("Precio = " + cart.getPrice());
-                cardViewHolder.txtProductName.setText(cart.getPname());
+            protected void onBindViewHolder(@NonNull CartViewHolder cartViewHolder, int i, @NonNull Cart cart) {
+                cartViewHolder.txtProductQuantity.setText("Cantidad = " + cart.getQuantity());
+                cartViewHolder.txtProductPrice.setText("Precio = " + cart.getPrice());
+                cartViewHolder.txtProductName.setText(cart.getPname());
 
             }
 
             @NonNull
             @Override
-            public CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_items_layout, parent, false);
-                CardViewHolder holder = new CardViewHolder(view);
+            public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_items_layout, parent, false);
+                CartViewHolder holder = new CartViewHolder(view);
                 return holder;
             }
         };

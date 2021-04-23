@@ -24,8 +24,11 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class CartActivity extends AppCompatActivity {
 
@@ -47,7 +50,7 @@ public class CartActivity extends AppCompatActivity {
         layoutManager =  new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        nextBtn = (Button) findViewById(R.id.next_cart_btn);
+        nextBtn = (Button) findViewById(R.id.next_btn);
         txtTotal = (TextView) findViewById(R.id.total_price);
     }
 
@@ -55,7 +58,7 @@ public class CartActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Lista de carrito");
+        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Card List");
 
         FirebaseRecyclerOptions<Cart> options =
                 new FirebaseRecyclerOptions.Builder<Cart>().setQuery(cartListRef.child("User View")

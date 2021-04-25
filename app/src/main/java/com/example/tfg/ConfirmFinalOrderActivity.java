@@ -20,7 +20,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_confirm_final_order);
 
         totalAmount = getIntent().getStringExtra("Total price");
-        Toast.makeText(this, "Total price = $" + totalAmount, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Total price = $" + totalAmount,Toast.LENGTH_SHORT).show();
 
         confirmOrderBtn = (Button) findViewById(R.id.confirm_final_order_btn);
         nameEditText = (EditText) findViewById(R.id.shippment_name);

@@ -3,10 +3,12 @@ package com.example.tfg.dominio;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tfg.AdminNewOrderActivity;
 import com.example.tfg.R;
 
 public class AdminCategoryActivity extends AppCompatActivity {
@@ -15,11 +17,35 @@ public class AdminCategoryActivity extends AppCompatActivity {
     private ImageView glasses, hatCaps, walletsBagsPurses, shoes;
     private ImageView headPhonesHandFree, laptops, watches, mobilePhones;
 
+    private Button LogoutBtn, CheckOrdersBtn;
+
     @Override
     protected void onCreate(Bundle saveInstanceState) {
 
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_admin_category);
+
+        LogoutBtn = (Button) findViewById(R.id.admin_logout_btn);
+        CheckOrdersBtn = (Button) findViewById(R.id.check_orders_btn);
+
+        LogoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminCategoryActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        CheckOrdersBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminCategoryActivity.this, AdminNewOrderActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         tShirt = (ImageView) findViewById(R.id.t_shirts);
         sportShirts = (ImageView) findViewById(R.id.sport_t_shirts);

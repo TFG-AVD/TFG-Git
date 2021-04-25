@@ -82,13 +82,13 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         profileChangeTextBtn.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
-                Intent galleryIntent = new Intent();
-                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-                galleryIntent.setType("image/*");
-                startActivityForResult(galleryIntent, GalleryPick);
+                checker = "clicked";
+
+                CropImage.activity(imageUri)
+                        .setAspectRatio(1, 1)
+                        .start(SettingsActivity.this);
             }
         });
     }
@@ -111,12 +111,14 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && requestCode == RESULT_OK && data != null) {
+        if (requestCode== CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE  &&  resultCode==RESULT_OK  &&  data!=null) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             imageUri = result.getUri();
 
             profileImageView.setImageURI(imageUri);
-        } else {
+        }
+        else
+        {
             Toast.makeText(this, "Error, inténtelo de nuevo", Toast.LENGTH_SHORT).show();
 
             startActivity(new Intent(SettingsActivity.this, SettingsActivity.class));
@@ -153,68 +155,84 @@ public class SettingsActivity extends AppCompatActivity {
 
             uploadTask.continueWithTask(new Continuation() {
                 @Override
-                public Object then(@NonNull Task task) throws Exception {
-                    if (!task.isSuccessful()) {
+                public Object then(@NonNull Task task) throws Exception
+                {
+                    if (!task.isSuccessful())
+                    {
                         throw task.getException();
                     }
-
                     return fileRef.getDownloadUrl();
                 }
             })
                     .addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            if (task.isSuccessful()) {
+                        public void onComplete(@NonNull Task<Uri> task)
+                        {
+                            if (task.isSuccessful())
+                            {
                                 Uri downloadUrl = task.getResult();
                                 myUrl = downloadUrl.toString();
 
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
 
-                                HashMap<String, Object> userMap = new HashMap<>();
-                                userMap.put("name", fullNameEditText.getText().toString());
-                                userMap.put("address", addressEditText.getText().toString());
-                                userMap.put("phoneOrder", userPhoneEditText.getText().toString());
-                                userMap.put("image", myUrl);
-                                ref.child(Prevalent.usuarioOnline.getPhone()).updateChildren(userMap);
+                                HashMap<String, Object> usermap = new HashMap<>();
+                                usermap. put("name", fullNameEditText.getText().toString());
+                                usermap. put("email", addressEditText.getText().toString());
+                                usermap. put("phoneLease", userPhoneEditText.getText().toString());
+                                usermap. put("image", myUrl);
+
+                                ref.child(Prevalent.usuarioOnline .getPhone()).updateChildren(usermap);
 
 
                                 startActivity(new Intent(SettingsActivity.this, MainActivity.class));
-                                Toast.makeText(SettingsActivity.this, "Información de perfil actualizada.", Toast.LENGTH_SHORT).show();
-                                finish();
-                            } else {
 
+                                Toast.makeText(SettingsActivity.this, "Profile Info updated successfully.", Toast.LENGTH_SHORT).show();
+                                finish();
+
+                            }
+                            else
+                            {
                                 Toast.makeText(SettingsActivity.this, "Error.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-        } else {
-            Toast.makeText(this, "La imagen no ha sido detectada", Toast.LENGTH_SHORT).show();
+
+        }
+
+        else
+        {
+            Toast.makeText(this, "Imagen no seleccionada", Toast.LENGTH_SHORT).show();
         }
     }
 
 
-    private void userInfoDisplay(CircleImageView profileImageView, EditText fullNameEditText, EditText userPhoneEditText, EditText addressEditText) {
-        DatabaseReference UserRef = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.usuarioOnline.getPhone());
 
-        UserRef.addValueEventListener(new ValueEventListener() {
+    private void userInfoDisplay(final CircleImageView profileImageView, final EditText fullNameEditText, final EditText userPhoneEditText, final EditText addressEditText)
+    {
+        DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.usuarioOnline.getPhone());
+        UsersRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("image").exists()) {
-                    String image = dataSnapshot.child("image").getValue().toString();
-                    String name = dataSnapshot.child("name").getValue().toString();
-                    String phone = dataSnapshot.child("phone").getValue().toString();
-                    String address = dataSnapshot.child("address").getValue().toString();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                if (dataSnapshot.exists())
+                {
+                    if (dataSnapshot.child("image").exists())
+                    {
+                        String image = dataSnapshot.child("image").getValue().toString();
+                        String name = dataSnapshot.child("name").getValue().toString();
+                        String phone = dataSnapshot.child("phone").getValue().toString();
+                        String email = dataSnapshot.child("email").getValue().toString();
 
-                    Picasso.get().load(image).into(profileImageView);
-                    fullNameEditText.setText(name);
-                    userPhoneEditText.setText(phone);
-                    addressEditText.setText(address);
+                        Picasso.get().load(image).into(profileImageView);
+                        fullNameEditText.setText(name);
+                        userPhoneEditText.setText(phone);
+                        addressEditText.setText(email);
+                    }
                 }
-
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });

@@ -31,7 +31,7 @@ import java.util.HashMap;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
-    private Button addToCartButton;
+    private FloatingActionButton addToCartButton;
     private ImageView productImage;
     private ElegantNumberButton numberButton;
     private TextView productPrice, productDescription, productName;
@@ -44,7 +44,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         productID = getIntent().getStringExtra("pid");
 
-        addToCartButton = (Button) findViewById(R.id.pd_add_to_cart_button);
+        addToCartButton = (FloatingActionButton) findViewById(R.id.add_product_cart_btn);
         numberButton = (ElegantNumberButton) findViewById(R.id.number_btn);
         productImage = (ImageView) findViewById(R.id.product_image_details);
         productName = (TextView) findViewById(R.id.product_name_details);

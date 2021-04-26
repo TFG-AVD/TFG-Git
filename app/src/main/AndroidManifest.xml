@@ -25,7 +25,8 @@
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name=".dominio.HomeActivity"
-            android:label="@string/title_activity_home" />
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.TFG.NoActionBar"/>
         <activity android:name=".dominio.RegisterActivity" />
         <activity android:name=".dominio.LoginActivity" />
         <activity

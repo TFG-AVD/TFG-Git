@@ -111,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     }
                                     else
                                     {
-                                        loadingbar.dismiss();
+                                        //loadingbar.dismiss();
                                         Toast.makeText(RegisterActivity.this, "Error de conexión: Inténtelo más tarde...", Toast.LENGTH_SHORT);
                                     }
                                 }
@@ -122,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
                 else
                 {
                     Toast.makeText(RegisterActivity.this, "Este número de teléfono: " + phone + " ya existe", Toast.LENGTH_SHORT);
-                    loadingbar.dismiss();
+                    //loadingbar.dismiss();
                     Toast.makeText(RegisterActivity.this, "Por favor inténtelo con otro número de teléfono", Toast.LENGTH_SHORT);
 
                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);

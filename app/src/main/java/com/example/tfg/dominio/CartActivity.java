@@ -1,4 +1,4 @@
-package com.example.tfg.dominio;
+ package com.example.tfg.dominio;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -36,7 +36,7 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
 
     private Button nextBtn;
-    private TextView txtTotal;
+    private TextView txtTotal, txtMsg1;
 
     private int overTotalPrice = 0;
 
@@ -52,11 +52,15 @@ public class CartActivity extends AppCompatActivity {
 
         nextBtn = (Button) findViewById(R.id.next_btn);
         txtTotal = (TextView) findViewById(R.id.total_price);
+        txtMsg1 = (TextView) findViewById(R.id.msg1);
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        CheckOrderState();
 
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart list");
 
@@ -127,4 +131,44 @@ public class CartActivity extends AppCompatActivity {
         adapter.startListening();
 
     }
+
+    private void CheckOrderState(){
+        DatabaseReference ordersRef;
+        ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders").child(Prevalent.usuarioOnline.getPhone());
+        ordersRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String shippingState = snapshot.child("state").getValue().toString();
+                    String userName = snapshot.child("name").getValue().toString();
+
+                    if (shippingState.equals("shipped")){
+                        txtTotal.setText("Querido " + userName + "\n pedido enviado con éxito,");
+                        recyclerView.setVisibility(View.GONE);
+
+                        txtMsg1.setVisibility(View.VISIBLE);
+                        txtMsg1.setText("Felicidades, tu pedido ha sido enviado con éxito. Dentro de poco recibirás el pedido. ");
+                        nextBtn.setVisibility(View.GONE);
+
+                        Toast.makeText(CartActivity.this, "puedes adquirir más productos en cuanto hayas recibido tu primer pedido", Toast.LENGTH_SHORT);
+
+                    } else if (shippingState.equals("not shipped")){
+                        txtTotal.setText("Estado de pedido = No Enviado");
+                        recyclerView.setVisibility(View.GONE);
+
+                        txtMsg1.setVisibility(View.VISIBLE);
+                        nextBtn.setVisibility(View.GONE);
+
+                        Toast.makeText(CartActivity.this, "puedes adquirir más productos en cuanto hayas recibido tu primer pedido", Toast.LENGTH_SHORT);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 }

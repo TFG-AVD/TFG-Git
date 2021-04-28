@@ -1,5 +1,6 @@
 package com.example.tfg;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tfg.dominio.HomeActivity;
@@ -108,23 +110,19 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode== CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE  &&  resultCode==RESULT_OK  &&  data!=null) {
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            imageUri = result.getUri();
-
-            profileImageView.setImageURI(imageUri);
-        }
-        else
-        {
+            if (resultCode == Activity.RESULT_OK) {
+                imageUri = result.getUri();
+                profileImageView.setImageURI(imageUri);
+            }
+        } else {
             Toast.makeText(this, "Error, inténtelo de nuevo", Toast.LENGTH_SHORT).show();
-
-            startActivity(new Intent(SettingsActivity.this, SettingsActivity.class));
-            finish();
         }
-
     }
 
     private void userInfoSaved() {
@@ -219,15 +217,17 @@ public class SettingsActivity extends AppCompatActivity {
                     if (dataSnapshot.child("image").exists())
                     {
                         String image = dataSnapshot.child("image").getValue().toString();
-                        String name = dataSnapshot.child("name").getValue().toString();
-                        String phone = dataSnapshot.child("phone").getValue().toString();
-                        String email = dataSnapshot.child("email").getValue().toString();
+
 
                         Picasso.get().load(image).into(profileImageView);
-                        fullNameEditText.setText(name);
-                        userPhoneEditText.setText(phone);
-                        addressEditText.setText(email);
+
                     }
+                    String name = dataSnapshot.child("name").getValue().toString();
+                    String phone = dataSnapshot.child("phone").getValue().toString();
+                   // String email = dataSnapshot.child("address").getValue().toString();
+                    fullNameEditText.setText(name);
+                    userPhoneEditText.setText(phone);
+                    //addressEditText.setText(email);
                 }
             }
 

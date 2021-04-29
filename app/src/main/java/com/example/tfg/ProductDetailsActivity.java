@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.tfg.Model.Products;
+import com.example.tfg.dominio.CartActivity;
 import com.example.tfg.dominio.HomeActivity;
 import com.example.tfg.dominio.Prevalent;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,7 +36,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private ImageView productImage;
     private ElegantNumberButton numberButton;
     private TextView productPrice, productDescription, productName;
-    private String productID = "";
+    private String productID = "", state = "Normal";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +59,22 @@ public class ProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addingToCartList();
+
+                if (state.equals("Pedido Colocado.") || state.equals("Pedido Enviado"))
+                {
+                    Toast.makeText(ProductDetailsActivity.this, "puede adquirir más productos cuando su pedido haya sido enviado o confirmado.", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    addingToCartList();
+                }
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        CheckOrderState();
     }
 
     private void addingToCartList() {
@@ -77,7 +92,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         final HashMap<String, Object> cartMap = new HashMap<>();
         cartMap.put("pid", productID);
         cartMap.put("pname", productName.getText().toString());
-        cartMap.put("price", productName.getText().toString());
+        cartMap.put("price", productPrice.getText().toString());
         cartMap.put("date", saveCurrentDate);
         cartMap.put("time", saveCurrentTime);
         cartMap.put("quantity", numberButton.getNumber());
@@ -122,6 +137,31 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 productPrice.setText(products.getPrice());
                 productDescription.setText(products.getDescription());
                 Picasso.get().load(products.getImage()).into(productImage);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void CheckOrderState(){
+        DatabaseReference ordersRef;
+        ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders").child(Prevalent.usuarioOnline.getPhone());
+        ordersRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String shippingState = snapshot.child("state").getValue().toString();
+
+                    if (shippingState.equals("shipped"))
+                    {
+                        state = "Pedido Envidado";
+                    } else if (shippingState.equals("not shipped")){
+                        state = "Pedido Colocado";
+                    }
+                }
             }
 
             @Override

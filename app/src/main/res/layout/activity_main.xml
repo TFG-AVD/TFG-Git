@@ -10,17 +10,10 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="200dp"
         app:srcCompat="@drawable/logo" />
 
 
-
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        app:srcCompat="@drawable/ifp" />
 
     <Button
         android:id="@+id/login_btn"

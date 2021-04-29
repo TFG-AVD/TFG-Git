@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.tfg"
-        minSdkVersion 30
+        minSdkVersion 29
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -51,5 +51,6 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    implementation 'com.github.vimalcvs:Day-Night-Switch:1.0.3'
 
 }

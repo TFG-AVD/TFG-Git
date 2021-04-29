@@ -11,7 +11,7 @@
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please write your shipment details"
+        android:text="Por favor introduce los detalles del envio"
         android:textSize="18dp"
         android:textColor="@color/black"
         android:layout_margin="25dp"
@@ -56,11 +56,11 @@
         android:id="@+id/shippment_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/shippment_phone_number"
+        android:layout_below="@+id/shippment_address"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:hint="Introduce tu número de teléfono"
+        android:hint="Introduce tu ciudad"
         />
 
     <Button

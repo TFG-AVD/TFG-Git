@@ -175,7 +175,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                                 HashMap<String, Object> usermap = new HashMap<>();
                                 usermap. put("name", fullNameEditText.getText().toString());
-                                usermap. put("email", addressEditText.getText().toString());
+                                usermap. put("address", addressEditText.getText().toString());
                                 usermap. put("phoneLease", userPhoneEditText.getText().toString());
                                 usermap. put("image", myUrl);
 
@@ -184,7 +184,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                                 startActivity(new Intent(SettingsActivity.this, MainActivity.class));
 
-                                Toast.makeText(SettingsActivity.this, "Profile Info updated successfully.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SettingsActivity.this, "Perfil actualizado correctamente.", Toast.LENGTH_SHORT).show();
                                 finish();
 
                             }
@@ -224,10 +224,10 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                     String name = dataSnapshot.child("name").getValue().toString();
                     String phone = dataSnapshot.child("phone").getValue().toString();
-                   // String email = dataSnapshot.child("address").getValue().toString();
+                    String address = dataSnapshot.child("address").getValue().toString();
                     fullNameEditText.setText(name);
                     userPhoneEditText.setText(phone);
-                    //addressEditText.setText(email);
+                    addressEditText.setText(address);
                 }
             }
 

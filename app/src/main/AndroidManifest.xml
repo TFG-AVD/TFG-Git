@@ -20,6 +20,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".ProductDetailsActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".AdminNewOrderActivity" />
         <activity android:name=".dominio.CartActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".dominio.AdminCategoryActivity"

@@ -14,8 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminUserProductsActivity"
-            ></activity>
+        <activity android:name=".SearchProductsActivity"></activity>
+        <activity android:name=".AdminUserProductsActivity" />
         <activity android:name=".ConfirmFinalOrderActivity" />
         <activity android:name=".ProductDetailsActivity" />
         <activity android:name=".AdminNewOrderActivity" />
@@ -26,11 +26,13 @@
         <activity
             android:name=".dominio.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".dominio.RegisterActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".dominio.LoginActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".dominio.RegisterActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".dominio.LoginActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".dominio.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">

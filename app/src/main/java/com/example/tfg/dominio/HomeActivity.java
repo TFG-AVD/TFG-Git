@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.tfg.Model.Products;
 import com.example.tfg.ProductDetailsActivity;
 import com.example.tfg.R;
+import com.example.tfg.SearchProductsActivity;
 import com.example.tfg.ViewHolder.ProductViewHolder;
 import com.example.tfg.SettingsActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -188,9 +189,10 @@ public class HomeActivity extends AppCompatActivity
             Intent intent = new Intent(HomeActivity.this, CartActivity.class);
             startActivity(intent);
         }
-        else if (id == R.id.nav_orders)
+        else if (id == R.id.nav_search)
         {
-
+            Intent intent = new Intent(HomeActivity.this, SearchProductsActivity.class);
+            startActivity(intent);
         }
         else if (id == R.id.nav_categories)
         {

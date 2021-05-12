@@ -14,6 +14,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AdminMaintainProductsActivity"></activity>
+        <activity android:name=".SearchProductsActivity" />
+        <activity android:name=".AdminUserProductsActivity" />
+        <activity android:name=".ConfirmFinalOrderActivity" />
+        <activity android:name=".ProductDetailsActivity" />
+        <activity android:name=".AdminNewOrderActivity" />
+        <activity android:name=".dominio.CartActivity" />
+        <activity android:name=".dominio.AdminCategoryActivity" />
+        <activity android:name=".dominio.AdminAddNewProductActivity" />
+        <activity android:name=".SettingsActivity" />
         <activity android:name=".activities.SearchProductsActivity"></activity>
         <activity android:name=".admin.AdminUserProductsActivity" />
         <activity android:name=".activities.ConfirmFinalOrderActivity" />

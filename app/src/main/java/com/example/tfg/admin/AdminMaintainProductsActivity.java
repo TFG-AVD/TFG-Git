@@ -39,8 +39,6 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         productID = getIntent().getStringExtra("pid");
         productsRef = FirebaseDatabase.getInstance().getReference().child("Products").child(productID);
 
-
-
         applyChangesBtn = findViewById(R.id.apply_changes_btn);
         name = findViewById(R.id.product_name_maintain);
         price = findViewById(R.id.product_price_maintain);
@@ -48,10 +46,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         imageView = findViewById(R.id.product_image_maintain);
         deleteBtn = findViewById(R.id.delete_product_btn);
 
-
         displaySpecificProductInfo();
-
-
 
         applyChangesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +56,6 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
             }
         });
 
-
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -70,10 +64,6 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 
     private void deleteThisProduct()
     {
@@ -89,10 +79,6 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 
     private void applyChanges()
     {
@@ -136,10 +122,6 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
             });
         }
     }
-
-
-
-
 
     private void displaySpecificProductInfo()
     {

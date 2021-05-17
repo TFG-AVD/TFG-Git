@@ -116,7 +116,7 @@ public class HomeActivity extends AppCompatActivity
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener(){
-                            //comentario para alex   c
+
                             @Override
                             public void onClick(View view){
                                 Intent intent = new Intent(HomeActivity.this, ProductDetailsActivity.class);

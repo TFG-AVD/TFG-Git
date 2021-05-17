@@ -118,10 +118,6 @@ public class HomeActivity extends AppCompatActivity
                         holder.txtProductPrice.setText("Precio = " + model.getPrice() + "$");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
-
-
-
-
                         holder.itemView.setOnClickListener(new View.OnClickListener(){
                             //comentario para alex   c
                             @Override

@@ -117,6 +117,7 @@ public class HomeActivity extends AppCompatActivity
 
                         holder.itemView.setOnClickListener(new View.OnClickListener(){
                             //comentario para alex   c
+                            //comentario para tor
                             @Override
                             public void onClick(View view){
                                 Intent intent = new Intent(HomeActivity.this, ProductDetailsActivity.class);

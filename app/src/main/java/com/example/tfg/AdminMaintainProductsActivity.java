@@ -32,10 +32,13 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         imageView = findViewById(R.id.product_image_maintain);
         deleteBtn = findViewById(R.id.delete_product_btn);
 
+        displaySpecificProductInfo();
+
         applyChangesBtn.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view){
-                applyChanges();
+            public void onClick(View view)
+            {
+               applyChanges();
             }
         });
 

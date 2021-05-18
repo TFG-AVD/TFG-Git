@@ -21,6 +21,7 @@
         <activity android:name=".buyers.ConfirmFinalOrderActivity" />
         <activity android:name=".buyers.ProductDetailsActivity" />
         <activity android:name=".buyers.CartActivity" />
+        <activity android:name=".buyers.ResetPasswordActivity" />
         <activity android:name=".admin.AdminCategoryActivity" />
         <activity android:name=".admin.AdminAddNewProductActivity" />
         <activity android:name=".buyers.SettingsActivity" />

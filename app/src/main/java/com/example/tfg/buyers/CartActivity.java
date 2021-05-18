@@ -51,7 +51,7 @@ public class CartActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         nextBtn = (Button) findViewById(R.id.next_btn);
-        txtTotal = (TextView) findViewById(R.id.total_price);
+        txtTotal = (TextView) findViewById(R.id.order_total_price);
         txtMsg1 = (TextView) findViewById(R.id.msg1);
 
 

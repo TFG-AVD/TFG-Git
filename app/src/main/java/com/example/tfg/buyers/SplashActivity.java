@@ -1,4 +1,4 @@
-package com.example.tfg.Buyers;
+package com.example.tfg.buyers;
 
 import androidx.appcompat.app.AppCompatActivity;
 

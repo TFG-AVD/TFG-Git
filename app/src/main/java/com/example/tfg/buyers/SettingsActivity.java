@@ -1,4 +1,4 @@
-package com.example.tfg.Buyers;
+package com.example.tfg.buyers;
 
 import android.app.Activity;
 import android.content.Intent;

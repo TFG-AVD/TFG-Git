@@ -2,15 +2,31 @@ package com.example.tfg.sellers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.tfg.R;
+import com.example.tfg.buyers.MainActivity;
 
 public class SellerRegistrationActivity extends AppCompatActivity {
+
+    private Button sellerLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_registration);
+
+        sellerLogin = findViewById(R.id.seller_login);
+
+        sellerLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SellerRegistrationActivity.this, SellerLoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

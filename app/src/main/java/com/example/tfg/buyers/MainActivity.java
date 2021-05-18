@@ -9,11 +9,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tfg.models.Users;
 import com.example.tfg.R;
 import com.example.tfg.prevalent.Prevalent;
+import com.example.tfg.sellers.SellerLoginActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +27,7 @@ import io.paperdb.Paper;
 public class MainActivity extends AppCompatActivity {
 
     private ProgressBar loadingBar;
+    private TextView sellerBegin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,11 +35,20 @@ public class MainActivity extends AppCompatActivity {
 
         Button joinNowButton = (Button) findViewById(R.id.register_btn);
         Button loginButton = (Button) findViewById(R.id.login_btn);
+        sellerBegin = findViewById(R.id.seller_begin);
 
 
         Paper.init(this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SellerLoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        sellerBegin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);

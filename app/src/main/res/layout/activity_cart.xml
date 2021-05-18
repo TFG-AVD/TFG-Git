@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Buyers.CartActivity">
+    tools:context="buyers.CartActivity">
 
     <RelativeLayout
         android:id="@+id/rl11"
@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true">
 
         <TextView
-            android:id="@+id/total_price"
+            android:id="@+id/page_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Total Price = "

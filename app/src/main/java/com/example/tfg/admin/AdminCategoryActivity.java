@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tfg.R;
-import com.example.tfg.Buyers.MainActivity;
+import com.example.tfg.buyers.MainActivity;
 
 public class AdminCategoryActivity extends AppCompatActivity {
 

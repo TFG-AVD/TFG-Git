@@ -27,7 +27,9 @@
         android:inputType="number"
         android:padding="20dp"
         android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/smartphone"/>
 
     <EditText
         android:id="@+id/register_password"
@@ -41,7 +43,9 @@
         android:inputType="textPassword"
         android:padding="20dp"
         android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/key"/>
 
     <EditText
         android:id="@+id/register_username_input"
@@ -55,7 +59,10 @@
         android:inputType="text"
         android:padding="20dp"
         android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/user"
+        />
 
     <Button
         android:id="@+id/register_btn"
@@ -63,11 +70,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/register_password"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="170dp"
         android:layout_marginRight="15dp"
         android:padding="17dp"
         android:text="Crear Cuenta"
-        android:textAllCaps="false"
+        android:background="@color/principal"
+        android:textColor="@color/black"
         android:textSize="16dp" />
 
 

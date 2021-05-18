@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 } else {
-                    Toast.makeText(MainActivity.this, "La cuenta con este numero: " + phone + " , no existe", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "La cuenta con este número: " + phone + " , no existe", Toast.LENGTH_SHORT).show();
                     //loadingBar.dismiss();
                 }
             }

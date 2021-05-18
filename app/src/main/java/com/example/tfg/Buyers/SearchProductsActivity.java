@@ -1,4 +1,4 @@
- package com.example.tfg.activities;
+ package com.example.tfg.Buyers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

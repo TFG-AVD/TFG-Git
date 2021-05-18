@@ -14,28 +14,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Buyers.ResetPasswordActivity"></activity>
         <activity android:name=".admin.AdminUserProductsActivity" />
         <activity android:name=".admin.AdminNewOrderActivity" />
-        <activity android:name=".activities.SearchProductsActivity"></activity>
-        <activity android:name=".admin.AdminMaintainProductsActivity"></activity>
-        <activity android:name=".activities.ConfirmFinalOrderActivity" />
-        <activity android:name=".activities.ProductDetailsActivity" />
-        <activity android:name=".activities.CartActivity" />
+        <activity android:name=".Buyers.SearchProductsActivity" />
+        <activity android:name=".admin.AdminMaintainProductsActivity" />
+        <activity android:name=".Buyers.ConfirmFinalOrderActivity" />
+        <activity android:name=".Buyers.ProductDetailsActivity" />
+        <activity android:name=".Buyers.CartActivity" />
         <activity android:name=".admin.AdminCategoryActivity" />
         <activity android:name=".admin.AdminAddNewProductActivity" />
-        <activity android:name=".activities.SettingsActivity" />
+        <activity android:name=".Buyers.SettingsActivity" />
         <activity
-            android:name=".activities.HomeActivity"
+            android:name=".Buyers.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".activities.RegisterActivity"
+            android:name=".Buyers.RegisterActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".Buyers.LoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".Buyers.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

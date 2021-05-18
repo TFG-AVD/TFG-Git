@@ -1,4 +1,4 @@
-package com.example.tfg.activities;
+package com.example.tfg.Buyers;
 
 import android.app.AlertDialog;
 import android.content.Intent;

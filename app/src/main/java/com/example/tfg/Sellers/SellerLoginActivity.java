@@ -1,4 +1,4 @@
-package com.example.tfg.activities;
+package com.example.tfg.Sellers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.tfg.R;
 
-public class SplashActivity extends AppCompatActivity {
+public class SellerLoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activitysplash);
+        setContentView(R.layout.activity_seller_login);
     }
 }

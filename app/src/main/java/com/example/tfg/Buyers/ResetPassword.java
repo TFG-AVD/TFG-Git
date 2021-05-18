@@ -1,4 +1,4 @@
-package com.example.tfg.buyers;
+package com.example.tfg.Buyers;
 
 public class ResetPassword {
 }

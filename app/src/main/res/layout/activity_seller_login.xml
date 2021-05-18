@@ -56,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/seller_login_pass"
-        android:hint="Registrar"
+        android:text="Registrar"
         android:textSize="18dp"
         android:background="@android:color/holo_blue_dark"
         android:textAllCaps="false"

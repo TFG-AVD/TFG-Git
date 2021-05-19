@@ -29,6 +29,7 @@ public class SellerHomeActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             switch (menuItem.getItemId()){
+                //menu de seller
                 case R.id.navigation_home:
                     Intent intentHome = new Intent(SellerHomeActivity.this, SellerHomeActivity.class);
                     startActivity(intentHome);

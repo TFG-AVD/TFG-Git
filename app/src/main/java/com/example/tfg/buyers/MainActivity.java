@@ -15,8 +15,11 @@ import android.widget.Toast;
 import com.example.tfg.models.Users;
 import com.example.tfg.R;
 import com.example.tfg.prevalent.Prevalent;
+import com.example.tfg.sellers.SellerHomeActivity;
 import com.example.tfg.sellers.SellerLoginActivity;
 import com.example.tfg.sellers.SellerRegistrationActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -97,7 +100,20 @@ public class MainActivity extends AppCompatActivity {
         
     }
 
-    private void AllowAccess(final String phone,final String password) {
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null){
+            Intent intentMain = new Intent(MainActivity.this, SellerHomeActivity.class);
+            intentMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intentMain);
+            finish();
+        }
+    }
+
+    private void AllowAccess(final String phone, final String password) {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 

@@ -88,8 +88,8 @@ public class SellerHomeActivity extends AppCompatActivity {
                     protected void onBindViewHolder(@NonNull ItemViewHolder holder, int position, @NonNull final Products model) {
                         holder.txtProductName.setText(model.getPname());
                         holder.txtProductDescription.setText(model.getDescription());
-                        holder.txtProductStatus.setText("State : "+ model.getProductState());
-                        holder.txtProductPrice.setText("Price = Rp. " + model.getPrice());
+                        holder.txtProductStatus.setText("Estado : "+ model.getProductState());
+                        holder.txtProductPrice.setText("Precio :  " + model.getPrice());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -98,11 +98,11 @@ public class SellerHomeActivity extends AppCompatActivity {
                                 final String productID = model.getPid();
 
                                 CharSequence options[] = new CharSequence[]{
-                                        "Yes",
+                                        "Si",
                                         "No"
                                 };
                                 AlertDialog.Builder builder = new AlertDialog.Builder(SellerHomeActivity.this);
-                                builder.setTitle("Do you want to delete this products. Are you sure?");
+                                builder.setTitle("¿Seguro que quieres eliminar el producto?");
                                 builder.setItems(options, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int position) {
@@ -134,7 +134,7 @@ public class SellerHomeActivity extends AppCompatActivity {
         unverifiedProductsRef.child(productID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(SellerHomeActivity.this, "That item has been delete successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SellerHomeActivity.this, "El producto ha sido eliminado sin éxito", Toast.LENGTH_SHORT).show();
             }
         });
     }

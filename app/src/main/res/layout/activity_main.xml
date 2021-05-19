@@ -44,7 +44,7 @@
         android:id="@+id/seller_begin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿Quires ser una tienda?"
+        android:text="¿Eres vendedor?"
         android:textSize="20dp"
         android:textColor="@color/black"
         android:textStyle="bold"

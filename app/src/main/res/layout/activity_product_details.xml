@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/product_price_details"
-        android:text="Descripción del producto"
+        android:text="Precio del producto"
         android:layout_below="@id/product_description_details"
         android:textColor="@color/black"
         android:textStyle="bold"

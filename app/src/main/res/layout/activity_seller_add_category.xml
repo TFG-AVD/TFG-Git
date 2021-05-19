@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.AdminCategoryActivity">
+    tools:context=".admin.SellerProductCategoryActivity">
 
     <TextView
         android:id="@+id/slogan_category"
@@ -26,7 +26,7 @@
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:layout_marginTop="45dp">
+        android:layout_marginTop="100dp">
 
         <ImageView
             android:id="@+id/t_shirts"
@@ -124,7 +124,7 @@
             android:layout_marginStart="16dp"/>
     </LinearLayout>
 
-    <Button
+   <!-- <Button
         android:id="@+id/maintain_btn"
         android:layout_width="match_parent"
         android:layout_height="42dp"
@@ -167,6 +167,6 @@
         android:textColor="@color/white"
         android:textSize="20dp"
         android:textAllCaps="false"
-        />
+        />-->
 
 </RelativeLayout>

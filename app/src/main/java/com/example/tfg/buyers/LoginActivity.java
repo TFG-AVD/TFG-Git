@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tfg.models.Users;
 import com.example.tfg.R;
-import com.example.tfg.admin.AdminCategoryActivity;
+import com.example.tfg.admin.SellerProductCategoryActivity;
 import com.example.tfg.prevalent.Prevalent;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -129,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                            if (parentDbName.equals("Admins")){
                                Toast.makeText(LoginActivity.this, "¡BIENVENIDO!", Toast.LENGTH_SHORT).show();
 
-                               Intent intent = new Intent(LoginActivity.this, AdminCategoryActivity.class);
+                               Intent intent = new Intent(LoginActivity.this, SellerProductCategoryActivity.class);
 
                                startActivity(intent);
 

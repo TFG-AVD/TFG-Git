@@ -71,8 +71,8 @@ public class SellerRegistrationActivity extends AppCompatActivity {
 
         if (!name.equals("") && !phone.equals("") && !email.equals("") && !password.equals("") && !address.equals("")){
 
-            loadingBar.setTitle("Creating seller account");
-            loadingBar.setMessage("Please wait, while we are checking the credentials");
+            loadingBar.setTitle("Creando cuenta de vendedor");
+            loadingBar.setMessage("Espere, estamos revisando las credenciales");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
@@ -110,7 +110,7 @@ public class SellerRegistrationActivity extends AppCompatActivity {
                         }
                     });
         }else {
-            Toast.makeText(this, "Please complete the registration form!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Por favor, complete el formulario", Toast.LENGTH_SHORT).show();
         }
     }
 }

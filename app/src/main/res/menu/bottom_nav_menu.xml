@@ -9,11 +9,11 @@
     <item
         android:id="@+id/navigation_add"
         android:icon="@drawable/add"
-        android:title="Add" />
+        android:title="Añadir" />
 
     <item
         android:id="@+id/navigation_logout"
         android:icon="@drawable/logout"
-        android:title="Logout" />
+        android:title="Cerrar Sesión" />
 
 </menu>

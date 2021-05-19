@@ -11,7 +11,7 @@
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Por favor introduce los detalles del envio"
+        android:text="Por favor introduce los detalles del envío"
         android:textSize="18dp"
         android:textColor="@color/black"
         android:layout_margin="25dp"

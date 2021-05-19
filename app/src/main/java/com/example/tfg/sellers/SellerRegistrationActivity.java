@@ -22,12 +22,6 @@ public class SellerRegistrationActivity extends AppCompatActivity {
 
         sellerLogin = (TextView)findViewById(R.id.seller_begin);
 
-        sellerLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SellerRegistrationActivity.this, SellerLoginActivity.class);
-                startActivity(intent);
-            }
-        });
+
     }
 }

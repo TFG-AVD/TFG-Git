@@ -16,6 +16,7 @@ import com.example.tfg.models.Users;
 import com.example.tfg.R;
 import com.example.tfg.prevalent.Prevalent;
 import com.example.tfg.sellers.SellerLoginActivity;
+import com.example.tfg.sellers.SellerRegistrationActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         sellerBegin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, SellerRegistrationActivity.class);
                 startActivity(intent);
             }
         });

@@ -218,7 +218,7 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    Intent intent = new Intent(SellerAddNewProductActivity.this, SellerProductCategoryActivity.class);
+                    Intent intent = new Intent(SellerAddNewProductActivity.this, SellerHomeActivity.class);
                     startActivity(intent);
 
                    // loadingBar.dismiss();

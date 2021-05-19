@@ -113,7 +113,7 @@ public class HomeActivity extends AppCompatActivity
 
         FirebaseRecyclerOptions<Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>()
-                        .setQuery(ProductsRef, Products.class)
+                        .setQuery(ProductsRef.orderByChild("productState").equalTo("Approved"), Products.class)
                         .build();
 
 
@@ -124,7 +124,7 @@ public class HomeActivity extends AppCompatActivity
                     {
                         holder.txtProductName.setText(model.getPname());
                         holder.txtProductDescription.setText(model.getDescription());
-                        holder.txtProductPrice.setText("Precio = " + model.getPrice() + "$");
+                        holder.txtProductPrice.setText("Precio: " + model.getPrice() + "€");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener(){

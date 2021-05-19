@@ -12,7 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.tfg.sellers.R;
+import com.example.tfg.R;
+
 
 public class NotificationsFragment extends Fragment {
 

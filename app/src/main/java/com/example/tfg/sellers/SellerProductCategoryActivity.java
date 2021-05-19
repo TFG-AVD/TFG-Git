@@ -1,4 +1,4 @@
-package com.example.tfg.admin;
+package com.example.tfg.sellers;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tfg.R;
-import com.example.tfg.sellers.SellerAddNewProductActivity;
 
 public class SellerProductCategoryActivity extends AppCompatActivity {
 

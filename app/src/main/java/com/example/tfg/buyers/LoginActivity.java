@@ -14,9 +14,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tfg.admin.AdminHomeActivity;
 import com.example.tfg.models.Users;
 import com.example.tfg.R;
-import com.example.tfg.admin.SellerProductCategoryActivity;
+import com.example.tfg.sellers.SellerProductCategoryActivity;
 import com.example.tfg.prevalent.Prevalent;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -129,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
                            if (parentDbName.equals("Admins")){
                                Toast.makeText(LoginActivity.this, "¡BIENVENIDO!", Toast.LENGTH_SHORT).show();
 
-                               Intent intent = new Intent(LoginActivity.this, SellerProductCategoryActivity.class);
+                               Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
 
                                startActivity(intent);
 

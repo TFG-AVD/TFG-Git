@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.tfg.R;
-import com.example.tfg.admin.SellerProductCategoryActivity;
 import com.example.tfg.buyers.MainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;

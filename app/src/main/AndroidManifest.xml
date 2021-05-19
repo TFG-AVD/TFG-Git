@@ -25,6 +25,9 @@
         <activity android:name=".admin.AdminCategoryActivity" />
         <activity android:name=".admin.AdminAddNewProductActivity" />
         <activity android:name=".buyers.SettingsActivity" />
+        <activity android:name=".sellers.SellerLoginActivity" />
+        <activity android:name=".sellers.SellerRegistrationActivity" />
+
         <activity
             android:name=".buyers.HomeActivity"
             android:label="@string/title_activity_home"

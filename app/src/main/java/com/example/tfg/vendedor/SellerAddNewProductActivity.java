@@ -139,10 +139,10 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
     }
 
     private void StoreProductInformation(){
-        loadingBar.setTitle("Añadir producto nuevo");
+/*        loadingBar.setTitle("Añadir producto nuevo");
         loadingBar.setMessage("Por favor, espere, añadiendo producto");
         loadingBar.setCanceledOnTouchOutside(false);
-        loadingBar.show();
+        loadingBar.show();*/
 
         Calendar calendar = Calendar.getInstance();
 

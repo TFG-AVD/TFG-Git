@@ -34,7 +34,6 @@ public class SellerLoginActivity extends AppCompatActivity {
         emailInput = findViewById(R.id.seller_login_email);
         passwordInput = findViewById(R.id.seller_login_pass);
         loginSellerBtn = findViewById(R.id.seller_login_btn);
-        loadingBar = new ProgressDialog(this);
 
         loginSellerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,10 +49,6 @@ public class SellerLoginActivity extends AppCompatActivity {
 
         if (!email.equals("") && !password.equals("")) {
 
-            loadingBar.setTitle("Cuenta del vendedor");
-            loadingBar.setMessage("Por favor espera, estamos verificando las credenciales");
-            loadingBar.setCanceledOnTouchOutside(false);
-            loadingBar.show();
 
             mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

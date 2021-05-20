@@ -33,7 +33,7 @@
         android:layout_marginRight="15dp"
         android:layout_below="@+id/tittle_seller"
         android:hint="Correo Electrónico..."
-        android:inputType="number"
+        android:inputType="text"
         android:textSize="16dp"
         android:layout_marginTop="10dp"
         />

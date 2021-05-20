@@ -10,7 +10,7 @@
         android:id="@+id/rl11"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/principal"
         android:layout_alignParentTop="true">
 
         <TextView
@@ -30,7 +30,7 @@
         android:id="@+id/msg1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/principal"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:textAlignment="center"
@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/principal"
         android:text="Next"
         android:textColor="@android:color/white"
         android:textSize="20dp"

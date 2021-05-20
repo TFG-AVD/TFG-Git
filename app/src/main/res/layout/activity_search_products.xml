@@ -10,7 +10,7 @@
         android:id="@+id/r5"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/principal"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
 
@@ -25,7 +25,7 @@
             android:padding="9dp"
             android:layout_marginStart="17dp"
             android:layout_centerVertical="true"
-            android:textColorHint="@color/colorPrimaryDark"
+            android:textColorHint="@color/black"
             />
 
         <Button
@@ -38,7 +38,7 @@
             android:textStyle="bold"
             android:padding="9dp"
             android:layout_centerInParent="true"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/principal"
             android:layout_toRightOf="@+id/search_product_name"
             />
 

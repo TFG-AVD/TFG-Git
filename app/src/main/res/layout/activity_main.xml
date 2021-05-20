@@ -24,6 +24,7 @@
         android:padding="20dp"
         android:textSize="18sp"
         android:text="Crear cuenta"
+        android:background="@color/principal"
         />
 
     <Button
@@ -38,6 +39,7 @@
         android:layout_marginRight="15dp"
         android:padding="20dp"
         android:textSize="18sp"
+        android:background="@color/principal"
         />
 
     <TextView

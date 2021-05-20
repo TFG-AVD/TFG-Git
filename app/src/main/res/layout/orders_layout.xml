@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:layout_margin="10dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/principal"
         >
 
         <TextView
@@ -88,7 +88,7 @@
             android:layout_marginTop="29dp"
             android:layout_marginBottom="10dp"
             android:text="Mostrar orden de producto"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/principal"
             android:textSize="15dp"
             android:textAllCaps="false"
             android:background="@android:color/white"

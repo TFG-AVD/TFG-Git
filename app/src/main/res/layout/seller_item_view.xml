@@ -20,7 +20,7 @@
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/black"
             />
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_marginTop="2dp"
             android:textAlignment="center"
             android:textSize="17sp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/black"
             />
 
         <ImageView
@@ -52,7 +52,7 @@
             android:text="Precio del Producto"
             android:textAlignment="center"
             android:textSize="17sp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/black"
             />
 
         <TextView
@@ -64,7 +64,7 @@
             android:layout_marginTop="2dp"
             android:textAlignment="center"
             android:textSize="17sp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/black"
             />
 
     </RelativeLayout>

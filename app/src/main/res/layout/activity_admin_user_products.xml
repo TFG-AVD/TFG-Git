@@ -10,7 +10,7 @@
         android:id="@+id/rluserproducts"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/principal"
         android:layout_alignParentTop="true">
 
         <TextView

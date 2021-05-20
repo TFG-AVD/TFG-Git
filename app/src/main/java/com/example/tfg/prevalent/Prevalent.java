@@ -1,6 +1,6 @@
 package com.example.tfg.prevalent;
 
-import com.example.tfg.models.Users;
+import com.example.tfg.modelos.Users;
 
 public class Prevalent {
 

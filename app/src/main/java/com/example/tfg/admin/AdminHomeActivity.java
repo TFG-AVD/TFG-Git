@@ -8,24 +8,27 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.tfg.R;
-import com.example.tfg.buyers.HomeActivity;
-import com.example.tfg.buyers.MainActivity;
+import com.example.tfg.comprador.HomeActivity;
+import com.example.tfg.comprador.MainActivity;
 
 public class AdminHomeActivity extends AppCompatActivity {
 
-    private Button LogoutBtn, CheckOrdersBtn, maintainProductsBtn, CheckApproveProductsBtn;
+    private Button logoutBtn;
+    private Button administrarProductosBtn;
+    private Button revisarPedidosBtn;
+    private Button productosAceptadosBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
 
-        LogoutBtn = (Button) findViewById(R.id.admin_logout_btn);
-        CheckOrdersBtn = (Button) findViewById(R.id.check_orders_btn);
-        maintainProductsBtn = (Button) findViewById(R.id.maintain_btn);
-        CheckApproveProductsBtn = (Button) findViewById(R.id.check_approve_products_btn);
+        logoutBtn = (Button) findViewById(R.id.admin_logout_btn);
+        revisarPedidosBtn = (Button) findViewById(R.id.check_orders_btn);
+        administrarProductosBtn = (Button) findViewById(R.id.maintain_btn);
+        productosAceptadosBtn = (Button) findViewById(R.id.check_approve_products_btn);
 
-        maintainProductsBtn.setOnClickListener(new View.OnClickListener() {
+        administrarProductosBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminHomeActivity.this, HomeActivity.class);
@@ -34,7 +37,7 @@ public class AdminHomeActivity extends AppCompatActivity {
             }
         });
 
-        LogoutBtn.setOnClickListener(new View.OnClickListener() {
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminHomeActivity.this, MainActivity.class);
@@ -44,7 +47,7 @@ public class AdminHomeActivity extends AppCompatActivity {
             }
         });
 
-        CheckOrdersBtn.setOnClickListener(new View.OnClickListener() {
+        revisarPedidosBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminHomeActivity.this, AdminNewOrderActivity.class);
@@ -53,7 +56,7 @@ public class AdminHomeActivity extends AppCompatActivity {
             }
         });
 
-        CheckApproveProductsBtn.setOnClickListener(new View.OnClickListener() {
+        productosAceptadosBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminHomeActivity.this, AdminCheckNewProductsActivity.class);

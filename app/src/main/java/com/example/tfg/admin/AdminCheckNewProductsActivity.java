@@ -13,9 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.tfg.Interface.ItemClickListener;
 import com.example.tfg.R;
-import com.example.tfg.models.Products;
+import com.example.tfg.modelos.Products;
 import com.example.tfg.viewholders.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -31,28 +30,13 @@ public class AdminCheckNewProductsActivity extends AppCompatActivity {
     private DatabaseReference unverifiedProductsRef;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_check_new_products);
-
-        unverifiedProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
-
-        recyclerView = findViewById(R.id.admin_products_checklist);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-    }
-
-    @Override
     protected void onStart() {
         super.onStart();
 
         FirebaseRecyclerOptions<Products> options =
-                new FirebaseRecyclerOptions.Builder<Products>()
-                .setQuery(unverifiedProductsRef.orderByChild("productState").equalTo("Not Approved"), Products.class).build();
+                new FirebaseRecyclerOptions.Builder<Products>().setQuery(unverifiedProductsRef.orderByChild("productState").equalTo("Not Approved"), Products.class).build();
 
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model){
                         holder.txtProductName.setText(model.getPname());
@@ -65,13 +49,10 @@ public class AdminCheckNewProductsActivity extends AppCompatActivity {
                             public void onClick(View v) {
                                 final String productID = model.getPid();
 
-                                CharSequence options [] = new CharSequence[]{
-                                        "Yes",
-                                        "No"
-                                };
+                                CharSequence options [] = new CharSequence[]{"Si", "No"};
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(AdminCheckNewProductsActivity.this);
-                                builder.setTitle("Do you want to Approved this product. Are you sure?");
+                                builder.setTitle("¿Quieres 'aceptar' este producto?");
                                 builder.setItems(options, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int position) {
@@ -81,7 +62,6 @@ public class AdminCheckNewProductsActivity extends AppCompatActivity {
                                         if (position == 1){
 
                                         }
-
                                     }
                                 });
                                 builder.show();
@@ -99,11 +79,23 @@ public class AdminCheckNewProductsActivity extends AppCompatActivity {
                 };
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_admin_check_new_products);
+
+        unverifiedProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+        recyclerView = findViewById(R.id.admin_products_checklist);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+    }
+
     private void ChangeProductState(String productID) {
         unverifiedProductsRef.child(productID).child("productState").setValue("Approved").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(AdminCheckNewProductsActivity.this, "That item has been approved, and it is now avalible for sale from the seller.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminCheckNewProductsActivity.this, "El producto ya ha sido 'aceptado', ya está disponible para su venta", Toast.LENGTH_SHORT).show();
             }
         });
     }

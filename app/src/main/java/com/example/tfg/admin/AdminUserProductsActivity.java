@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.tfg.models.Cart;
+import com.example.tfg.modelos.Cart;
 import com.example.tfg.R;
 import com.example.tfg.viewholders.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -21,11 +21,10 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AdminUserProductsActivity extends AppCompatActivity {
 
     private RecyclerView productsList;
-    RecyclerView.LayoutManager layoutManager;
     private DatabaseReference cartListRef;
+    RecyclerView.LayoutManager layoutManager;
 
     private String userID = "";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,36 +32,25 @@ public class AdminUserProductsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_user_products);
 
         userID = getIntent().getStringExtra("uid");
-
-
         productsList = findViewById(R.id.products_list);
         productsList.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         productsList.setLayoutManager(layoutManager);
-
-
-        cartListRef = FirebaseDatabase.getInstance().getReference()
-                .child("Cart List").child("Admin View").child(userID).child("Products");
+        cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List").child("Admin View").child(userID).child("Products");
     }
 
-
     @Override
-    protected void onStart()
-    {
+    protected void onStart() {
         super.onStart();
 
-
-        FirebaseRecyclerOptions<Cart> options =
-                new FirebaseRecyclerOptions.Builder<Cart>()
-                        .setQuery(cartListRef, Cart.class)
-                        .build();
+        FirebaseRecyclerOptions<Cart> options = new FirebaseRecyclerOptions.Builder<Cart>().setQuery(cartListRef, Cart.class).build();
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull Cart model)
             {
-                holder.txtProductQuantity.setText("Quantity = " + model.getQuantity());
-                holder.txtProductPrice.setText("Price " + model.getPrice() + "Ksh");
+                holder.txtProductQuantity.setText("Cantidad = " + model.getQuantity());
+                holder.txtProductPrice.setText("Precio " + model.getPrice() + "€");
                 holder.txtProductName.setText(model.getPname());
             }
 

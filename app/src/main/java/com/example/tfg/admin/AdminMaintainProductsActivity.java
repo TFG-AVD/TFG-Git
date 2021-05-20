@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.tfg.R;
-import com.example.tfg.sellers.SellerProductCategoryActivity;
+import com.example.tfg.vendedor.SellerProductCategoryActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -26,93 +26,69 @@ import java.util.HashMap;
 
 public class AdminMaintainProductsActivity extends AppCompatActivity {
 
-    private Button applyChangesBtn, deleteBtn;
-    private EditText name, price, description;
-    private ImageView imageView;
-
-    private String productID = "";
-    private DatabaseReference productsRef;
+    private Button aplicarCambiosBtn;
+    private Button borrarBtn;
+    private EditText nombre, precio, descripcion;
+    private ImageView imagen;
+    private String productoID = "";
+    private DatabaseReference productoRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_maintain_products);
-        productID = getIntent().getStringExtra("pid");
-        productsRef = FirebaseDatabase.getInstance().getReference().child("Products").child(productID);
+        productoID = getIntent().getStringExtra("pid");
+        productoRef = FirebaseDatabase.getInstance().getReference().child("Products").child(productoID);
 
-        applyChangesBtn = findViewById(R.id.apply_changes_btn);
-        name = findViewById(R.id.product_name_maintain);
-        price = findViewById(R.id.product_price_maintain);
-        description = findViewById(R.id.product_description_maintain);
-        imageView = findViewById(R.id.product_image_maintain);
-        deleteBtn = findViewById(R.id.delete_product_btn);
+        aplicarCambiosBtn = findViewById(R.id.aplicar_cambios_btn);
+        borrarBtn = findViewById(R.id.borrar_producto_btn);
+        nombre = findViewById(R.id.producto_nombre_maintain);
+        precio = findViewById(R.id.product_precio_maintain);
+        descripcion = findViewById(R.id.producto_descripcion_maintain);
+        imagen = findViewById(R.id.producto_imagen_maintain);
 
-        displaySpecificProductInfo();
+        mostrarInfoProducto();
 
-        applyChangesBtn.setOnClickListener(new View.OnClickListener() {
+        aplicarCambiosBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
-                applyChanges();
+            public void onClick(View view) {
+                aplicarCambios();
             }
         });
 
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
+        borrarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
-                deleteThisProduct();
-            }
-        });
-    }
-
-    private void deleteThisProduct()
-    {
-        productsRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task)
-            {
-                Intent intent = new Intent(AdminMaintainProductsActivity.this, SellerProductCategoryActivity.class);
-                startActivity(intent);
-                finish();
-
-                Toast.makeText(AdminMaintainProductsActivity.this, "The Product Is deleted successfully.", Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+                borrarProducto();
             }
         });
     }
 
-    private void applyChanges()
-    {
-        String pName = name.getText().toString();
-        String pPrice = price.getText().toString();
-        String pDescription = description.getText().toString();
+    private void aplicarCambios() {
+        String pName = nombre.getText().toString();
+        String pPrice = precio.getText().toString();
+        String pDescription = descripcion.getText().toString();
 
-        if (pName.equals(""))
-        {
+        if (pName.equals("")) {
             Toast.makeText(this, "Esciba el nombre del producto.", Toast.LENGTH_SHORT).show();
         }
-        else if (pPrice.equals(""))
-        {
+        else if (pPrice.equals("")) {
             Toast.makeText(this, "Escriba el precio del producto.", Toast.LENGTH_SHORT).show();
         }
-        else if (pDescription.equals(""))
-        {
+        else if (pDescription.equals("")) {
             Toast.makeText(this, "Escriba la descripción del producto.", Toast.LENGTH_SHORT).show();
         }
-        else
-        {
+        else {
             HashMap<String, Object> productMap = new HashMap<>();
-            productMap.put("pid", productID);
+            productMap.put("pid", productoID);
             productMap.put("description", pDescription);
             productMap.put("price", pPrice);
             productMap.put("pname", pName);
 
-            productsRef.updateChildren(productMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            productoRef.updateChildren(productMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
-                public void onComplete(@NonNull Task<Void> task)
-                {
-                    if (task.isSuccessful())
-                    {
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
                         Toast.makeText(AdminMaintainProductsActivity.this, "Cambios aplicados con éxito.", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(AdminMaintainProductsActivity.this, SellerProductCategoryActivity.class);
@@ -124,24 +100,33 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         }
     }
 
-    private void displaySpecificProductInfo()
-    {
-        productsRef.addValueEventListener(new ValueEventListener() {
+    private void borrarProducto() {
+        productoRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
-                if (dataSnapshot.exists())
-                {
+            public void onComplete(@NonNull Task<Void> task) {
+                Intent intent = new Intent(AdminMaintainProductsActivity.this, SellerProductCategoryActivity.class);
+                startActivity(intent);
+                finish();
+
+                Toast.makeText(AdminMaintainProductsActivity.this, "El producto ha sido borrado con éxito", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void mostrarInfoProducto() {
+        productoRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
                     String pName = dataSnapshot.child("pname").getValue().toString();
                     String pPrice = dataSnapshot.child("price").getValue().toString();
                     String pDescription = dataSnapshot.child("description").getValue().toString();
                     String pImage = dataSnapshot.child("image").getValue().toString();
 
-
-                    name.setText(pName);
-                    price.setText(pPrice);
-                    description.setText(pDescription);
-                    Picasso.get().load(pImage).into(imageView);
+                    nombre.setText(pName);
+                    precio.setText(pPrice);
+                    descripcion.setText(pDescription);
+                    Picasso.get().load(pImage).into(imagen);
                 }
             }
 

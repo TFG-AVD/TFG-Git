@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.tfg.models.AdminOrders;
+import com.example.tfg.modelos.AdminOrders;
 import com.example.tfg.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -24,45 +23,39 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AdminNewOrderActivity extends AppCompatActivity {
 
-    private RecyclerView ordersList;
-    private DatabaseReference ordersRef;
+    private RecyclerView pedidosLista;
+    private DatabaseReference pedidosRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_new_order);
 
-        ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders");
+        pedidosRef = FirebaseDatabase.getInstance().getReference().child("Orders");
 
-
-        ordersList = findViewById(R.id.orders_list);
-        ordersList.setLayoutManager(new LinearLayoutManager(this));
+        pedidosLista = findViewById(R.id.orders_list);
+        pedidosLista.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
+        FirebaseRecyclerOptions<AdminOrders> options = new FirebaseRecyclerOptions.Builder<AdminOrders>()
+                        .setQuery(pedidosRef, AdminOrders.class).build();
 
-        FirebaseRecyclerOptions<AdminOrders> options =
-                new FirebaseRecyclerOptions.Builder<AdminOrders>()
-                        .setQuery(ordersRef, AdminOrders.class)
-                        .build();
-        FirebaseRecyclerAdapter<AdminOrders, AdminOrdersViewHolder> adapter =
-                new FirebaseRecyclerAdapter<AdminOrders, AdminOrdersViewHolder>(options) {
+        FirebaseRecyclerAdapter<AdminOrders, AdminOrdersViewHolder> adapter = new FirebaseRecyclerAdapter<AdminOrders, AdminOrdersViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull AdminOrdersViewHolder holder, final int position, @NonNull final AdminOrders model)
-                    {
-                        holder.userName.setText("Nombre: " + model.getName());
-                        holder.userPhoneNumber.setText("Teléfono: " + model.getPhone());
-                        holder.userTotalPrice.setText("Cantidad Total =  €" + model.getTotalAmount());
-                        holder.userDateTime.setText("Fecha de la Orden: " + model.getDate() + "  " + model.getTime());
-                        holder.userShippingAddress.setText("Dirección del envio: " + model.getAddress() + ", " + model.getCity());
+                    protected void onBindViewHolder(@NonNull AdminOrdersViewHolder holder, final int position, @NonNull final AdminOrders model) {
+                        holder.usuarioNombre.setText("Nombre: " + model.getName());
+                        holder.usuarioTelefono.setText("Teléfono: " + model.getPhone());
+                        holder.usuarioPrecioTotal.setText("Cantidad Total =  €" + model.getTotalAmount());
+                        holder.usuarioFechaPedido.setText("Fecha de pedido: " + model.getDate() + "  " + model.getTime());
+                        holder.usuarioDireccion.setText("Dirección del envio: " + model.getAddress() + ", " + model.getCity());
 
-                        holder.ShowOrdersBtn.setOnClickListener(new View.OnClickListener() {
+                        holder.mostrarPedidosBtn.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View view)
-                            {
+                            public void onClick(View view) {
                                 String uID = getRef(position).getKey();
 
                                 Intent intent = new Intent(AdminNewOrderActivity.this, AdminUserProductsActivity.class);
@@ -73,29 +66,20 @@ public class AdminNewOrderActivity extends AppCompatActivity {
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View view)
-                            {
-                                CharSequence options[] = new CharSequence[]
-                                        {
-                                                "Yes",
-                                                "No"
-                                        };
+                            public void onClick(View view) {
+                                CharSequence options[] = new CharSequence[]{"Si", "No"};
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(AdminNewOrderActivity.this);
-                                builder.setTitle("Have you shipped this order products ?");
+                                builder.setTitle("¿Se ha enviado este pedido?");
 
                                 builder.setItems(options, new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialogInterface, int i)
-                                    {
-                                        if (i == 0)
-                                        {
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        if (i == 0) {
                                             String uID = getRef(position).getKey();
-
-                                            RemoverOrder(uID);
+                                            borrarPedido(uID);
                                         }
-                                        else
-                                        {
+                                        else {
                                             finish();
                                         }
                                     }
@@ -107,39 +91,33 @@ public class AdminNewOrderActivity extends AppCompatActivity {
 
                     @NonNull
                     @Override
-                    public AdminOrdersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
-                    {
+                    public AdminOrdersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.orders_layout, parent, false);
                         return new AdminOrdersViewHolder(view);
                     }
                 };
-
-        ordersList.setAdapter(adapter);
+        pedidosLista.setAdapter(adapter);
         adapter.startListening();
     }
-    public static class AdminOrdersViewHolder extends RecyclerView.ViewHolder
-    {
-        public TextView userName, userPhoneNumber, userTotalPrice, userDateTime, userShippingAddress;
-        public Button ShowOrdersBtn;
 
+    public static class AdminOrdersViewHolder extends RecyclerView.ViewHolder {
+        public TextView usuarioNombre, usuarioTelefono, usuarioPrecioTotal, usuarioFechaPedido, usuarioDireccion;
+        public Button mostrarPedidosBtn;
 
-        public AdminOrdersViewHolder(View itemView)
-        {
+        public AdminOrdersViewHolder(View itemView) {
             super(itemView);
 
-
-            userName = itemView.findViewById(R.id.order_user_name);
-            userPhoneNumber = itemView.findViewById(R.id.order_phone_number);
-            userTotalPrice = itemView.findViewById(R.id.order_total_price);
-            userDateTime = itemView.findViewById(R.id.order_date_time);
-            userShippingAddress = itemView.findViewById(R.id.order_address_city);
-            ShowOrdersBtn = itemView.findViewById(R.id.show_all_products_btn);
+            usuarioNombre = itemView.findViewById(R.id.order_user_name);
+            usuarioTelefono = itemView.findViewById(R.id.order_phone_number);
+            usuarioPrecioTotal = itemView.findViewById(R.id.order_total_price);
+            usuarioFechaPedido = itemView.findViewById(R.id.order_date_time);
+            usuarioDireccion = itemView.findViewById(R.id.order_address_city);
+            mostrarPedidosBtn = itemView.findViewById(R.id.show_all_products_btn);
         }
     }
 
-    private void RemoverOrder(String uID)
-    {
-        ordersRef.child(uID).removeValue();
+    private void borrarPedido(String uID) {
+        pedidosRef.child(uID).removeValue();
     }
 }
 

@@ -78,7 +78,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SettingsActivity.this, ResetPasswordActivity.class);
-                intent.putExtra("settings", "check");
+                intent.putExtra("check", "settings");
                 startActivity(intent);
 
             }
@@ -236,10 +236,10 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                     String name = dataSnapshot.child("name").getValue().toString();
                     String phone = dataSnapshot.child("phone").getValue().toString();
-                    String address = dataSnapshot.child("address").getValue().toString();
+                    //String address = dataSnapshot.child("address").getValue().toString();
                     fullNameEditText.setText(name);
                     userPhoneEditText.setText(phone);
-                    addressEditText.setText(address);
+                    //addressEditText.setText(address);
                 }
             }
 

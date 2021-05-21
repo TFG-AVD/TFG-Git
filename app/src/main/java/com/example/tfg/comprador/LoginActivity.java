@@ -28,11 +28,14 @@ import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText InputPhoneNumber, InputPassword;
-    private Button LoginButton;
+    private TextView adminLink;
+    private TextView adminNotLink;
+    private TextView olvidadoContraseña;
+    private EditText inputTelefono;
+    private EditText inputContraseña;
+    private CheckBox checkBoxRecuerdame;
+    private Button loginBtn;
     private AlertDialog loadingBar;
-    private CheckBox checkBoxRememberMe;
-    private TextView AdminLink,NotAdmin, ForgetPass;
 
     private String parentDbName = "Users";
 
@@ -41,25 +44,39 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        LoginButton = (Button) findViewById(R.id.login_btn);
-        InputPassword = (EditText) findViewById(R.id.login_password);
-        InputPhoneNumber = (EditText) findViewById(R.id.login_telefono);
-        checkBoxRememberMe = (CheckBox) findViewById(R.id.remember_me);
-        ForgetPass = findViewById(R.id.forgetPass);
-        AdminLink = (TextView) findViewById(R.id.admin);
-        NotAdmin = (TextView) findViewById(R.id.no_admin);
+        adminLink = (TextView) findViewById(R.id.admin);
+        adminNotLink = (TextView) findViewById(R.id.no_admin);
+        olvidadoContraseña = findViewById(R.id.olvidadoContraseña);
+        inputTelefono = (EditText) findViewById(R.id.login_telefono);
+        inputContraseña = (EditText) findViewById(R.id.login_contraseña);
+        checkBoxRecuerdame = (CheckBox) findViewById(R.id.recuerdame);
+        loginBtn = (Button) findViewById(R.id.login_btn);
+
         //loadingBar = new AlertDialog(this);
 
         Paper.init(this);
 
-        LoginButton.setOnClickListener(new View.OnClickListener(){
+        adminLink.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                LoginUser();
+            public void onClick(View v) {
+                loginBtn.setText("Login Admin");
+                adminLink.setVisibility(View.INVISIBLE);
+                adminNotLink.setVisibility(View.VISIBLE);
+                parentDbName = "Admins";
             }
         });
 
-        ForgetPass.setOnClickListener(new View.OnClickListener() {
+        adminNotLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginBtn.setText("Login");
+                adminLink.setVisibility(View.VISIBLE);
+                adminNotLink.setVisibility(View.INVISIBLE);
+                parentDbName = "Users";
+            }
+        });
+
+        olvidadoContraseña.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
@@ -68,53 +85,39 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        AdminLink.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-               LoginButton.setText("Login Admin");
-               AdminLink.setVisibility(View.INVISIBLE);
-               NotAdmin.setVisibility(View.VISIBLE);
-               parentDbName = "Admins";
+            public void onClick(View view){
+                loginUsuario();
             }
         });
-        NotAdmin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginButton.setText("Login");
-                AdminLink.setVisibility(View.VISIBLE);
-                NotAdmin.setVisibility(View.INVISIBLE);
-                parentDbName = "Users";
-            }
-        });
-
     }
 
-    private void LoginUser(){
-        String phone = InputPhoneNumber.getText().toString();
-        String password = InputPassword.getText().toString();
+    private void loginUsuario(){
+        String phone = inputTelefono.getText().toString();
+        String password = inputContraseña.getText().toString();
 
-        if(TextUtils.isEmpty(phone)){
-            Toast.makeText(this, "escriba su número de teléfono", Toast.LENGTH_LONG).show();
+        if (TextUtils.isEmpty(phone)){
+            Toast.makeText(this, "introduzca su número de teléfono...", Toast.LENGTH_LONG).show();
 
-        }else if (TextUtils.isEmpty(password)){
-            Toast.makeText(this, "escriba su contraseña", Toast.LENGTH_LONG).show();
-
-        }else{
+        } else if (TextUtils.isEmpty(password)){
+            Toast.makeText(this, "introduzca su contraseña...", Toast.LENGTH_LONG).show();
+        } else {
 //            loadingBar.setTitle("Login account");
   //          loadingBar.setMessage("Please wait, checking credentials");
      //       loadingBar.setCanceledOnTouchOutside(false);
        //     loadingBar.show();
-
-            AllowAccessToAccount(phone, password);
+            permitirAccesoCuenta(phone, password);
         }
     }
 
-    private void AllowAccessToAccount(final String phone, final String password){
+    private void permitirAccesoCuenta(final String telefono, final String contraseña){
 
-        if(checkBoxRememberMe.isChecked()){
-            Paper.book().write(Prevalent.userKey, phone);
-            Paper.book().write(Prevalent.passKey, password);
+        if (checkBoxRecuerdame.isChecked()){
+            Paper.book().write(Prevalent.userKey, telefono);
+            Paper.book().write(Prevalent.passKey, contraseña);
         }
+
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -122,34 +125,39 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child(parentDbName).child(phone).exists()) {
-                    Users userData = dataSnapshot.child(parentDbName).child(phone).getValue(Users.class);
-                    if (userData.getPhone().equals(phone)) {
-                        if (userData.getPassword().equals(password)) {
+
+                if (dataSnapshot.child(parentDbName).child(telefono).exists()) {
+                    Users userData = dataSnapshot.child(parentDbName).child(telefono).getValue(Users.class);
+
+                    if (userData.getPhone().equals(telefono)) {
+
+                        if (userData.getPassword().equals(contraseña)) {
+
                            if (parentDbName.equals("Admins")){
-                               Toast.makeText(LoginActivity.this, "¡BIENVENIDO!", Toast.LENGTH_SHORT).show();
+                               Toast.makeText(LoginActivity.this, "Se ha iniciado sesión", Toast.LENGTH_SHORT).show();
 
                                Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
-
                                startActivity(intent);
 
-                           }else if (parentDbName.equals("Users")){
-                               Toast.makeText(LoginActivity.this, "¡BIENVENIDO!", Toast.LENGTH_SHORT).show();
+                           } else if (parentDbName.equals("Users")){
+                               Toast.makeText(LoginActivity.this, "Se ha iniciado sesión", Toast.LENGTH_SHORT).show();
 
                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                Prevalent.usuarioOnline = userData;
                                startActivity(intent);
                            }
-                        }else{
+
+                        } else {
                             //loadingBar.dismiss();
-                            Toast.makeText(LoginActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "por favor, introduzca de nuevo su contraseña", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {
-                    Toast.makeText(LoginActivity.this, "La cuenta con este número:  " + phone + " , no existe", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "la cuenta con este teléfono:  " + telefono + " , no existe", Toast.LENGTH_SHORT).show();
                     //loadingBar.dismiss();
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError){
 

@@ -28,7 +28,9 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
 
     private Button aplicarCambiosBtn;
     private Button borrarBtn;
-    private EditText nombre, precio, descripcion;
+    private EditText nombre;
+    private EditText precio;
+    private EditText descripcion;
     private ImageView imagen;
     private String productoID = "";
     private DatabaseReference productoRef;
@@ -43,7 +45,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         aplicarCambiosBtn = findViewById(R.id.aplicar_cambios_btn);
         borrarBtn = findViewById(R.id.borrar_producto_btn);
         nombre = findViewById(R.id.producto_nombre_maintain);
-        precio = findViewById(R.id.product_precio_maintain);
+        precio = findViewById(R.id.producto_precio_maintain);
         descripcion = findViewById(R.id.producto_descripcion_maintain);
         imagen = findViewById(R.id.producto_imagen_maintain);
 

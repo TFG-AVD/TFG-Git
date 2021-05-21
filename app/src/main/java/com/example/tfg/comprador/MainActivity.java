@@ -3,7 +3,6 @@ package com.example.tfg.comprador;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -31,39 +30,41 @@ import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button joinNowButton, loginButton;
-    private ProgressDialog loadingBar;
-    private TextView sellerBegin;
+    private ProgressBar loadingBar;
+    private TextView vendedorBegin;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null){
+            Intent intentMain = new Intent(MainActivity.this, SellerHomeActivity.class);
+            intentMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intentMain);
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        joinNowButton = (Button) findViewById(R.id.register_btn);
-        loginButton = (Button) findViewById(R.id.login_btn);
-        sellerBegin = (TextView) findViewById(R.id.seller_begin);
+        Button loginBtn = (Button) findViewById(R.id.login_btn);
+        Button crearCuentaBtn = (Button) findViewById(R.id.register_btn);
+        vendedorBegin = findViewById(R.id.seller_begin);
 
         Paper.init(this);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, SellerLoginActivity.class);
                 startActivity(intent);
             }
         });
 
-        joinNowButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        sellerBegin.setOnClickListener(new View.OnClickListener() {
+        vendedorBegin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SellerRegistrationActivity.class);
@@ -71,69 +72,80 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        String UserPhoneKey = Paper.book().read(Prevalent.userKey);
-        String UserPasswordKey = Paper.book().read(Prevalent.passKey);
+        // PARA EL SPLASH SCREEN
 
-        if (UserPhoneKey != "" && UserPasswordKey != ""){
-            if (!TextUtils.isEmpty(UserPhoneKey) && !TextUtils.isEmpty(UserPasswordKey)){
-                AllowAccess(UserPhoneKey, UserPasswordKey);
+//        TimerTask tarea = new TimerTask() {
+//            @Override
+//            public void run() {
+//                Intent intent = new Intent(MainActivity.this, SplashActivity.class);
+//                startActivity(intent);
+//                finish();
+//                }
+//        };
+//       Timer tiempo = new Timer();
+//        tiempo.schedule(tarea,4000);
 
-                loadingBar.setTitle("Already logged in!");
-                loadingBar.setMessage("Please wait...!");
-                loadingBar.setCanceledOnTouchOutside(false);
-                loadingBar.show();
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        crearCuentaBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        String UserKey = Paper.book().read(Prevalent.userKey);
+        String PassKey = Paper.book().read(Prevalent.passKey);
+
+        if (UserKey != "" && PassKey !=""){
+            if (!TextUtils.isEmpty(UserKey) && !TextUtils.isEmpty(PassKey)){
+                permitirAcceso(UserKey, PassKey);
             }
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        if (firebaseUser != null){
-            Intent intent = new Intent(MainActivity.this, SellerHomeActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-        }
-    }
-
-    private void AllowAccess(final String phone, final String password) {
+    private void permitirAcceso(final String telefono, final String contraseña) {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener(){
 
-        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("Users").child(phone).exists()){
+                if (dataSnapshot.child("Users").child(telefono).exists()) {
+                    Users userData = dataSnapshot.child("Users").child(telefono).getValue(Users.class);
 
-                    Users usersData = dataSnapshot.child("Users").child(phone).getValue(Users.class);
+                    if (userData.getPhone().equals(telefono)) {
 
-                    if (usersData.getPhone().equals(phone)){
-                        if (usersData.getPassword().equals(password)){
-                            Toast.makeText(MainActivity.this, "Logged in successfully...", Toast.LENGTH_SHORT).show();
-                            loadingBar.dismiss();
+                        if (userData.getPassword().equals(contraseña)) {
+                            Toast.makeText(MainActivity.this, "Login con éxito", Toast.LENGTH_SHORT).show();
+                           // loadingBar.dismiss();
 
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                            Prevalent.usuarioOnline = usersData;
+                            Prevalent.usuarioOnline = userData;
                             startActivity(intent);
-                        }else {
-                            loadingBar.dismiss();
-                            Toast.makeText(MainActivity.this, "Password is incorrect!", Toast.LENGTH_SHORT).show();
+                        } else {
+                           // loadingBar.dismiss();
+                            Toast.makeText(MainActivity.this, "Login con éxito", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }else {
-                    Toast.makeText(MainActivity.this, "Account with " +phone+ " do not exists!", Toast.LENGTH_SHORT).show();
-                    loadingBar.dismiss();
+                } else {
+                    Toast.makeText(MainActivity.this, "la cuenta con este teléfono: " + telefono + " , no existe", Toast.LENGTH_SHORT).show();
+                    //loadingBar.dismiss();
                 }
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError){
 
             }
         });
     }
+
+
 }

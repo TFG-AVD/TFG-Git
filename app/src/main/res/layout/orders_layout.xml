@@ -14,7 +14,7 @@
         >
 
         <TextView
-            android:id="@+id/order_user_name"
+            android:id="@+id/pedido_nombre_usuario"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:text="Nombre de usuario"
@@ -25,7 +25,7 @@
             />
 
         <TextView
-            android:id="@+id/order_phone_number"
+            android:id="@+id/pedido_telefono_usuario"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -39,7 +39,7 @@
             />
 
         <TextView
-            android:id="@+id/order_total_price"
+            android:id="@+id/pedido_precio_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Precio total"
@@ -47,13 +47,13 @@
             android:textSize="18dp"
             android:layout_marginLeft="5dp"
             android:textStyle="bold"
-            android:layout_below="@+id/order_phone_number"
+            android:layout_below="@+id/pedido_telefono_usuario"
             android:gravity="center"
             android:layout_marginTop="25dp"
             />
 
         <TextView
-            android:id="@+id/order_address_city"
+            android:id="@+id/pedido_direccion_ciudad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Dirección y Ciudad"
@@ -61,12 +61,12 @@
             android:textSize="18dp"
             android:layout_marginLeft="5dp"
             android:textStyle="bold"
-            android:layout_below="@+id/order_total_price"
+            android:layout_below="@+id/pedido_precio_total"
             android:gravity="center"
             android:layout_marginTop="10dp"
             />
         <TextView
-            android:id="@+id/order_date_time"
+            android:id="@+id/pedido_fecha_hora"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Fecha"
@@ -74,13 +74,13 @@
             android:textSize="18dp"
             android:layout_marginLeft="5dp"
             android:textStyle="bold"
-            android:layout_below="@+id/order_address_city"
+            android:layout_below="@+id/pedido_direccion_ciudad"
             android:gravity="center"
             android:layout_marginTop="10dp"
             />
 
         <Button
-            android:id="@+id/show_all_products_btn"
+            android:id="@+id/mostrar_productos_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -92,7 +92,7 @@
             android:textSize="15dp"
             android:textAllCaps="false"
             android:background="@android:color/white"
-            android:layout_below="@+id/order_date_time"
+            android:layout_below="@+id/pedido_fecha_hora"
             />
     </RelativeLayout>
 

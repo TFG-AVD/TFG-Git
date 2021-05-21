@@ -1,9 +1,9 @@
 package com.example.tfg.modelos;
-
 public class Cart {
     private String pid, pname, price, quantity, discount;
 
     public Cart() {
+
     }
 
     public Cart(String pid, String pname, String price, String quantity, String discount) {

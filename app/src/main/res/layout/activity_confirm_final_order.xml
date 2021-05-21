@@ -11,7 +11,7 @@
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Por favor introduce los detalles del envío"
+        android:text="Por favor, introduzca los detalles del envío"
         android:textSize="18dp"
         android:textColor="@color/black"
         android:layout_margin="25dp"
@@ -20,51 +20,51 @@
         />
 
     <EditText
-        android:id="@+id/shippment_name"
+        android:id="@+id/envio_nombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:hint="Introduce tu nombre"
+        android:hint="nombre..."
         />
 
     <EditText
-        android:id="@+id/shippment_phone_number"
+        android:id="@+id/envio_telefono"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/shippment_name"
+        android:layout_below="@+id/envio_nombre"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:hint="Introduce tu número de teléfono"
+        android:hint="número de teléfono..."
         />
 
     <EditText
-        android:id="@+id/shippment_address"
+        android:id="@+id/envio_direccion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/shippment_phone_number"
+        android:layout_below="@+id/envio_telefono"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:hint="Introduce tu dirección"
+        android:hint="dirección..."
         />
 
     <EditText
-        android:id="@+id/shippment_city"
+        android:id="@+id/envio_ciudad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/shippment_address"
+        android:layout_below="@+id/envio_direccion"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:hint="Introduce tu ciudad"
+        android:hint="ciudad..."
         />
 
     <Button
-        android:id="@+id/confirm_final_order_btn"
+        android:id="@+id/confirmar_pedido_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

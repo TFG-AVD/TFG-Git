@@ -11,15 +11,17 @@ import com.example.tfg.R;
 
 public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView txtProductName, txtProductPrice, txtProductQuantity;
+    public TextView txtProductoNombre;
+    public TextView txtProductoPrecio;
+    public TextView txtProductoCantidad;
     private ItemClickListener itemClickListener;
 
     public CartViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        txtProductName = itemView.findViewById(R.id.cart_product_name);
-        txtProductPrice = itemView.findViewById(R.id.cart_product_price);
-        txtProductQuantity = itemView.findViewById(R.id.cart_product_quantity);
+        txtProductoNombre = itemView.findViewById(R.id.cart_product_name);
+        txtProductoPrecio = itemView.findViewById(R.id.cart_product_price);
+        txtProductoCantidad = itemView.findViewById(R.id.cart_product_quantity);
 
     }
 

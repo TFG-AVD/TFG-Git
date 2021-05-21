@@ -12,7 +12,10 @@ import com.example.tfg.R;
 
 public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 {
-    public TextView txtProductName, txtProductDescription, txtProductPrice;
+    public TextView txtProductoNombre;
+    public TextView txtProductoDescripcion;
+    public TextView txtProductoPrecio;
+
     public ImageView imageView;
     public ItemClickListener listener;
 
@@ -22,10 +25,10 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
     public ProductViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        imageView = (ImageView) itemView.findViewById(R.id.product_image);
-        txtProductName = (TextView) itemView.findViewById(R.id.product_name);
-        txtProductDescription = (TextView) itemView.findViewById(R.id.product_description);
-        txtProductPrice = (TextView) itemView.findViewById(R.id.product_price);
+        imageView = (ImageView) itemView.findViewById(R.id.producto_imagen);
+        txtProductoNombre = (TextView) itemView.findViewById(R.id.producto_nombre);
+        txtProductoDescripcion = (TextView) itemView.findViewById(R.id.producto_descripcion);
+        txtProductoPrecio = (TextView) itemView.findViewById(R.id.producto_precio);
 
     }
 

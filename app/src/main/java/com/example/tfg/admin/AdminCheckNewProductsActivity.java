@@ -29,19 +29,19 @@ public class AdminCheckNewProductsActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     private DatabaseReference unverifiedProductsRef;
 
+    //Según ejecute la aplicación
     @Override
     protected void onStart() {
         super.onStart();
 
-        FirebaseRecyclerOptions<Products> options =
-                new FirebaseRecyclerOptions.Builder<Products>().setQuery(unverifiedProductsRef.orderByChild("productState").equalTo("Not Approved"), Products.class).build();
+        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(unverifiedProductsRef.orderByChild("productState").equalTo("Not Approved"), Products.class).build();
 
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model){
-                        holder.txtProductName.setText(model.getPname());
-                        holder.txtProductDescription.setText(model.getDescription());
-                        holder.txtProductPrice.setText("Precio: " + model.getPrice() + "€");
+                        holder.txtProductoNombre.setText(model.getPname());
+                        holder.txtProductoDescripcion.setText(model.getDescription());
+                        holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {

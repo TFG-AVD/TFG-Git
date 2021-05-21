@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true">
 
         <TextView
-            android:id="@+id/total_price"
+            android:id="@+id/precio_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Precio total = "
@@ -40,7 +40,7 @@
         android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cart_list"
+        android:id="@+id/lista_carrito"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/rl11"

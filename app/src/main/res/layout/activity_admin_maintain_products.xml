@@ -67,7 +67,7 @@
             />
 
         <EditText
-            android:id="@+id/product_precio_maintain"
+            android:id="@+id/producto_precio_maintain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/producto_nombre_maintain"
@@ -84,7 +84,7 @@
             android:id="@+id/producto_descripcion_maintain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/product_precio_maintain"
+            android:layout_below="@+id/producto_precio_maintain"
             android:hint="Descripción del Producto"
             android:textAlignment="center"
             android:textSize="16dp"

@@ -56,8 +56,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
         phoneNumber.setVisibility(View.GONE);
 
         if (check.equals("settings")){
-            pageTitle.setText("Determinar pregunta");
-            titleQuestion.setText("Por favor, escriba las respuestas de las preguntas de seguridad");
+            pageTitle.setText("Determinar preguntas");
+            titleQuestion.setText("Por favor, respona las preguntas de seguridad");
             verifyButton.setText("Aceptar");
 
             displayPreviousAnswer();

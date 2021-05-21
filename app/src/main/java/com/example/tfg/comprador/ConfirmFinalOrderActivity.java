@@ -24,8 +24,11 @@ import java.util.HashMap;
 
 public class ConfirmFinalOrderActivity extends AppCompatActivity {
 
-    private EditText nameEditText, phoneEditText, addressEditText, cityEditText;
-    private Button confirmOrderBtn;
+    private Button confirmarPedidoBtn;
+    private EditText nombreEditText;
+    private EditText telefonoEditText;
+    private EditText direccionEditText;
+    private EditText ciudadEditText;
 
     private String totalAmount = "";
 
@@ -35,15 +38,15 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_confirm_final_order);
 
         totalAmount = getIntent().getStringExtra("Precio Total");
-        Toast.makeText(this, "Precio Total = " + totalAmount, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Precio Total: " + totalAmount + "€", Toast.LENGTH_LONG).show();
 
-        confirmOrderBtn = (Button) findViewById(R.id.confirm_final_order_btn);
-        nameEditText = (EditText) findViewById(R.id.shippment_name);
-        phoneEditText = (EditText) findViewById(R.id.shippment_phone_number);
-        addressEditText = (EditText) findViewById(R.id.shippment_address);
-        cityEditText = (EditText) findViewById(R.id.shippment_city);
+        confirmarPedidoBtn = (Button) findViewById(R.id.confirmar_pedido_btn);
+        nombreEditText = (EditText) findViewById(R.id.envio_nombre);
+        telefonoEditText = (EditText) findViewById(R.id.envio_telefono);
+        direccionEditText = (EditText) findViewById(R.id.envio_direccion);
+        ciudadEditText = (EditText) findViewById(R.id.envio_ciudad);
 
-        confirmOrderBtn.setOnClickListener(new View.OnClickListener() {
+        confirmarPedidoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Check();
@@ -51,37 +54,37 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         });
     }
     private void Check() {
-        if (TextUtils.isEmpty(nameEditText.getText().toString())){
-            Toast.makeText(this, "Por favor, introduzca su nombre completo", Toast.LENGTH_SHORT).show();
-        }else if(TextUtils.isEmpty(phoneEditText.getText().toString())){
-            Toast.makeText(this, "Por favor, introduzca su numero de telefono", Toast.LENGTH_SHORT).show();
-        }else if(TextUtils.isEmpty(addressEditText.getText().toString())){
-            Toast.makeText(this, "Por favor, introduzca su dirección", Toast.LENGTH_SHORT).show();
-        }else if(TextUtils.isEmpty(cityEditText.getText().toString())){
-            Toast.makeText(this, "Por favor, introduzca su ciudad", Toast.LENGTH_SHORT).show();
-        }else{
-            ConfirmOrder();
+        if (TextUtils.isEmpty(nombreEditText.getText().toString())){
+            Toast.makeText(this, "por favor, introduzca su nombre completo...", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(telefonoEditText.getText().toString())){
+            Toast.makeText(this, "por favor, introduzca su numero de telefono...", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(direccionEditText.getText().toString())){
+            Toast.makeText(this, "por favor, introduzca su dirección...", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(ciudadEditText.getText().toString())){
+            Toast.makeText(this, "por favor, introduzca su ciudad...", Toast.LENGTH_SHORT).show();
+        } else {
+            ConfirmarPedido();
         }
     }
 
-    private void ConfirmOrder() {
+    private void ConfirmarPedido() {
         final String saveDate, saveTime;
 
-        Calendar calForDate = Calendar.getInstance();
-        SimpleDateFormat date = new SimpleDateFormat("MM dd, yyyy");
-        saveDate = date.format(calForDate.getTime());
+        Calendar calendario = Calendar.getInstance();
+        SimpleDateFormat fecha = new SimpleDateFormat("MM dd, yyyy");
+        saveDate = fecha.format(calendario.getTime());
 
         SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss: a");
-        saveTime =  date.format(calForDate.getTime());
+        saveTime =  fecha.format(calendario.getTime());
 
         final DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders").child(Prevalent.usuarioOnline.getPhone());
 
         HashMap<String, Object> ordersMap = new HashMap<>();
         ordersMap.put("totalAmount", totalAmount);
-        ordersMap.put("name", nameEditText.getText().toString());
-        ordersMap.put("phone", phoneEditText.getText().toString());
-        ordersMap.put("address", addressEditText.getText().toString());
-        ordersMap.put("city", cityEditText.getText().toString());
+        ordersMap.put("name", nombreEditText.getText().toString());
+        ordersMap.put("phone", telefonoEditText.getText().toString());
+        ordersMap.put("address", direccionEditText.getText().toString());
+        ordersMap.put("city", ciudadEditText.getText().toString());
         ordersMap.put("date", saveDate);
         ordersMap.put("time", saveTime);
         ordersMap.put("state", "no enviado");
@@ -90,13 +93,10 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
              if (task.isSuccessful()){
-                 FirebaseDatabase.getInstance().getReference()
-                         .child("Cart List")
-                         .child("User View")
-                         .child(Prevalent.usuarioOnline.getPhone()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                 FirebaseDatabase.getInstance().getReference().child("Cart List").child("User View").child(Prevalent.usuarioOnline.getPhone()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                      @Override
                      public void onComplete(@NonNull Task<Void> task) {
-                         Toast.makeText(ConfirmFinalOrderActivity.this,"Tu pedido ha sido completado correctamente.",Toast.LENGTH_SHORT).show();
+                         Toast.makeText(ConfirmFinalOrderActivity.this,"¡Tu pedido ha sido realizado con éxito!",Toast.LENGTH_SHORT).show();
                          Intent intent = new Intent(ConfirmFinalOrderActivity.this, HomeActivity.class);
                          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                          startActivity(intent);

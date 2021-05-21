@@ -46,40 +46,33 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
     private StorageReference ProductImagesRef;
     private DatabaseReference ProductRef,sellersRef;
     private AlertDialog loadingBar;
-
     private String sName, sAddress, sPhone, sEmail, sID;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_add_new_product);
-
         CategoryName = getIntent().getExtras().get("category").toString();
         ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
         ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
         sellersRef = FirebaseDatabase.getInstance().getReference().child("Sellers");
-
         AddNewProductButton = (Button) findViewById(R.id.add_new_product);
         InputProductImage = (ImageView) findViewById(R.id.select_product_image);
         InputProductName = (EditText) findViewById(R.id.product_name);
         InputProductDescription = (EditText) findViewById(R.id.product_description);
         InputProductPrice = (EditText) findViewById(R.id.product_price);
         //loadingBar = new AlertDialog(this);
-
         InputProductImage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 OpenGallery();
             }
         });
-
         AddNewProductButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 ValidateProductData();
             }
         });
-
         sellersRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
@@ -92,36 +85,29 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
                             sEmail = dataSnapshot.child("email").getValue().toString();
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });
     }
-
     private void OpenGallery(){
         Intent galleryIntent = new Intent();
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
         galleryIntent.setType("image/*");
         startActivityForResult(galleryIntent, GalleryPick);
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == GalleryPick && resultCode == RESULT_OK && data!=null){
             ImageUri = data.getData();
             InputProductImage.setImageURI(ImageUri);
         }
     }
-
     private void ValidateProductData(){
         Description = InputProductDescription.getText().toString();
         Price = InputProductPrice.getText().toString();
         Pname = InputProductName.getText().toString();
-
         if (ImageUri == null){
             Toast.makeText(this, "La imagen del producto es obligatoria", Toast.LENGTH_SHORT).show();
         }
@@ -137,7 +123,6 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
             StoreProductInformation();
         }
     }
-
     private void StoreProductInformation(){
 /*        loadingBar.setTitle("Añadir producto nuevo");
         loadingBar.setMessage("Por favor, espere, añadiendo producto");
@@ -145,31 +130,24 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
         loadingBar.show();*/
 
         Calendar calendar = Calendar.getInstance();
-
         SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
         saveCurrentDate = currentDate.format(calendar.getTime());
-
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentTime.format(calendar.getTime());
-
         productRandomKey = saveCurrentDate + saveCurrentTime;
-
         StorageReference filePath = ProductImagesRef.child(ImageUri.getLastPathSegment() + productRandomKey + ".jpg");
-
         final UploadTask uploadTask =  filePath.putFile(ImageUri);
-
         uploadTask.addOnFailureListener(new OnFailureListener(){
             @Override
             public void onFailure(@NonNull Exception e){
                 String message = e.toString();
                 Toast.makeText(SellerAddNewProductActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
-               // loadingBar.dismiss();
+                // loadingBar.dismiss();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot){
                 Toast.makeText(SellerAddNewProductActivity.this, "Imagen actualizada con éxito", Toast.LENGTH_SHORT).show();
-
                 Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>(){
                     @Override
                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception{
@@ -184,9 +162,7 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Uri> task){
                         if (task.isSuccessful()){
                             downloadImageUrl = task.getResult().toString();
-
                             Toast.makeText(SellerAddNewProductActivity.this, "URL de imagen encontrado", Toast.LENGTH_SHORT).show(); //21:18
-
                             SaveProductInfoToDatabase();
                         }
                     }
@@ -194,7 +170,6 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
             }
         });
     }
-
     private void SaveProductInfoToDatabase(){
         HashMap<String, Object> productMap = new HashMap<>();
         productMap.put("pid", productRandomKey);
@@ -205,25 +180,22 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
         productMap.put("category", CategoryName);
         productMap.put("price", Price);
         productMap.put("pname", Pname);
-
         productMap.put("sellerName", sName);
         productMap.put("sellerAddress", sAddress);
         productMap.put("sellerPhone", sPhone);
         productMap.put("sellerEmail", sEmail);
         productMap.put("sid", sID);
         productMap.put("productState", "Not Approved");
-
         ProductRef.child(productRandomKey).updateChildren(productMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
                     Intent intent = new Intent(SellerAddNewProductActivity.this, SellerHomeActivity.class);
                     startActivity(intent);
-
-                   // loadingBar.dismiss();
+                    // loadingBar.dismiss();
                     Toast.makeText(SellerAddNewProductActivity.this, "Producto añadido con éxito", Toast.LENGTH_SHORT).show();
                 }else{
-                   // loadingBar.dismiss();
+                    // loadingBar.dismiss();
                     String message = task.getException().toString();
                     Toast.makeText(SellerAddNewProductActivity.this, "Error" + message, Toast.LENGTH_SHORT).show();
                 }

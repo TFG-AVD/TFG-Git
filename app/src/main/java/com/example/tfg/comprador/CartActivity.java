@@ -32,76 +32,42 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CartActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-
+    private RecyclerView recyclerView;
     private Button nextBtn;
-    private TextView txtTotal, txtMsg1;
+    private TextView txtTotal;
+    private TextView txtMsg1;
 
-    private int overTotalPrice = 0;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart);
-
-        recyclerView = findViewById(R.id.cart_list);
-        recyclerView.setHasFixedSize(true);
-        layoutManager =  new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-        nextBtn = (Button) findViewById(R.id.next_btn);
-        txtTotal = (TextView) findViewById(R.id.order_total_price);
-        txtMsg1 = (TextView) findViewById(R.id.msg1);
-
-
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                txtTotal.setText("Precio Total = " + String.valueOf(overTotalPrice)+" €");
-
-                Intent intent= new Intent(CartActivity.this, ConfirmFinalOrderActivity.class);
-                intent.putExtra("Precio Total", String.valueOf(overTotalPrice));
-                startActivity(intent);
-                finish();
-            }
-        });
-
-    }
+    private int precioTotal = 0;
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        txtTotal.setText("Precio Total = " + String.valueOf(overTotalPrice)+" €");
+        txtTotal.setText("Precio Total: " + String.valueOf(precioTotal) + "€");
 
-        CheckOrderState();
+        comprobarEstadoPedido();
 
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart list");
 
-        FirebaseRecyclerOptions<Cart> options =
-                new FirebaseRecyclerOptions.Builder<Cart>().setQuery(cartListRef.child("User View")
-                        .child(Prevalent.usuarioOnline.getPhone())
-                        .child("Products"), Cart.class).build();
+        FirebaseRecyclerOptions<Cart> options = new FirebaseRecyclerOptions.Builder<Cart>().setQuery(cartListRef.child("User View").child(Prevalent.usuarioOnline.getPhone()).child("Products"), Cart.class).build();
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder cartViewHolder, int i, @NonNull Cart cart) {
-                cartViewHolder.txtProductQuantity.setText("Cantidad: = " + cart.getQuantity());
-                cartViewHolder.txtProductPrice.setText("Precio: " + cart.getPrice()+"€");
-                cartViewHolder.txtProductName.setText(cart.getPname());
+                cartViewHolder.txtProductoCantidad.setText("Cantidad: " + cart.getQuantity());
+                cartViewHolder.txtProductoPrecio.setText("Precio: " + cart.getPrice()+"€");
+                cartViewHolder.txtProductoNombre.setText(cart.getPname());
 
-                int oneTypeProductTotalPrice = ((Integer.valueOf(cart.getPrice()))) * Integer.valueOf(cart.getQuantity());
-                overTotalPrice = overTotalPrice + oneTypeProductTotalPrice;
+                int precioTotalDeUnProducto = ((Integer.valueOf(cart.getPrice()))) * Integer.valueOf(cart.getQuantity());
+                precioTotal = precioTotal + precioTotalDeUnProducto;
+                txtTotal.setText("Precio Total: " + String.valueOf(precioTotal) + "€");
 
                 cartViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        CharSequence options[] = new CharSequence[]
-                                {
-                                        "Editar",
-                                        "Borrar"
-                                };
+                        CharSequence options[] = new CharSequence[]{"Editar", "Borrar"};
+
                         AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
                         builder.setTitle("Opciones de carrito");
 
@@ -114,11 +80,7 @@ public class CartActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }
                                 if (i == 1){
-                                    cartListRef.child("User View").child(Prevalent.usuarioOnline.getPhone())
-                                            .child("Products")
-                                            .child(cart.getPid())
-                                            .removeValue()
-                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    cartListRef.child("User View").child(Prevalent.usuarioOnline.getPhone()).child("Products").child(cart.getPid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()){
@@ -150,7 +112,35 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
-    private void CheckOrderState(){
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cart);
+
+        recyclerView = findViewById(R.id.lista_carrito);
+        recyclerView.setHasFixedSize(true);
+        layoutManager =  new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        nextBtn = (Button) findViewById(R.id.next_btn);
+        txtTotal = (TextView) findViewById(R.id.precio_total);
+        txtMsg1 = (TextView) findViewById(R.id.msg1);
+
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txtTotal.setText("Precio Total: " + String.valueOf(precioTotal) + "€");
+
+                Intent intent= new Intent(CartActivity.this, ConfirmFinalOrderActivity.class);
+                intent.putExtra("Precio Total", String.valueOf(precioTotal));
+                startActivity(intent);
+                finish();
+            }
+        });
+
+    }
+
+    private void comprobarEstadoPedido(){
         DatabaseReference ordersRef;
         ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders").child(Prevalent.usuarioOnline.getPhone());
         ordersRef.addValueEventListener(new ValueEventListener() {
@@ -168,7 +158,7 @@ public class CartActivity extends AppCompatActivity {
                         txtMsg1.setText("Felicidades, tu pedido ha sido enviado con éxito. Dentro de poco recibirás el pedido. ");
                         nextBtn.setVisibility(View.GONE);
 
-                        Toast.makeText(CartActivity.this, "puedes adquirir más productos en cuanto hayas recibido tu primer pedido", Toast.LENGTH_SHORT);
+                        Toast.makeText(CartActivity.this, "puedes adquirir más productos en cuanto hayas recibido tu pedido", Toast.LENGTH_SHORT);
 
                     } else if (shippingState.equals("not shipped")){
                         txtTotal.setText("Estado de pedido = No Enviado");
@@ -177,7 +167,7 @@ public class CartActivity extends AppCompatActivity {
                         txtMsg1.setVisibility(View.VISIBLE);
                         nextBtn.setVisibility(View.GONE);
 
-                        Toast.makeText(CartActivity.this, "puedes adquirir más productos en cuanto hayas recibido tu primer pedido", Toast.LENGTH_SHORT);
+                        Toast.makeText(CartActivity.this, "puedes adquirir más productos en cuanto hayas recibido tu pedido", Toast.LENGTH_SHORT);
                     }
                 }
             }

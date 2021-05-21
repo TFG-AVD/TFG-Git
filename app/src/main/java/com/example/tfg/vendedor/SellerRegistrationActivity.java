@@ -93,8 +93,7 @@ public class SellerRegistrationActivity extends AppCompatActivity {
                                 sellerMap.put("address", address);
                                 sellerMap.put("name", name);
 
-                                rootRef.child("Sellers").child(sid).updateChildren(sellerMap)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                rootRef.child("Sellers").child(sid).updateChildren(sellerMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 loadingBar.dismiss();

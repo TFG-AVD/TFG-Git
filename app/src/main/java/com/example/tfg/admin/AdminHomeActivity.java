@@ -24,9 +24,9 @@ public class AdminHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_home);
 
         logoutBtn = (Button) findViewById(R.id.admin_logout_btn);
-        revisarPedidosBtn = (Button) findViewById(R.id.check_orders_btn);
+        revisarPedidosBtn = (Button) findViewById(R.id.revisar_pedidos_btn);
         administrarProductosBtn = (Button) findViewById(R.id.maintain_btn);
-        productosAceptadosBtn = (Button) findViewById(R.id.check_approve_products_btn);
+        productosAceptadosBtn = (Button) findViewById(R.id.revisar_aceptar_productos_btn);
 
         administrarProductosBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -25,8 +25,10 @@ import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private Button CreateAccountButton;
-    private EditText InputName, InputPhoneNumber, InputPassword;
+    private EditText inputNombre;
+    private EditText inputTelefono;
+    private EditText inputContraseña;
+    private Button crearCuentaBtn;
     private AlertDialog loadingbar;
 
     @Override
@@ -34,96 +36,74 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        CreateAccountButton = (Button) findViewById(R.id.register_btn);
-        InputName = (EditText) findViewById(R.id.register_username_input);
-        InputPhoneNumber = (EditText) findViewById(R.id.register_telefono);
-        InputPassword = (EditText) findViewById(R.id.register_password);
+        crearCuentaBtn = (Button) findViewById(R.id.register_btn);
+        inputNombre = (EditText) findViewById(R.id.register_username_input);
+        inputTelefono = (EditText) findViewById(R.id.register_telefono);
+        inputContraseña = (EditText) findViewById(R.id.register_password);
         //loadingbar = new AlertDialog(this);
 
-        CreateAccountButton.setOnClickListener(new View.OnClickListener() {
+        crearCuentaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CreateAccount();
+                crearCuenta();
             }
         });
-
     }
 
-    private void CreateAccount()
-    {
-        String name = InputName.getText().toString();
-        String phone = InputPhoneNumber.getText().toString();
-        String password = InputPassword.getText().toString();
+    private void crearCuenta() {
+        String nombre = inputNombre.getText().toString();
+        String telefono = inputTelefono.getText().toString();
+        String contraseña = inputContraseña.getText().toString();
 
-        if (TextUtils.isEmpty(name))
-        {
+        if (TextUtils.isEmpty(nombre)) {
             Toast.makeText(this, "Por favor escriba su nombre...", Toast.LENGTH_SHORT);
-        }
-
-        else if (TextUtils.isEmpty(phone))
-        {
+        } else if (TextUtils.isEmpty(telefono)) {
             Toast.makeText(this, "Por favor escriba su número de teléfono...", Toast.LENGTH_SHORT);
-        }
-
-        else if (TextUtils.isEmpty(password))
-        {
+        } else if (TextUtils.isEmpty(contraseña)) {
             Toast.makeText(this, "Por favor escriba su contraseña...", Toast.LENGTH_SHORT);
-        }
-
-        else
-        {
+        } else {
 //            loadingbar.setTitle("Crear cuenta.");
 //            loadingbar.setMessage("Espere, estamos revisando las credenciales.");
 //            loadingbar.setCanceledOnTouchOutside(false);
 //            loadingbar.show();
 
-            ValidatephoneNumber(name, phone, password);
+            validarCuenta(nombre, telefono, contraseña);
         }
     }
 
-    private void ValidatephoneNumber(String name, String phone, String password)
-    {
+    private void validarCuenta(String nombre, String telefono, String contraseña) {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
         RootRef.addListenerForSingleValueEvent(new ValueEventListener(){
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot){
-                if (!(dataSnapshot.child("Users").child(phone).exists()))
-                {
+                if (!(dataSnapshot.child("Users").child(telefono).exists())) {
                     HashMap<String, Object> userdataMap = new HashMap<>();
-                    userdataMap.put("name", name);
-                    userdataMap.put("phone", phone);
-                    userdataMap.put("password", password);
+                    userdataMap.put("name", nombre);
+                    userdataMap.put("phone", telefono);
+                    userdataMap.put("password", contraseña);
 
-                    RootRef.child("Users").child(phone).updateChildren(userdataMap)
+                    RootRef.child("Users").child(telefono).updateChildren(userdataMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
-                                public void onComplete(@NonNull Task<Void> task)
-                                {
-                                    if(task.isSuccessful())
-                                    {
-                                        Toast.makeText(RegisterActivity.this, "Cuenta creada con éxito", Toast.LENGTH_SHORT);
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()) {
+                                        Toast.makeText(RegisterActivity.this, "¡Cuenta creada con éxito!", Toast.LENGTH_SHORT);
                                        // loadingbar.dismiss();
 
                                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                         startActivity(intent);
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         loadingbar.dismiss();
-                                        Toast.makeText(RegisterActivity.this, "Error de conexión: Inténtelo más tarde...", Toast.LENGTH_SHORT);
+                                        Toast.makeText(RegisterActivity.this, "error de conexión: Inténtelo más tarde...", Toast.LENGTH_SHORT);
                                     }
                                 }
-
                             });
-
-                }
-                else
-                {
-                    Toast.makeText(RegisterActivity.this, "Este número de teléfono: " + phone + " ya existe", Toast.LENGTH_SHORT);
+                } else {
+                    Toast.makeText(RegisterActivity.this, "este teléfono: " + telefono + " ya existe...", Toast.LENGTH_SHORT);
                     loadingbar.dismiss();
-                    Toast.makeText(RegisterActivity.this, "Por favor inténtelo con otro número de teléfono", Toast.LENGTH_SHORT);
+                    Toast.makeText(RegisterActivity.this, "por favor, inténtelo con otro número de teléfono", Toast.LENGTH_SHORT);
 
                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                     startActivity(intent);
@@ -134,7 +114,6 @@ public class RegisterActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-
 
         });
     }

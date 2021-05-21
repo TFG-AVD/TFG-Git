@@ -92,7 +92,7 @@
         android:textSize="16dp"
         android:text="INICIAR SESIÓN"
         android:background="@color/principal"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         />
 
     <TextView

@@ -12,9 +12,9 @@ import com.example.tfg.R;
 
 public class SellerProductCategoryActivity extends AppCompatActivity {
 
-    private ImageView tShirt, sportShirts, femaleDresses, sweathers;
-    private ImageView glasses, hatCaps, walletsBagsPurses, shoes;
-    private ImageView headPhonesHandFree, laptops, watches, mobilePhones;
+    private ImageView botanica, bricolaje, comida, deportes;
+    private ImageView drogueria, electrodomesticos, electronica, ferreteria;
+    private ImageView hogar, mascotas, ocio, papeleria;
 
     private Button LogoutBtn, CheckOrdersBtn;
 
@@ -46,22 +46,22 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
             }
         });*/
 
-        tShirt = (ImageView) findViewById(R.id.t_shirts);
-        sportShirts = (ImageView) findViewById(R.id.sport_t_shirts);
-        femaleDresses = (ImageView) findViewById(R.id.female_dresses);
-        sweathers = (ImageView) findViewById(R.id.sweathers);
+        botanica = (ImageView) findViewById(R.id.botanica_foto);
+        bricolaje = (ImageView) findViewById(R.id.bricolaje_foto);
+        comida = (ImageView) findViewById(R.id.comida_foto);
+        deportes = (ImageView) findViewById(R.id.deporte_foto);
 
-        glasses = (ImageView) findViewById(R.id.glasses);
-        hatCaps = (ImageView) findViewById(R.id.hats_caps);
-        walletsBagsPurses = (ImageView) findViewById(R.id.purses_bags_wallets);
-        shoes = (ImageView) findViewById(R.id.shoes);
+        drogueria = (ImageView) findViewById(R.id.drogueria_foto);
+        electrodomesticos = (ImageView) findViewById(R.id.electrodomesticos_foto);
+        electronica = (ImageView) findViewById(R.id.electronica_foto);
+        ferreteria = (ImageView) findViewById(R.id.ferreteria_foto);
 
-        headPhonesHandFree = (ImageView) findViewById(R.id.headphones_handfree);
-        laptops = (ImageView) findViewById(R.id.laptop_pc);
-        watches = (ImageView) findViewById(R.id.watches);
-        mobilePhones = (ImageView) findViewById(R.id.mobilephones);
+        hogar = (ImageView) findViewById(R.id.hogar_foto);
+        mascotas = (ImageView) findViewById(R.id.mascota_foto);
+        ocio = (ImageView) findViewById(R.id.ocio_foto);
+        papeleria = (ImageView) findViewById(R.id.papeleria_foto);
 
-        tShirt.setOnClickListener(new View.OnClickListener(){
+        botanica.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
@@ -71,7 +71,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
 
         });
 
-        sportShirts.setOnClickListener(new View.OnClickListener(){
+        bricolaje.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
@@ -81,7 +81,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
 
         });
 
-        femaleDresses.setOnClickListener(new View.OnClickListener(){
+        comida.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
@@ -91,7 +91,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
 
         });
 
-        sweathers.setOnClickListener(new View.OnClickListener(){
+        deportes.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
@@ -101,7 +101,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
 
         });
 
-        glasses.setOnClickListener(new View.OnClickListener(){
+        drogueria.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
@@ -111,7 +111,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
 
         });
 
-        hatCaps.setOnClickListener(new View.OnClickListener(){
+        electrodomesticos.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
@@ -121,7 +121,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
 
         });
 
-        walletsBagsPurses.setOnClickListener(new View.OnClickListener(){
+        electronica.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
@@ -131,7 +131,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
 
         });
 
-        shoes.setOnClickListener(new View.OnClickListener(){
+        ferreteria.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
@@ -141,7 +141,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
 
         });
 
-        headPhonesHandFree.setOnClickListener(new View.OnClickListener(){
+        hogar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
@@ -151,7 +151,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
 
         });
 
-        laptops.setOnClickListener(new View.OnClickListener(){
+        mascotas.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
@@ -161,7 +161,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
 
         });
 
-        watches.setOnClickListener(new View.OnClickListener(){
+        ocio.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
@@ -171,7 +171,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
 
         });
 
-        mobilePhones.setOnClickListener(new View.OnClickListener(){
+        papeleria.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);

@@ -37,9 +37,9 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         crearCuentaBtn = (Button) findViewById(R.id.register_btn);
-        inputNombre = (EditText) findViewById(R.id.register_username_input);
-        inputTelefono = (EditText) findViewById(R.id.register_telefono);
-        inputContraseña = (EditText) findViewById(R.id.register_password);
+        inputNombre = (EditText) findViewById(R.id.registro_username_input);
+        inputTelefono = (EditText) findViewById(R.id.registro_telefono);
+        inputContraseña = (EditText) findViewById(R.id.registro_contraseña);
         //loadingbar = new AlertDialog(this);
 
         crearCuentaBtn.setOnClickListener(new View.OnClickListener() {
@@ -78,14 +78,14 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot){
+
                 if (!(dataSnapshot.child("Users").child(telefono).exists())) {
                     HashMap<String, Object> userdataMap = new HashMap<>();
                     userdataMap.put("name", nombre);
                     userdataMap.put("phone", telefono);
                     userdataMap.put("password", contraseña);
 
-                    RootRef.child("Users").child(telefono).updateChildren(userdataMap)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    RootRef.child("Users").child(telefono).updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()) {
@@ -114,7 +114,6 @@ public class RegisterActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-
         });
     }
 }

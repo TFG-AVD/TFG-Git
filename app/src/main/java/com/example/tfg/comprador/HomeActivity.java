@@ -186,6 +186,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         else if (id == R.id.nav_categories) {
 
         }
+
         else if (id == R.id.nav_settings) {
             if (!type.equals("Admin")){
                 Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);

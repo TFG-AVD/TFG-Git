@@ -17,7 +17,7 @@
             android:id="@+id/precio_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Precio total = "
+            android:text="Precio total: "
             android:textColor="@android:color/white"
             android:textSize="20dp"
             android:textAlignment="center"

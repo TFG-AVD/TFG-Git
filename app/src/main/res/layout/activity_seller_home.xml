@@ -30,10 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rell"
-        android:layout_above="@+id/nav_view"
-        >
-
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_above="@+id/nav_view"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

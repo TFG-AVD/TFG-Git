@@ -2,6 +2,7 @@ package com.example.tfg.vendedor;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
@@ -26,6 +27,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 public class SellerHomeActivity extends AppCompatActivity {
@@ -72,6 +74,17 @@ public class SellerHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_home);
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        unverifiedProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+
+        recyclerView = findViewById(R.id.seller_home_recyclerview);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
     }
     @Override
     protected void onStart() {
@@ -93,10 +106,7 @@ public class SellerHomeActivity extends AppCompatActivity {
                             public void onClick(View v) {
                                 final String productID = model.getPid();
 
-                                CharSequence options[] = new CharSequence[]{
-                                        "Si",
-                                        "No"
-                                };
+                                CharSequence options[] = new CharSequence[]{"Si", "No"};
                                 AlertDialog.Builder builder = new AlertDialog.Builder(SellerHomeActivity.this);
                                 builder.setTitle("¿Seguro que quieres eliminar el producto?");
                                 builder.setItems(options, new DialogInterface.OnClickListener() {
@@ -130,7 +140,7 @@ public class SellerHomeActivity extends AppCompatActivity {
         unverifiedProductsRef.child(productID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(SellerHomeActivity.this, "El producto ha sido eliminado sin éxito", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SellerHomeActivity.this, "El producto ha sido eliminado con éxito", Toast.LENGTH_SHORT).show();
             }
         });
     }

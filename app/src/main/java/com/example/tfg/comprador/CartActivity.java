@@ -160,7 +160,7 @@ public class CartActivity extends AppCompatActivity {
 
                         Toast.makeText(CartActivity.this, "puedes adquirir más productos en cuanto hayas recibido tu pedido", Toast.LENGTH_SHORT);
 
-                    } else if (shippingState.equals("not shipped")){
+                    } else if (shippingState.equals("No Enviado")){
                         txtTotal.setText("Estado de pedido = No Enviado");
                         recyclerView.setVisibility(View.GONE);
 

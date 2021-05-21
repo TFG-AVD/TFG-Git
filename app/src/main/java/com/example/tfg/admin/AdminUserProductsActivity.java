@@ -57,10 +57,10 @@ public class AdminUserProductsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_user_products);
 
         userID = getIntent().getStringExtra("uid");
-        listaProductos = findViewById(R.id.lista_productos);
+        listaProductos = findViewById(R.id.admin_lista_productos);
         listaProductos.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         listaProductos.setLayoutManager(layoutManager);
-        listaCarritoRef = FirebaseDatabase.getInstance().getReference().child("Cart List").child("Admin View").child(userID).child("Products");
+        listaCarritoRef = FirebaseDatabase.getInstance().getReference().child("Cart list").child("Admin View").child(userID).child("Products");
     }
 }

@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
 
         Button loginBtn = (Button) findViewById(R.id.login_btn);
         Button crearCuentaBtn = (Button) findViewById(R.id.register_btn);

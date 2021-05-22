@@ -37,14 +37,11 @@
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".comprador.RegisterActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:name=".comprador.RegisterActivity" />
         <activity
-            android:name=".comprador.LoginActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:name=".comprador.LoginActivity"/>
         <activity
-            android:name=".comprador.MainActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:name=".comprador.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

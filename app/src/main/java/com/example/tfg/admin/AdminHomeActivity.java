@@ -22,6 +22,7 @@ public class AdminHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
+        getSupportActionBar().hide();
 
         logoutBtn = (Button) findViewById(R.id.admin_logout_btn);
         revisarPedidosBtn = (Button) findViewById(R.id.revisar_pedidos_btn);

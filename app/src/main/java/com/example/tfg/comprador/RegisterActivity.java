@@ -35,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        getSupportActionBar().hide();
 
         crearCuentaBtn = (Button) findViewById(R.id.register_btn);
         inputNombre = (EditText) findViewById(R.id.registro_username_input);

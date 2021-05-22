@@ -35,6 +35,8 @@ public class SellerRegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_registration);
 
+        getSupportActionBar().hide();
+
         mAuth = FirebaseAuth.getInstance();
         loadingBar = new ProgressDialog(this);
 

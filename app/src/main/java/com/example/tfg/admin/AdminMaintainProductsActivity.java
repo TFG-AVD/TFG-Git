@@ -38,6 +38,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_admin_maintain_products);
         productoID = getIntent().getStringExtra("pid");
         productoRef = FirebaseDatabase.getInstance().getReference().child("Products").child(productoID);

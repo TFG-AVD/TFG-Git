@@ -41,6 +41,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
         telefono.setVisibility(View.GONE);
 
+        getSupportActionBar().hide();
+
         if (check.equals("settings")){
             tituloPagina.setText("Responda preguntas");
             tituloPregunta.setText("Por favor, responda las preguntas de seguridad");

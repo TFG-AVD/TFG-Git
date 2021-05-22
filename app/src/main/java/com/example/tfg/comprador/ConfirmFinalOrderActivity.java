@@ -1,6 +1,7 @@
 package com.example.tfg.comprador;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,12 +18,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class ConfirmFinalOrderActivity extends AppCompatActivity {
+public class ConfirmFinalOrderActivity extends AppCompatActivity implements PaymentResultListener {
 
     private Button confirmarPedidoBtn;
     private EditText nombreEditText;
@@ -31,6 +37,10 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
     private EditText ciudadEditText;
 
     private String totalAmount = "";
+
+    String sCantidad = "100";
+
+    long cantidad = Math.round(Float.parseFloat(sCantidad) * 1524.31);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +60,25 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         confirmarPedidoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Check();
+                //Check();
+                Checkout checkout = new Checkout();
+
+                checkout.setKeyID("rzp_test_8phJCbJOMWwPeX");
+
+                JSONObject object = new JSONObject();
+                try {
+                    object.put("name", "Pago Gaytor");
+                    object.put("description", "Introduce las credenciales");
+                    object.put("theme.color", "#3399ff");
+                    object.put("currency", "EUR");
+                    object.put("amount", cantidad);
+                    object.put("prefill.contact", "656551888");
+                    object.put("prefill.email", "tfgifp@gmail.com");
+
+                    checkout.open(ConfirmFinalOrderActivity.this,object);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -107,5 +135,18 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
              }
             }
         });
+    }
+
+    @Override
+    public void onPaymentSuccess(String s) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("ID");
+        builder.setMessage(s);
+        builder.show();
+    }
+
+    @Override
+    public void onPaymentError(int i, String s) {
+        Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
     }
 }

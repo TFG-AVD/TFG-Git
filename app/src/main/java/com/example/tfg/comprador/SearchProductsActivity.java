@@ -22,71 +22,71 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-public class SearchProductsActivity extends AppCompatActivity {
 
-    private Button buscarBtn;
-    private RecyclerView buscarLista;
-    private EditText textInput;
-    private String buscarInput;
+ public class SearchProductsActivity extends AppCompatActivity {
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
+     private Button buscarBtn;
+     private EditText inputText;
+     private RecyclerView buscarLista;
+     private String inputBuscar;
 
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("name").startAt(buscarInput), Products.class).build();
+     @Override
+     protected void onStart() {
+         super.onStart();
 
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                        holder.txtProductoNombre.setText(model.getPname());
-                        holder.txtProductoDescripcion.setText(model.getDescription());
-                        // holder.txtProductLocation.setText(model.getLocation());
-                        holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
+         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
 
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view)
-                            {
-                                Intent intent = new Intent(SearchProductsActivity.this, ProductDetailsActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
-                            }
-                        });
-                    }
+         FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("pname").startAt(inputBuscar), Products.class).build();
 
-                    @NonNull
-                    @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout, parent, false);
-                        ProductViewHolder holder = new ProductViewHolder(view);
-                        return holder;
-                    }
-                };
+         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+                     @Override
+                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
+                         holder.txtProductoNombre.setText(model.getPname());
+                         holder.txtProductoDescripcion.setText(model.getDescription());
+                         holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
+                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
-        buscarLista.setAdapter(adapter);
-        adapter.startListening();
-    }
+                         holder.itemView.setOnClickListener(new View.OnClickListener() {
+                             @Override
+                             public void onClick(View view) {
+                                 Intent intent = new Intent(SearchProductsActivity.this, ProductDetailsActivity.class);
+                                 intent.putExtra("pid", model.getPid());
+                                 startActivity(intent);
+                             }
+                         });
+                     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_products);
-        getSupportActionBar().hide();
+                     @NonNull
+                     @Override
+                     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout, parent, false);
+                         ProductViewHolder holder = new ProductViewHolder(view);
+                         return holder;
+                     }
+                 };
 
-        textInput = findViewById(R.id.search_product_name);
-        buscarBtn = findViewById(R.id.search_btn);
-        buscarLista = findViewById(R.id.search_list);
-        buscarLista.setLayoutManager(new LinearLayoutManager(SearchProductsActivity.this));
+         buscarLista.setAdapter(adapter);
+         adapter.startListening();
+     }
 
-        buscarBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                buscarInput = textInput.getText().toString();
-                onStart();
-            }
-        });
-    }
-}
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_search_products);
 
+         inputText = findViewById(R.id.buscar_producto_nombre);
+         buscarBtn = findViewById(R.id.buscar_btn);
+         buscarLista = findViewById(R.id.buscar_lista);
+         buscarLista.setLayoutManager(new LinearLayoutManager(SearchProductsActivity.this));
+
+         buscarBtn.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 inputBuscar = inputText.getText().toString();
+
+                 onStart();
+             }
+         });
+     }
+
+ }

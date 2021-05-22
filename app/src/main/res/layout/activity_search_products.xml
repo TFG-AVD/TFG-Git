@@ -15,21 +15,20 @@
         android:layout_centerHorizontal="true">
 
         <EditText
-            android:id="@+id/search_product_name"
+            android:id="@+id/buscar_producto_nombre"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
-            android:hint="Nombre del Producto"
-            android:textSize="18dp"
+            android:hint="producto..."
+            android:textSize="15dp"
             android:textStyle="bold"
             android:background="@android:color/white"
             android:padding="9dp"
             android:layout_marginStart="17dp"
             android:layout_centerVertical="true"
-            android:textColorHint="@color/black"
             />
 
         <Button
-            android:id="@+id/search_btn"
+            android:id="@+id/buscar_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Buscar"
@@ -39,13 +38,13 @@
             android:padding="9dp"
             android:layout_centerInParent="true"
             android:background="@color/principal"
-            android:layout_toRightOf="@+id/search_product_name"
+            android:layout_toRightOf="@+id/buscar_producto_nombre"
             />
 
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_list"
+        android:id="@+id/buscar_lista"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/r5">

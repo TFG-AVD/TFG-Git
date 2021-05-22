@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--  android:icon="@drawable/"-->
     <item
-
         android:id="@+id/action_search"
         android:orderInCategory="100"
         android:title="@string/abc_search_hint"

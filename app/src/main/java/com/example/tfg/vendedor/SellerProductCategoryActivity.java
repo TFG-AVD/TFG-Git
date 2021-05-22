@@ -65,7 +65,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
-                intent.putExtra("category", "Camisetas");
+                intent.putExtra("category", "Botánica");
                 startActivity(intent);
             }
 
@@ -75,7 +75,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
-                intent.putExtra("category", "Camisetas de deporte");
+                intent.putExtra("category", "Bricolaje");
                 startActivity(intent);
             }
 
@@ -85,7 +85,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
-                intent.putExtra("category", "Vestidos");
+                intent.putExtra("category", "Comida");
                 startActivity(intent);
             }
 
@@ -95,7 +95,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
-                intent.putExtra("category", "Sudaderas");
+                intent.putExtra("category", "Deportes");
                 startActivity(intent);
             }
 
@@ -105,7 +105,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
-                intent.putExtra("category", "Lentes");
+                intent.putExtra("category", "Drogueria");
                 startActivity(intent);
             }
 
@@ -115,7 +115,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
-                intent.putExtra("category", "Gorras");
+                intent.putExtra("category", "Electrodomésticos");
                 startActivity(intent);
             }
 
@@ -125,7 +125,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
-                intent.putExtra("category", "Carteras Mochilas Bolsos");
+                intent.putExtra("category", "Electrónica");
                 startActivity(intent);
             }
 
@@ -135,7 +135,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
-                intent.putExtra("category", "Calzado");
+                intent.putExtra("category", "Ferretería");
                 startActivity(intent);
             }
 
@@ -145,7 +145,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
-                intent.putExtra("category", "Auriculares inalámbricos");
+                intent.putExtra("category", "Hogar");
                 startActivity(intent);
             }
 
@@ -155,7 +155,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
-                intent.putExtra("category", "Portátiles");
+                intent.putExtra("category", "Mascotas");
                 startActivity(intent);
             }
 
@@ -165,7 +165,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
-                intent.putExtra("category", "Relojes");
+                intent.putExtra("category", "Ocio");
                 startActivity(intent);
             }
 
@@ -175,7 +175,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(SellerProductCategoryActivity.this, SellerAddNewProductActivity.class);
-                intent.putExtra("category", "Teléfonos móviles");
+                intent.putExtra("category", "Papeleria");
                 startActivity(intent);
             }
 

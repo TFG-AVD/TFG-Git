@@ -5,7 +5,7 @@
     <item
         android:id="@+id/action_search"
         android:orderInCategory="100"
-        android:title="@string/abc_search_hint"
+        android:icon="@drawable/lupa"
         app:showAsAction="always"
-        />
+        android:title="TODO" />
 </menu>

@@ -13,11 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tfg.modelos.Cart;
 import com.example.tfg.R;
+import com.example.tfg.modelos.Products;
 import com.example.tfg.prevalent.Prevalent;
 import com.example.tfg.viewholders.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -38,6 +40,7 @@ import com.squareup.picasso.Picasso;
     private Button nextBtn;
     private TextView txtTotal;
     private TextView txtMsg1;
+    private ImageView imgCarrito;
 
     private int precioTotal = 0;
 
@@ -55,7 +58,8 @@ import com.squareup.picasso.Picasso;
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull CartViewHolder cartViewHolder, int i, @NonNull Cart cart) {
+            protected void onBindViewHolder(@NonNull CartViewHolder cartViewHolder, int i, @NonNull Cart cart ) {
+                Products products = null;
                 cartViewHolder.txtProductoCantidad.setText("Cantidad: " + cart.getQuantity());
                 cartViewHolder.txtProductoPrecio.setText("Precio: " + cart.getPrice()+"€");
                 cartViewHolder.txtProductoNombre.setText(cart.getPname());

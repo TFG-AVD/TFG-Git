@@ -34,10 +34,10 @@
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-    <com.vimalcvs.switchdn.DayNightSwitch
+<!--    <com.vimalcvs.switchdn.DayNightSwitch
         android:id="@+id/switch_item"
         android:layout_width="63dp"
         android:layout_height="33dp"
-        android:gravity="center"/>
+        android:gravity="center"/>-->
 
 </LinearLayout>

@@ -2,13 +2,13 @@ package com.example.tfg.modelos;
 
 public class Products {
 
-    private String pname, description, price, image, category, pid, date, time, productState;
+    private String pname, description, price, image, category, pid, date, time, productState, sellerName;
 
     public Products(){
 
     }
 
-    public Products(String pname, String description, String price, String image, String category, String pid, String date, String time, String productState) {
+    public Products(String pname, String description, String price, String image, String category, String pid, String date, String time, String productState, String sellerName) {
         this.pname = pname;
         this.description = description;
         this.price = price;
@@ -18,6 +18,7 @@ public class Products {
         this.date = date;
         this.time = time;
         this.productState = productState;
+        this.sellerName= sellerName;
     }
 
     public String getPname() {
@@ -78,6 +79,14 @@ public class Products {
 
     public String getTime() {
         return time;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
+
+    public String getSellerName() {
+        return sellerName;
     }
 
     public void setTime(String time) {

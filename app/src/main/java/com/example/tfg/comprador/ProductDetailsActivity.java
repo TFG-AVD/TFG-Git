@@ -33,6 +33,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private TextView productoPrecio;
     private TextView productoDescripcion;
     private TextView productoNombre;
+    private TextView tiendaNombre;
     private ImageView productoImagen;
     private FloatingActionButton añadirCarro;
     private ElegantNumberButton cantidadBtn;
@@ -56,6 +57,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productoPrecio = (TextView) findViewById(R.id.product_price_details);
         productoDescripcion = (TextView) findViewById(R.id.product_description_details);
         productoNombre = (TextView) findViewById(R.id.product_name_details);
+        tiendaNombre = (TextView) findViewById(R.id.product_shop_details);
         productoImagen = (ImageView) findViewById(R.id.product_image_details);
         añadirCarro = (FloatingActionButton) findViewById(R.id.add_product_cart_btn);
         cantidadBtn = (ElegantNumberButton) findViewById(R.id.number_btn);
@@ -93,6 +95,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         cartMap.put("pid", productID);
         cartMap.put("pname", productoNombre.getText().toString());
         cartMap.put("price", productoPrecio.getText().toString());
+        cartMap.put("sellerName", tiendaNombre.getText().toString());
         cartMap.put("date", saveCurrentDate);
         cartMap.put("time", saveCurrentTime);
         cartMap.put("quantity", cantidadBtn.getNumber());
@@ -157,6 +160,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                 productoNombre.setText(products.getPname());
                 productoPrecio.setText(products.getPrice());
+                tiendaNombre.setText(products.getSellerName());
                 productoDescripcion.setText(products.getDescription());
                 Picasso.get().load(products.getImage()).into(productoImagen);
             }

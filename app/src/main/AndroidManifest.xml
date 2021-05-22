@@ -34,8 +34,7 @@
         <activity android:name=".vendedor.SellerRegistrationActivity" />
         <activity
             android:name=".comprador.HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:label="@string/title_activity_home"/>
         <activity
             android:name=".comprador.RegisterActivity" />
         <activity

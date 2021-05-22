@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".admin.AdminCheckNewProductsActivity"></activity>
+        <activity android:name=".comprador.CategoriesActivity"></activity>
+        <activity android:name=".admin.AdminCheckNewProductsActivity" />
         <activity
             android:name=".vendedor.SellerHomeActivity"
             android:label="@string/title_activity_seller_home" />
@@ -36,13 +37,9 @@
             android:name=".comprador.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.TFG.NoActionBar" />
-
-        <activity
-            android:name=".comprador.RegisterActivity" />
-        <activity
-            android:name=".comprador.LoginActivity"/>
-        <activity
-            android:name=".comprador.MainActivity">
+        <activity android:name=".comprador.RegisterActivity" />
+        <activity android:name=".comprador.LoginActivity" />
+        <activity android:name=".comprador.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

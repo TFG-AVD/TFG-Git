@@ -55,10 +55,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         holder.txtProductoNombre.setText(model.getPname());
                         holder.txtProductoDescripcion.setText(model.getDescription());
                         holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
+                        holder.txtNombreTienda.setText(model.getSellerName());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener(){
-                            //comentario para alex   c
                             @Override
                             public void onClick(View view){
                                 if (type.equals("Admin")){

@@ -15,12 +15,10 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
     public TextView txtProductoNombre;
     public TextView txtProductoDescripcion;
     public TextView txtProductoPrecio;
+    public TextView txtNombreTienda;
 
     public ImageView imageView;
     public ItemClickListener listener;
-
-
-
 
     public ProductViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -29,6 +27,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
         txtProductoNombre = (TextView) itemView.findViewById(R.id.producto_nombre);
         txtProductoDescripcion = (TextView) itemView.findViewById(R.id.producto_descripcion);
         txtProductoPrecio = (TextView) itemView.findViewById(R.id.producto_precio);
+        txtNombreTienda = (TextView) itemView.findViewById(R.id.tienda_nombre);
 
     }
 

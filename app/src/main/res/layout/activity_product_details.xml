@@ -84,6 +84,7 @@
         android:layout_height="wrap_content"
         android:elevation="6dp"
         android:backgroundTint="@android:color/white"
+        android:background="@color/principal"
         android:src="@drawable/nav_cart"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"

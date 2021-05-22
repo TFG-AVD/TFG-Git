@@ -28,6 +28,7 @@
         android:padding="20dp"
         android:textSize="18sp"
         android:background="@color/principal"
+        android:textColor="@color/white"
         />
 
     <Button
@@ -43,6 +44,7 @@
         android:textSize="18sp"
         android:text="Crear cuenta"
         android:background="@color/principal"
+        android:textColor="@color/white"
         />
 
     <TextView

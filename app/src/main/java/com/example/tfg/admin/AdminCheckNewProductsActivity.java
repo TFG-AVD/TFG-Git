@@ -42,6 +42,7 @@ public class AdminCheckNewProductsActivity extends AppCompatActivity {
                         holder.txtProductoNombre.setText(model.getPname());
                         holder.txtProductoDescripcion.setText(model.getDescription());
                         holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
+                        holder.txtNombreTienda.setText("Vendedor: " + model.getSellerName());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -29,8 +29,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
-public class CartActivity extends AppCompatActivity {
+ public class CartActivity extends AppCompatActivity {
 
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView recyclerView;
@@ -58,6 +59,8 @@ public class CartActivity extends AppCompatActivity {
                 cartViewHolder.txtProductoCantidad.setText("Cantidad: " + cart.getQuantity());
                 cartViewHolder.txtProductoPrecio.setText("Precio: " + cart.getPrice()+"€");
                 cartViewHolder.txtProductoNombre.setText(cart.getPname());
+                cartViewHolder.txtNombreTienda.setText("Vendedor: " + cart.getSellerName());
+                Picasso.get().load(cart.getImage()).into(cartViewHolder.imageView);
 
                 int precioTotalDeUnProducto = ((Integer.valueOf(cart.getPrice()))) * Integer.valueOf(cart.getQuantity());
                 precioTotal = precioTotal + precioTotalDeUnProducto;

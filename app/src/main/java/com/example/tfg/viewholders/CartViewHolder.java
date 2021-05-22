@@ -1,6 +1,7 @@
 package com.example.tfg.viewholders;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,14 +15,19 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public TextView txtProductoNombre;
     public TextView txtProductoPrecio;
     public TextView txtProductoCantidad;
+    public TextView txtNombreTienda;
     private ItemClickListener itemClickListener;
+
+    public ImageView imageView;
 
     public CartViewHolder(@NonNull View itemView) {
         super(itemView);
 
+        imageView = (ImageView) itemView.findViewById(R.id.image_product);
         txtProductoNombre = itemView.findViewById(R.id.cart_product_name);
         txtProductoPrecio = itemView.findViewById(R.id.cart_product_price);
         txtProductoCantidad = itemView.findViewById(R.id.cart_product_quantity);
+        txtNombreTienda = (TextView) itemView.findViewById(R.id.cart_shop_name);
 
     }
 

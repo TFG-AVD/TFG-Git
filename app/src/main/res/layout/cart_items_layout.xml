@@ -15,14 +15,23 @@
         android:background="@color/principal"
         >
 
+        <ImageView
+            android:id="@+id/image_product"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="2dp"/>
+
         <TextView
             android:id="@+id/cart_product_name"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:text="Nombre"
             android:textColor="@android:color/white"
+            android:layout_alignParentEnd="true"
             android:textSize="14dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:textStyle="bold"
             />
 
@@ -33,8 +42,8 @@
             android:layout_alignParentEnd="true"
             android:layout_marginLeft="5dp"
             android:text="Cantidad"
-            android:textAlignment="viewEnd"
             android:textColor="@android:color/white"
+            android:layout_below="@+id/cart_product_name"
             android:textSize="14dp"
             android:layout_marginRight="5dp"
             android:textStyle="bold"
@@ -42,16 +51,30 @@
 
         <TextView
             android:id="@+id/cart_product_price"
-            android:layout_width="match_parent"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="5dp"
             android:text="Precio"
             android:textColor="@android:color/white"
             android:textSize="14dp"
-            android:layout_marginLeft="5dp"
-            android:textStyle="bold"
             android:layout_below="@+id/cart_product_quantity"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/cart_shop_name"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="5dp"
+            android:text="Vendedor"
+            android:textColor="@android:color/white"
+            android:textSize="14dp"
+            android:layout_below="@+id/cart_product_price"
+            android:layout_marginRight="5dp"
+            android:textStyle="bold"
             />
     </RelativeLayout>
 

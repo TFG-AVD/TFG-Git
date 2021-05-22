@@ -58,7 +58,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener(){
-                            //comentario para alex   c
                             @Override
                             public void onClick(View view){
                                 if (type.equals("Admin")){

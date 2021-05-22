@@ -20,9 +20,6 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
     public ImageView imageView;
     public ItemClickListener listener;
 
-
-
-
     public ProductViewHolder(@NonNull View itemView) {
         super(itemView);
 

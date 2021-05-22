@@ -77,6 +77,9 @@ public class AdminCheckNewProductsActivity extends AppCompatActivity {
                         return holder;
                     }
                 };
+
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
     }
 
     @Override
@@ -86,6 +89,7 @@ public class AdminCheckNewProductsActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         unverifiedProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+
         recyclerView = findViewById(R.id.admin_products_checklist);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);

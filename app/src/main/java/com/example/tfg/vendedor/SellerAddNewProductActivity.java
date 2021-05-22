@@ -47,14 +47,18 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
     private DatabaseReference ProductRef,sellersRef;
     private AlertDialog loadingBar;
     private String sName, sAddress, sPhone, sEmail, sID;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_add_new_product);
+
         CategoryName = getIntent().getExtras().get("category").toString();
         ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
         ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
         sellersRef = FirebaseDatabase.getInstance().getReference().child("Sellers");
+
         AddNewProductButton = (Button) findViewById(R.id.add_new_product);
         InputProductImage = (ImageView) findViewById(R.id.select_product_image);
         InputProductName = (EditText) findViewById(R.id.product_name);
@@ -67,12 +71,14 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
                 OpenGallery();
             }
         });
+
         AddNewProductButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 ValidateProductData();
             }
         });
+
         sellersRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
@@ -90,12 +96,14 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
                     }
                 });
     }
+
     private void OpenGallery(){
         Intent galleryIntent = new Intent();
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
         galleryIntent.setType("image/*");
         startActivityForResult(galleryIntent, GalleryPick);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
@@ -104,25 +112,24 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
             InputProductImage.setImageURI(ImageUri);
         }
     }
+
     private void ValidateProductData(){
         Description = InputProductDescription.getText().toString();
         Price = InputProductPrice.getText().toString();
         Pname = InputProductName.getText().toString();
         if (ImageUri == null){
             Toast.makeText(this, "La imagen del producto es obligatoria", Toast.LENGTH_SHORT).show();
-        }
-        else if (TextUtils.isEmpty(Description)){
+        } else if (TextUtils.isEmpty(Description)){
             Toast.makeText(this, "Escriba la descripción del producto", Toast.LENGTH_SHORT).show();
-        }
-        else if (TextUtils.isEmpty(Price)){
+        } else if (TextUtils.isEmpty(Price)){
             Toast.makeText(this, "Escriba el precio del producto", Toast.LENGTH_SHORT).show();
-        }
-        else if (TextUtils.isEmpty(Pname)){
+        } else if (TextUtils.isEmpty(Pname)){
             Toast.makeText(this, "Escriba el nombre del producto", Toast.LENGTH_SHORT).show();
-        }else{
+        } else{
             StoreProductInformation();
         }
     }
+
     private void StoreProductInformation(){
 /*        loadingBar.setTitle("Añadir producto nuevo");
         loadingBar.setMessage("Por favor, espere, añadiendo producto");
@@ -130,13 +137,18 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
         loadingBar.show();*/
 
         Calendar calendar = Calendar.getInstance();
+
         SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
         saveCurrentDate = currentDate.format(calendar.getTime());
+
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentTime.format(calendar.getTime());
+
         productRandomKey = saveCurrentDate + saveCurrentTime;
-        StorageReference filePath = ProductImagesRef.child(ImageUri.getLastPathSegment() + productRandomKey + ".jpg");
+
+        final StorageReference filePath = ProductImagesRef.child(ImageUri.getLastPathSegment() + productRandomKey + ".jpg");
         final UploadTask uploadTask =  filePath.putFile(ImageUri);
+
         uploadTask.addOnFailureListener(new OnFailureListener(){
             @Override
             public void onFailure(@NonNull Exception e){
@@ -170,6 +182,7 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
             }
         });
     }
+
     private void SaveProductInfoToDatabase(){
         HashMap<String, Object> productMap = new HashMap<>();
         productMap.put("pid", productRandomKey);
@@ -180,12 +193,14 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
         productMap.put("category", CategoryName);
         productMap.put("price", Price);
         productMap.put("pname", Pname);
+
         productMap.put("sellerName", sName);
         productMap.put("sellerAddress", sAddress);
         productMap.put("sellerPhone", sPhone);
         productMap.put("sellerEmail", sEmail);
         productMap.put("sid", sID);
         productMap.put("productState", "Not Approved");
+
         ProductRef.child(productRandomKey).updateChildren(productMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

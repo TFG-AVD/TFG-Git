@@ -40,6 +40,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_admin_maintain_products);
+
         productoID = getIntent().getStringExtra("pid");
         productoRef = FirebaseDatabase.getInstance().getReference().child("Products").child(productoID);
 
@@ -52,17 +53,41 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
 
         mostrarInfoProducto();
 
+        borrarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                borrarProducto();
+            }
+        });
+
         aplicarCambiosBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 aplicarCambios();
             }
         });
+    }
 
-        borrarBtn.setOnClickListener(new View.OnClickListener() {
+    private void mostrarInfoProducto() {
+        productoRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                borrarProducto();
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String pName = dataSnapshot.child("pname").getValue().toString();
+                    String pPrice = dataSnapshot.child("price").getValue().toString();
+                    String pDescription = dataSnapshot.child("description").getValue().toString();
+                    String pImage = dataSnapshot.child("image").getValue().toString();
+
+                    nombre.setText(pName);
+                    precio.setText(pPrice);
+                    descripcion.setText(pDescription);
+                    Picasso.get().load(pImage).into(imagen);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }
@@ -74,14 +99,11 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
 
         if (pName.equals("")) {
             Toast.makeText(this, "Esciba el nombre del producto.", Toast.LENGTH_SHORT).show();
-        }
-        else if (pPrice.equals("")) {
+        } else if (pPrice.equals("")) {
             Toast.makeText(this, "Escriba el precio del producto.", Toast.LENGTH_SHORT).show();
-        }
-        else if (pDescription.equals("")) {
+        } else if (pDescription.equals("")) {
             Toast.makeText(this, "Escriba la descripción del producto.", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             HashMap<String, Object> productMap = new HashMap<>();
             productMap.put("pid", productoID);
             productMap.put("description", pDescription);
@@ -112,30 +134,6 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
                 finish();
 
                 Toast.makeText(AdminMaintainProductsActivity.this, "El producto ha sido borrado con éxito", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void mostrarInfoProducto() {
-        productoRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    String pName = dataSnapshot.child("pname").getValue().toString();
-                    String pPrice = dataSnapshot.child("price").getValue().toString();
-                    String pDescription = dataSnapshot.child("description").getValue().toString();
-                    String pImage = dataSnapshot.child("image").getValue().toString();
-
-                    nombre.setText(pName);
-                    precio.setText(pPrice);
-                    descripcion.setText(pDescription);
-                    Picasso.get().load(pImage).into(imagen);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
             }
         });
     }

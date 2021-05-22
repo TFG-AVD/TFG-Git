@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         getSupportActionBar().hide();
 
-        crearCuentaBtn = (Button) findViewById(R.id.register_btn);
+        crearCuentaBtn = (Button) findViewById(R.id.registro_btn);
         inputNombre = (EditText) findViewById(R.id.registro_username_input);
         inputTelefono = (EditText) findViewById(R.id.registro_telefono);
         inputContraseña = (EditText) findViewById(R.id.registro_contraseña);
@@ -54,13 +54,13 @@ public class RegisterActivity extends AppCompatActivity {
     private void crearCuenta() {
         String nombre = inputNombre.getText().toString();
         String telefono = inputTelefono.getText().toString();
-        String contraseña = inputContraseña.getText().toString();
+        String password = inputContraseña.getText().toString();
 
         if (TextUtils.isEmpty(nombre)) {
             Toast.makeText(this, "Por favor escriba su nombre...", Toast.LENGTH_SHORT);
         } else if (TextUtils.isEmpty(telefono)) {
             Toast.makeText(this, "Por favor escriba su número de teléfono...", Toast.LENGTH_SHORT);
-        } else if (TextUtils.isEmpty(contraseña)) {
+        } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Por favor escriba su contraseña...", Toast.LENGTH_SHORT);
         } else {
 //            loadingbar.setTitle("Crear cuenta.");
@@ -68,11 +68,11 @@ public class RegisterActivity extends AppCompatActivity {
 //            loadingbar.setCanceledOnTouchOutside(false);
 //            loadingbar.show();
 
-            validarCuenta(nombre, telefono, contraseña);
+            validarCuenta(nombre, telefono, password);
         }
     }
 
-    private void validarCuenta(String nombre, String telefono, String contraseña) {
+    private void validarCuenta(String nombre, String telefono, String password) {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
         RootRef.addListenerForSingleValueEvent(new ValueEventListener(){
@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
                     HashMap<String, Object> userdataMap = new HashMap<>();
                     userdataMap.put("name", nombre);
                     userdataMap.put("phone", telefono);
-                    userdataMap.put("password", contraseña);
+                    userdataMap.put("password", password);
 
                     RootRef.child("Users").child(telefono).updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

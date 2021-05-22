@@ -125,6 +125,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private void estadoPedido(){
         DatabaseReference ordersRef;
         ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders").child(Prevalent.usuarioOnline.getPhone());
+
         ordersRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -147,9 +148,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         });
     }
 
-    private void detallesProductos(String productID) {
-        DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Products");
-        productRef.child(productID).addValueEventListener(new ValueEventListener() {
+    private void detallesProductos(String productoID) {
+        DatabaseReference productoRef = FirebaseDatabase.getInstance().getReference().child("Products");
+        productoRef.child(productoID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Products products = dataSnapshot.getValue(Products.class);

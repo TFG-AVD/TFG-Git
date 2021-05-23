@@ -34,6 +34,7 @@ public class AdminCheckNewProductsActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        //Busca en Firebase todos los productos sin aprobar
         FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(unverifiedProductsRef.orderByChild("productState").equalTo("Not Approved"), Products.class).build();
 
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {

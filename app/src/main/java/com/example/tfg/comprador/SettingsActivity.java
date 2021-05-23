@@ -60,13 +60,12 @@ public class SettingsActivity extends AppCompatActivity {
         profileImageView = (CircleImageView) findViewById(R.id.settings_image);
         fullNameEditText = (EditText) findViewById(R.id.settings_full_name);
         userPhoneEditText = (EditText) findViewById(R.id.settings_phone_number);
-        addressEditText = (EditText) findViewById(R.id.settings_address);
         profileChangeTextBtn = (TextView) findViewById(R.id.profile_image_change_btn);
         closeTextBtn = (TextView) findViewById(R.id.close_settings_btn);
         saveTextButton = (TextView) findViewById(R.id.update_account_settings_btn);
         securityBnt = (Button) findViewById(R.id.security_questions_btn);
 
-        userInfoDisplay(profileImageView, fullNameEditText, userPhoneEditText, addressEditText);
+        userInfoDisplay(profileImageView, fullNameEditText, userPhoneEditText);
 
         closeTextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +112,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         HashMap<String, Object> userMap = new HashMap<>();
         userMap.put("name", fullNameEditText.getText().toString());
-        userMap.put("address", addressEditText.getText().toString());
         userMap.put("phoneOrder", userPhoneEditText.getText().toString());
         ref.child(Prevalent.usuarioOnline.getPhone()).updateChildren(userMap);
 
@@ -141,8 +139,6 @@ public class SettingsActivity extends AppCompatActivity {
     private void userInfoSaved() {
         if (TextUtils.isEmpty(fullNameEditText.getText().toString())) {
             Toast.makeText(this, "El Nombre es obligatorio.", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(addressEditText.getText().toString())) {
-            Toast.makeText(this, "La Dirección es obligatoria.", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(userPhoneEditText.getText().toString())) {
             Toast.makeText(this, "El Número es obligatorio.", Toast.LENGTH_SHORT).show();
         } else if (checker.equals("clicked")) {
@@ -188,7 +184,6 @@ public class SettingsActivity extends AppCompatActivity {
 
                                 HashMap<String, Object> usermap = new HashMap<>();
                                 usermap. put("name", fullNameEditText.getText().toString());
-                                usermap. put("address", addressEditText.getText().toString());
                                 usermap. put("phoneLease", userPhoneEditText.getText().toString());
                                 usermap. put("image", myUrl);
 
@@ -218,7 +213,7 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
-    private void userInfoDisplay(final CircleImageView profileImageView, final EditText fullNameEditText, final EditText userPhoneEditText, final EditText addressEditText)
+    private void userInfoDisplay(final CircleImageView profileImageView, final EditText fullNameEditText, final EditText userPhoneEditText)
     {
         DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.usuarioOnline.getPhone());
         UsersRef.addValueEventListener(new ValueEventListener() {

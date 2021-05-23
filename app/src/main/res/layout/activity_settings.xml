@@ -85,20 +85,12 @@
         android:layout_margin="15dp"
         android:padding="10dp"/>
 
-    <EditText
-        android:id="@+id/settings_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/settings_full_name"
-        android:hint="Dirección..."
-        android:layout_margin="15dp"
-        android:padding="10dp"/>
 
     <Button
         android:id="@+id/security_questions_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/settings_address"
+        android:layout_below="@+id/settings_full_name"
         android:hint="Preguntas de Seguridad"
         android:background="@color/principal"
         android:textColor="@color/white"

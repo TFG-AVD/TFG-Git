@@ -103,7 +103,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Paper.init(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (!type.equals("Admin")){
+        if(!type.equals("Admin")){
             toolbar.setTitle(Prevalent.usuarioOnline.getName());
             setSupportActionBar(toolbar);
         } else {

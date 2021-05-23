@@ -1,6 +1,7 @@
 package com.example.tfg.comprador;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -35,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText inputContraseña;
     private CheckBox checkBoxRecuerdame;
     private Button loginBtn;
-    private AlertDialog loadingBar;
+    private ProgressDialog loadingBar;
 
     private String parentDbName = "Users";
 
@@ -53,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         checkBoxRecuerdame = (CheckBox) findViewById(R.id.recuerdame);
         loginBtn = (Button) findViewById(R.id.login_btn);
 
-        //loadingBar = new AlertDialog(this);
+        loadingBar = new ProgressDialog(this);
 
         Paper.init(this);
 
@@ -104,10 +105,10 @@ public class LoginActivity extends AppCompatActivity {
         } else if (TextUtils.isEmpty(password)){
             Toast.makeText(this, "introduzca su contraseña...", Toast.LENGTH_LONG).show();
         } else {
-//            loadingBar.setTitle("Login account");
-  //          loadingBar.setMessage("Please wait, checking credentials");
-     //       loadingBar.setCanceledOnTouchOutside(false);
-       //     loadingBar.show();
+            loadingBar.setTitle("Iniciando Sesión");
+            loadingBar.setMessage("Espere por favor, revisando credenciales");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
             permitirAccesoCuenta(phone, password);
         }
     }
@@ -149,13 +150,13 @@ public class LoginActivity extends AppCompatActivity {
                            }
 
                         } else {
-                            //loadingBar.dismiss();
+                            loadingBar.dismiss();
                             Toast.makeText(LoginActivity.this, "por favor, introduzca de nuevo su contraseña", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {
                     Toast.makeText(LoginActivity.this, "la cuenta con este teléfono:  " + telefono + " , no existe", Toast.LENGTH_SHORT).show();
-                    //loadingBar.dismiss();
+                    loadingBar.dismiss();
                 }
             }
 

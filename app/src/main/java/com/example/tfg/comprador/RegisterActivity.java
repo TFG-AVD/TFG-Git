@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -29,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText inputTelefono;
     private EditText inputContraseña;
     private Button crearCuentaBtn;
-    private AlertDialog loadingbar;
+    private ProgressDialog loadingbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
         inputNombre = (EditText) findViewById(R.id.registro_username_input);
         inputTelefono = (EditText) findViewById(R.id.registro_telefono);
         inputContraseña = (EditText) findViewById(R.id.registro_contraseña);
-        //loadingbar = new AlertDialog(this);
+        loadingbar = new ProgressDialog(this);
 
         crearCuentaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,16 +58,16 @@ public class RegisterActivity extends AppCompatActivity {
         String password = inputContraseña.getText().toString();
 
         if (TextUtils.isEmpty(nombre)) {
-            Toast.makeText(this, "Por favor escriba su nombre...", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "Por favor escriba su nombre...", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(telefono)) {
-            Toast.makeText(this, "Por favor escriba su número de teléfono...", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "Por favor escriba su número de teléfono...", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Por favor escriba su contraseña...", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "Por favor escriba su contraseña...", Toast.LENGTH_SHORT).show();
         } else {
-//            loadingbar.setTitle("Crear cuenta.");
-//            loadingbar.setMessage("Espere, estamos revisando las credenciales.");
-//            loadingbar.setCanceledOnTouchOutside(false);
-//            loadingbar.show();
+            loadingbar.setTitle("Crear cuenta.");
+            loadingbar.setMessage("Espere, estamos revisando las credenciales.");
+            loadingbar.setCanceledOnTouchOutside(false);
+            loadingbar.show();
 
             validarCuenta(nombre, telefono, password);
         }
@@ -90,21 +91,19 @@ public class RegisterActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()) {
-                                        Toast.makeText(RegisterActivity.this, "¡Cuenta creada con éxito!", Toast.LENGTH_SHORT);
-                                       // loadingbar.dismiss();
+                                        Toast.makeText(RegisterActivity.this, "¡Cuenta creada con éxito!", Toast.LENGTH_SHORT).show();
 
                                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                         startActivity(intent);
                                     } else {
                                         loadingbar.dismiss();
-                                        Toast.makeText(RegisterActivity.this, "error de conexión: Inténtelo más tarde...", Toast.LENGTH_SHORT);
+                                        Toast.makeText(RegisterActivity.this, "error de conexión: Inténtelo más tarde...", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
                 } else {
-                    Toast.makeText(RegisterActivity.this, "este teléfono: " + telefono + " ya existe...", Toast.LENGTH_SHORT);
-                    loadingbar.dismiss();
-                    Toast.makeText(RegisterActivity.this, "por favor, inténtelo con otro número de teléfono", Toast.LENGTH_SHORT);
+                    Toast.makeText(RegisterActivity.this, "este teléfono: " + telefono + " ya existe...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "por favor, inténtelo con otro número de teléfono", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                     startActivity(intent);

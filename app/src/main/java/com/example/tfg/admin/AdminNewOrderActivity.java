@@ -30,15 +30,14 @@ public class AdminNewOrderActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        FirebaseRecyclerOptions<AdminOrders> options = new FirebaseRecyclerOptions.Builder<AdminOrders>()
-                .setQuery(pedidosRef, AdminOrders.class).build();
+        FirebaseRecyclerOptions<AdminOrders> options = new FirebaseRecyclerOptions.Builder<AdminOrders>().setQuery(pedidosRef, AdminOrders.class).build();
 
         FirebaseRecyclerAdapter<AdminOrders, AdminOrdersViewHolder> adapter = new FirebaseRecyclerAdapter<AdminOrders, AdminOrdersViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull AdminOrdersViewHolder holder, final int position, @NonNull final AdminOrders model) {
                 holder.usuarioNombre.setText("Nombre: " + model.getName());
                 holder.usuarioTelefono.setText("Teléfono: " + model.getPhone());
-                holder.usuarioPrecioTotal.setText("Cantidad Total =  €" + model.getTotalAmount());
+                holder.usuarioPrecioTotal.setText("Cantidad Total:  €" + model.getTotalAmount());
                 holder.usuarioFechaPedido.setText("Fecha de pedido: " + model.getDate() + "  " + model.getTime());
                 holder.usuarioDireccion.setText("Dirección del envio: " + model.getAddress() + ", " + model.getCity());
 
@@ -67,8 +66,7 @@ public class AdminNewOrderActivity extends AppCompatActivity {
                                 if (i == 0) {
                                     String uID = getRef(position).getKey();
                                     borrarPedido(uID);
-                                }
-                                else {
+                                } else {
                                     finish();
                                 }
                             }

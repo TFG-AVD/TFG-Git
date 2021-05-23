@@ -33,13 +33,14 @@
         <activity android:name=".comprador.SettingsActivity" />
         <activity android:name=".vendedor.SellerLoginActivity" />
         <activity android:name=".vendedor.SellerRegistrationActivity" />
+        <activity android:name=".comprador.MainActivity" />
         <activity
             android:name=".comprador.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.TFG.NoActionBar" />
         <activity android:name=".comprador.RegisterActivity" />
         <activity android:name=".comprador.LoginActivity" />
-        <activity android:name=".comprador.MainActivity">
+        <activity android:name=".comprador.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

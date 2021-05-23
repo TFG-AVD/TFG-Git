@@ -3,8 +3,10 @@ package com.example.tfg.comprador;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -26,11 +28,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ProgressBar loadingBar;
+    private ProgressDialog loadingBar;
     private TextView vendedorBegin;
 
     @Override
@@ -55,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         Button crearCuentaBtn = (Button) findViewById(R.id.register_btn);
         vendedorBegin = findViewById(R.id.seller_begin);
 
+        loadingBar = new ProgressDialog(this);
+
         Paper.init(this);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -72,19 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        // PARA EL SPLASH SCREEN
-
-//        TimerTask tarea = new TimerTask() {
-//            @Override
-//            public void run() {
-//                Intent intent = new Intent(MainActivity.this, SplashActivity.class);
-//                startActivity(intent);
-//                finish();
-//                }
-//        };
-//       Timer tiempo = new Timer();
-//        tiempo.schedule(tarea,4000);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,19 +120,19 @@ public class MainActivity extends AppCompatActivity {
 
                         if (userData.getPassword().equals(contraseña)) {
                             Toast.makeText(MainActivity.this, "Login con éxito", Toast.LENGTH_SHORT).show();
-                           // loadingBar.dismiss();
+                            loadingBar.dismiss();
 
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                             Prevalent.usuarioOnline = userData;
                             startActivity(intent);
                         } else {
-                           // loadingBar.dismiss();
+                            loadingBar.dismiss();
                             Toast.makeText(MainActivity.this, "Login con éxito", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {
                     Toast.makeText(MainActivity.this, "la cuenta con este teléfono: " + telefono + " , no existe", Toast.LENGTH_SHORT).show();
-                    //loadingBar.dismiss();
+                    loadingBar.dismiss();
                 }
             }
             @Override

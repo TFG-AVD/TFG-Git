@@ -43,6 +43,7 @@ import com.squareup.picasso.Picasso;
                      protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
                          holder.txtProductoNombre.setText(model.getPname());
                          holder.txtProductoDescripcion.setText(model.getDescription());
+                         holder.txtNombreTienda.setText(model.getSellerName());
                          holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
                          Picasso.get().load(model.getImage()).into(holder.imageView);
 

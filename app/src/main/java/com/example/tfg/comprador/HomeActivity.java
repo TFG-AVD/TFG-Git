@@ -148,13 +148,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if (!type.equals("Admin")) {
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            if (drawer.isDrawerOpen(GravityCompat.START)) {
-                drawer.closeDrawer(GravityCompat.START);
-            } else {
-                super.onBackPressed();
-            }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
     }
 
@@ -163,6 +161,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if (!type.equals("Admin")) {
             // Inflate the menu; this adds items to the action bar if it is present.
             getMenuInflater().inflate(R.menu.home, menu);
+
         }
         return true;
     }
@@ -192,27 +191,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(HomeActivity.this, CartActivity.class);
                 startActivity(intent);
             }
-        }
-        else if (id == R.id.nav_search) {
+        } else if (id == R.id.nav_search) {
             if (!type.equals("Admin")){
                 Intent intent = new Intent(HomeActivity.this, SearchProductsActivity.class);
                 startActivity(intent);
             }
-        }
-        else if (id == R.id.nav_categories) {
+        } else if (id == R.id.nav_categories) {
             if (!type.equals("Admin")){
                 Intent intent = new Intent(HomeActivity.this, CategoriesActivity.class);
                 startActivity(intent);
             }
-        }
-
-        else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_settings) {
             if (!type.equals("Admin")){
                 Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
                 startActivity(intent);
             }
-        }
-        else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_logout) {
             if (!type.equals("Admin")){
                 Paper.book().destroy();
 
@@ -222,13 +216,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 finish();
             }
         }
-        else if (id == R.id.action_search){
-            if (!type.equals("Admin")){
-                Intent intent = new Intent(HomeActivity.this, SearchProductsActivity.class);
-                startActivity(intent);
-            }
-        }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

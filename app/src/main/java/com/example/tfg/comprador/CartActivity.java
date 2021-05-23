@@ -139,7 +139,7 @@ import com.squareup.picasso.Picasso;
                 txtTotal.setText("Precio Total: " + String.valueOf(precioTotal) + "€");
 
                 Intent intent= new Intent(CartActivity.this, ConfirmFinalOrderActivity.class);
-                intent.putExtra("Precio Total", String.valueOf(precioTotal));
+                intent.putExtra("Precio Total:", String.valueOf(precioTotal));
                 startActivity(intent);
                 finish();
             }

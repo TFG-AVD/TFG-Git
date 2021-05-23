@@ -105,10 +105,10 @@ public class LoginActivity extends AppCompatActivity {
         } else if (TextUtils.isEmpty(password)){
             Toast.makeText(this, "introduzca su contraseña...", Toast.LENGTH_LONG).show();
         } else {
-            loadingBar.setTitle("Iniciando Sesión");
+/*            loadingBar.setTitle("Iniciando Sesión");
             loadingBar.setMessage("Espere por favor, revisando credenciales");
             loadingBar.setCanceledOnTouchOutside(false);
-            loadingBar.show();
+            loadingBar.show();*/
             permitirAccesoCuenta(phone, password);
         }
     }

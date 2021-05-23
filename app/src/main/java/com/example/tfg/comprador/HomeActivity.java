@@ -102,8 +102,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Paper.init(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(Prevalent.usuarioOnline.getName());
-        setSupportActionBar(toolbar);
+        if (!type.equals("Admin")){
+            toolbar.setTitle(Prevalent.usuarioOnline.getName());
+            setSupportActionBar(toolbar);
+        } else {
+            toolbar.setTitle("Home Admin");
+            setSupportActionBar(toolbar);
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

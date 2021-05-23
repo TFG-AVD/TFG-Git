@@ -63,8 +63,7 @@ import com.squareup.picasso.Picasso;
                 cartViewHolder.txtProductoCantidad.setText("Cantidad: " + cart.getQuantity());
                 cartViewHolder.txtProductoPrecio.setText("Precio: " + cart.getPrice()+"€");
                 cartViewHolder.txtProductoNombre.setText(cart.getPname());
-                cartViewHolder.txtNombreTienda.setText("Vendedor: " + cart.getSellerName());
-                Picasso.get().load(cart.getImage()).into(cartViewHolder.imageView);
+                cartViewHolder.txtNombreTienda.setText(cart.getSellerName());
 
                 int precioTotalDeUnProducto = ((Integer.valueOf(cart.getPrice()))) * Integer.valueOf(cart.getQuantity());
                 precioTotal = precioTotal + precioTotalDeUnProducto;

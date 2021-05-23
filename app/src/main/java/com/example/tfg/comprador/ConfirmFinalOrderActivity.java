@@ -72,7 +72,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
                     object.put("theme.color", "#3399ff");
                     object.put("currency", "EUR");
                     object.put("amount", cantidad);
-                    object.put("prefill.contact", "656551888");
+                    object.put("prefill.contact", "696969696");
                     object.put("prefill.email", "tfgifp@gmail.com");
 
                     checkout.open(ConfirmFinalOrderActivity.this,object);

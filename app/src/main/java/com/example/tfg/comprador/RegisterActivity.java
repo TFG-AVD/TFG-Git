@@ -90,14 +90,14 @@ public class RegisterActivity extends AppCompatActivity {
                     RootRef.child("Users").child(telefono).updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()) {
+                                    if(task.isSuccessful() && telefono.length()==9) {
                                         Toast.makeText(RegisterActivity.this, "¡Cuenta creada con éxito!", Toast.LENGTH_SHORT).show();
 
                                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                         startActivity(intent);
                                     } else {
                                         loadingbar.dismiss();
-                                        Toast.makeText(RegisterActivity.this, "error de conexión: Inténtelo más tarde...", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterActivity.this, "El numero debe tener 9 digitos.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });

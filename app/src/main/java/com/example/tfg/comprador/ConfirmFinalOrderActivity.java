@@ -67,7 +67,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
 
                 JSONObject object = new JSONObject();
                 try {
-                    object.put("name", "Pago Gaytor");
+                    object.put("name", "Pago Howipop");
                     object.put("description", "Introduce las credenciales");
                     object.put("theme.color", "#3399ff");
                     object.put("currency", "EUR");

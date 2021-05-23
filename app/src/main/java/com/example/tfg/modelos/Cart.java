@@ -1,12 +1,12 @@
 package com.example.tfg.modelos;
 public class Cart {
-    private String pid, pname, price, quantity, discount, sellerName, image;
+    private String pid, pname, price, quantity, discount, sellerName, image, category;
 
     public Cart() {
 
     }
 
-    public Cart(String pid, String pname, String price, String quantity, String discount, String sellerName, String image) {
+    public Cart(String pid, String pname, String price, String quantity, String discount, String sellerName, String image, String category) {
         this.pid = pid;
         this.pname = pname;
         this.price = price;
@@ -14,6 +14,7 @@ public class Cart {
         this.discount = discount;
         this.sellerName= sellerName;
         this.image = image;
+        this.category = category;
     }
 
     public String getPid() {
@@ -70,5 +71,13 @@ public class Cart {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

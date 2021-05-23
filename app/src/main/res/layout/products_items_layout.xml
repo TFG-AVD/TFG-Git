@@ -64,6 +64,19 @@
             android:textSize="16dp"
             android:textColor="@color/black"/>
 
+        <TextView
+            android:id="@+id/categoria_nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tienda_nombre"
+            android:text="Categoria"
+            android:layout_marginTop="2dp"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
+
+
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

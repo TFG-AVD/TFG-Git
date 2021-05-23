@@ -16,6 +16,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
     public TextView txtProductoDescripcion;
     public TextView txtProductoPrecio;
     public TextView txtNombreTienda;
+    public TextView txtCategoria;
 
     public ImageView imageView;
     public ItemClickListener listener;
@@ -28,6 +29,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
         txtProductoDescripcion = (TextView) itemView.findViewById(R.id.producto_descripcion);
         txtProductoPrecio = (TextView) itemView.findViewById(R.id.producto_precio);
         txtNombreTienda = (TextView) itemView.findViewById(R.id.tienda_nombre);
+        txtCategoria = (TextView) itemView.findViewById(R.id.categoria_nombre);
 
     }
 

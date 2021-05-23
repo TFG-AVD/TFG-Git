@@ -37,9 +37,9 @@ public class AdminNewOrderActivity extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull AdminOrdersViewHolder holder, final int position, @NonNull final AdminOrders model) {
                 holder.usuarioNombre.setText("Nombre: " + model.getName());
                 holder.usuarioTelefono.setText("Teléfono: " + model.getPhone());
-                holder.usuarioPrecioTotal.setText("Cantidad Total:  €" + model.getTotalAmount());
-                holder.usuarioFechaPedido.setText("Fecha de pedido: " + model.getDate() + "  " + model.getTime());
-                holder.usuarioDireccion.setText("Dirección del envio: " + model.getAddress() + ", " + model.getCity());
+                holder.usuarioPrecioTotal.setText("Precio Total:  €" + model.getTotalAmount());
+                holder.usuarioFechaPedido.setText("Fecha del pedido: " + model.getDate());
+                holder.usuarioDireccion.setText("Dirección: " + model.getAddress() + ", " + model.getCity());
 
                 holder.mostrarPedidosBtn.setOnClickListener(new View.OnClickListener() {
                     @Override

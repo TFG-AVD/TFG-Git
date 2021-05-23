@@ -110,21 +110,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             setSupportActionBar(toolbar);
         }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!type.equals("Admin")){
+        if (!type.equals("Admin")){
+            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
                     Intent intent = new Intent(HomeActivity.this, CartActivity.class);
                     startActivity(intent);
                 }
-            }
-        });
+            });
+        }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        if (!type.equals("Admin")) {
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawer.addDrawerListener(toggle);
+            toggle.syncState();
+        }
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -133,8 +135,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView userNameTextView = headerView.findViewById(R.id.user_name);
         CircleImageView profileImageView = headerView.findViewById(R.id.profile_image);
 
-        if (!type.equals("Admin"))
-        {
+        if (!type.equals("Admin")) {
             userNameTextView.setText(Prevalent.usuarioOnline.getName());
             Picasso.get().load(Prevalent.usuarioOnline.getImage()).placeholder(R.drawable.profile).into(profileImageView);
         }
@@ -157,15 +158,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
+        if (!type.equals("Admin")) {
+            // Inflate the menu; this adds items to the action bar if it is present.
+            getMenuInflater().inflate(R.menu.home, menu);
+
+        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        if (!type.equals("Admin")) {
+            int id = item.getItemId();
 
+        }
 //        if (id == R.id.action_settings)
 //        {
 //            return true;
@@ -185,27 +191,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(HomeActivity.this, CartActivity.class);
                 startActivity(intent);
             }
-        }
-        else if (id == R.id.nav_search) {
+        } else if (id == R.id.nav_search) {
             if (!type.equals("Admin")){
                 Intent intent = new Intent(HomeActivity.this, SearchProductsActivity.class);
                 startActivity(intent);
             }
-        }
-        else if (id == R.id.nav_categories) {
+        } else if (id == R.id.nav_categories) {
             if (!type.equals("Admin")){
                 Intent intent = new Intent(HomeActivity.this, CategoriesActivity.class);
                 startActivity(intent);
             }
-        }
-
-        else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_settings) {
             if (!type.equals("Admin")){
                 Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
                 startActivity(intent);
             }
-        }
-        else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_logout) {
             if (!type.equals("Admin")){
                 Paper.book().destroy();
 
@@ -215,13 +216,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 finish();
             }
         }
-        else if (id == R.id.action_search){
-            if (!type.equals("Admin")){
-                Intent intent = new Intent(HomeActivity.this, SearchProductsActivity.class);
-                startActivity(intent);
-            }
-        }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

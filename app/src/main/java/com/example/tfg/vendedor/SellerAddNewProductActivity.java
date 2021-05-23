@@ -49,6 +49,7 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
     private String sName, sAddress, sPhone, sEmail, sID;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

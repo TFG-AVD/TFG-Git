@@ -49,7 +49,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
         getSupportActionBar().hide();
 
         totalAmount = getIntent().getStringExtra("Precio Total");
-        Toast.makeText(this, "Precio Total: " + totalAmount + "€", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Precio Total: " + totalAmount + " €", Toast.LENGTH_LONG).show();
 
         confirmarPedidoBtn = (Button) findViewById(R.id.confirmar_pedido_btn);
         nombreEditText = (EditText) findViewById(R.id.envio_nombre);

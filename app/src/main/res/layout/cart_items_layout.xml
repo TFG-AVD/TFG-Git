@@ -65,6 +65,12 @@
             android:gravity="center"
             android:textStyle="bold"
             />
+        <ImageView
+            android:id="@+id/imgCart"
+            android:layout_marginTop="15dp"
+            android:layout_width="500dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/cart_product_price"></ImageView>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

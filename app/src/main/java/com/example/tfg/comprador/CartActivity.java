@@ -22,6 +22,7 @@ import com.example.tfg.R;
 import com.example.tfg.modelos.Products;
 import com.example.tfg.prevalent.Prevalent;
 import com.example.tfg.viewholders.CartViewHolder;
+import com.example.tfg.viewholders.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,6 +33,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import org.jetbrains.annotations.NotNull;
 
  public class CartActivity extends AppCompatActivity {
 
@@ -104,6 +107,8 @@ import com.squareup.picasso.Picasso;
                 });
             }
 
+
+
             @NonNull
             @Override
             public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -118,7 +123,8 @@ import com.squareup.picasso.Picasso;
 
     }
 
-    @Override
+
+             @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);

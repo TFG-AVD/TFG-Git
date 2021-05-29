@@ -70,517 +70,125 @@ public class CategoriesActivity extends AppCompatActivity {
         botanicaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CategoriesActivity.this, "Botánica", Toast.LENGTH_SHORT).show();
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-
-                FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("category").equalTo("Botánica"), Products.class).build();
-
-                FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                        holder.txtProductoNombre.setText(model.getPname());
-                        holder.txtProductoDescripcion.setText(model.getDescription());
-                        holder.txtNombreTienda.setText(model.getSellerName());
-                        holder.txtCategoria.setText(model.getCategory());
-                        holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
-
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(CategoriesActivity.this, ProductDetailsActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
-                            }
-                        });
-                    }
-
-                    @NonNull
-                    @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout, parent, false);
-                        ProductViewHolder holder = new ProductViewHolder(view);
-                        return holder;
-                    }
-                };
-
-                buscarCategorias.setAdapter(adapter);
-                adapter.startListening();
+                elegirCategoria("Botánica");
             }
         });
 
         bricolajeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CategoriesActivity.this, "Bricolaje", Toast.LENGTH_SHORT).show();
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-
-                FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("category").equalTo("Bricolaje"), Products.class).build();
-
-                FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                        holder.txtProductoNombre.setText(model.getPname());
-                        holder.txtProductoDescripcion.setText(model.getDescription());
-                        holder.txtNombreTienda.setText(model.getSellerName());
-                        holder.txtCategoria.setText(model.getCategory());
-                        holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
-
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(CategoriesActivity.this, ProductDetailsActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
-                            }
-                        });
-                    }
-
-                    @NonNull
-                    @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout, parent, false);
-                        ProductViewHolder holder = new ProductViewHolder(view);
-                        return holder;
-                    }
-                };
-
-                buscarCategorias.setAdapter(adapter);
-                adapter.startListening();
+                elegirCategoria("Bricolaje");
             }
         });
 
         comidaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CategoriesActivity.this, "Comida", Toast.LENGTH_SHORT).show();
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-
-                FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("category").equalTo("Comida"), Products.class).build();
-
-                FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                        holder.txtProductoNombre.setText(model.getPname());
-                        holder.txtProductoDescripcion.setText(model.getDescription());
-                        holder.txtNombreTienda.setText(model.getSellerName());
-                        holder.txtCategoria.setText(model.getCategory());
-                        holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
-
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(CategoriesActivity.this, ProductDetailsActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
-                            }
-                        });
-                    }
-
-                    @NonNull
-                    @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout, parent, false);
-                        ProductViewHolder holder = new ProductViewHolder(view);
-                        return holder;
-                    }
-                };
-
-                buscarCategorias.setAdapter(adapter);
-                adapter.startListening();
+                elegirCategoria("Comida");
             }
         });
 
         deporteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CategoriesActivity.this, "Deporte", Toast.LENGTH_SHORT).show();
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-
-                FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("category").equalTo("Deporte"), Products.class).build();
-
-                FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                        holder.txtProductoNombre.setText(model.getPname());
-                        holder.txtProductoDescripcion.setText(model.getDescription());
-                        holder.txtNombreTienda.setText(model.getSellerName());
-                        holder.txtCategoria.setText(model.getCategory());
-                        holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
-
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(CategoriesActivity.this, ProductDetailsActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
-                            }
-                        });
-                    }
-
-                    @NonNull
-                    @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout, parent, false);
-                        ProductViewHolder holder = new ProductViewHolder(view);
-                        return holder;
-                    }
-                };
-
-                buscarCategorias.setAdapter(adapter);
-                adapter.startListening();
+                elegirCategoria("Deporte");
             }
         });
 
         drogueriaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CategoriesActivity.this, "Droguería", Toast.LENGTH_SHORT).show();
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-
-                FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("category").equalTo("Droguería"), Products.class).build();
-
-                FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                        holder.txtProductoNombre.setText(model.getPname());
-                        holder.txtProductoDescripcion.setText(model.getDescription());
-                        holder.txtNombreTienda.setText(model.getSellerName());
-                        holder.txtCategoria.setText(model.getCategory());
-                        holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
-
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(CategoriesActivity.this, ProductDetailsActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
-                            }
-                        });
-                    }
-
-                    @NonNull
-                    @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout, parent, false);
-                        ProductViewHolder holder = new ProductViewHolder(view);
-                        return holder;
-                    }
-                };
-
-                buscarCategorias.setAdapter(adapter);
-                adapter.startListening();
+                elegirCategoria("Drogería");
             }
         });
 
         electrodomesticosBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CategoriesActivity.this, "Electrodomésticos", Toast.LENGTH_SHORT).show();
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-
-                FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("category").equalTo("Electromésticos"), Products.class).build();
-
-                FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                        holder.txtProductoNombre.setText(model.getPname());
-                        holder.txtProductoDescripcion.setText(model.getDescription());
-                        holder.txtNombreTienda.setText(model.getSellerName());
-                        holder.txtCategoria.setText(model.getCategory());
-                        holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
-
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(CategoriesActivity.this, ProductDetailsActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
-                            }
-                        });
-                    }
-
-                    @NonNull
-                    @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout, parent, false);
-                        ProductViewHolder holder = new ProductViewHolder(view);
-                        return holder;
-                    }
-                };
-
-                buscarCategorias.setAdapter(adapter);
-                adapter.startListening();
+                elegirCategoria("Electrodomésticos");
             }
         });
 
         electronicaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CategoriesActivity.this, "Electrónica", Toast.LENGTH_SHORT).show();
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-
-                FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("category").equalTo("Electrónica"), Products.class).build();
-
-                FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                        holder.txtProductoNombre.setText(model.getPname());
-                        holder.txtProductoDescripcion.setText(model.getDescription());
-                        holder.txtNombreTienda.setText(model.getSellerName());
-                        holder.txtCategoria.setText(model.getCategory());
-                        holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
-
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(CategoriesActivity.this, ProductDetailsActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
-                            }
-                        });
-                    }
-
-                    @NonNull
-                    @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout, parent, false);
-                        ProductViewHolder holder = new ProductViewHolder(view);
-                        return holder;
-                    }
-                };
-
-                buscarCategorias.setAdapter(adapter);
-                adapter.startListening();
+                elegirCategoria("Electrónica");
             }
         });
 
         ferreteriaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CategoriesActivity.this, "Ferretería", Toast.LENGTH_SHORT).show();
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-
-                FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("category").equalTo("Ferretería"), Products.class).build();
-
-                FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                        holder.txtProductoNombre.setText(model.getPname());
-                        holder.txtProductoDescripcion.setText(model.getDescription());
-                        holder.txtNombreTienda.setText(model.getSellerName());
-                        holder.txtCategoria.setText(model.getCategory());
-                        holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
-
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(CategoriesActivity.this, ProductDetailsActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
-                            }
-                        });
-                    }
-
-                    @NonNull
-                    @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout, parent, false);
-                        ProductViewHolder holder = new ProductViewHolder(view);
-                        return holder;
-                    }
-                };
-
-                buscarCategorias.setAdapter(adapter);
-                adapter.startListening();
+                elegirCategoria("Ferretería");
             }
         });
 
         hogarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CategoriesActivity.this, "Hogar", Toast.LENGTH_SHORT).show();
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-
-                FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("category").equalTo("Hogar"), Products.class).build();
-
-                FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                        holder.txtProductoNombre.setText(model.getPname());
-                        holder.txtProductoDescripcion.setText(model.getDescription());
-                        holder.txtNombreTienda.setText(model.getSellerName());
-                        holder.txtCategoria.setText(model.getCategory());
-                        holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
-
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(CategoriesActivity.this, ProductDetailsActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
-                            }
-                        });
-                    }
-
-                    @NonNull
-                    @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout, parent, false);
-                        ProductViewHolder holder = new ProductViewHolder(view);
-                        return holder;
-                    }
-                };
-
-                buscarCategorias.setAdapter(adapter);
-                adapter.startListening();
+                elegirCategoria("Hogar");
             }
         });
 
         mascotasBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CategoriesActivity.this, "Mascotas", Toast.LENGTH_SHORT).show();
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-
-                FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("category").equalTo("Mascotas"), Products.class).build();
-
-                FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                        holder.txtProductoNombre.setText(model.getPname());
-                        holder.txtProductoDescripcion.setText(model.getDescription());
-                        holder.txtNombreTienda.setText(model.getSellerName());
-                        holder.txtCategoria.setText(model.getCategory());
-                        holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
-
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(CategoriesActivity.this, ProductDetailsActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
-                            }
-                        });
-                    }
-
-                    @NonNull
-                    @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout, parent, false);
-                        ProductViewHolder holder = new ProductViewHolder(view);
-                        return holder;
-                    }
-                };
-
-                buscarCategorias.setAdapter(adapter);
-                adapter.startListening();
+               elegirCategoria("Mascotas");
             }
         });
 
         ocioBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CategoriesActivity.this, "Ocio", Toast.LENGTH_SHORT).show();
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-
-                FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("category").equalTo("Ocio"), Products.class).build();
-
-                FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                        holder.txtProductoNombre.setText(model.getPname());
-                        holder.txtProductoDescripcion.setText(model.getDescription());
-                        holder.txtNombreTienda.setText(model.getSellerName());
-                        holder.txtCategoria.setText(model.getCategory());
-                        holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
-
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(CategoriesActivity.this, ProductDetailsActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
-                            }
-                        });
-                    }
-
-                    @NonNull
-                    @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout, parent, false);
-                        ProductViewHolder holder = new ProductViewHolder(view);
-                        return holder;
-                    }
-                };
-
-                buscarCategorias.setAdapter(adapter);
-                adapter.startListening();
+                elegirCategoria("Ocio");
             }
         });
         papeleriaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CategoriesActivity.this, "Papelería", Toast.LENGTH_SHORT).show();
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-
-                FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("category").equalTo("Papelería"), Products.class).build();
-
-                FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                        holder.txtProductoNombre.setText(model.getPname());
-                        holder.txtProductoDescripcion.setText(model.getDescription());
-                        holder.txtNombreTienda.setText(model.getSellerName());
-                        holder.txtCategoria.setText(model.getCategory());
-                        holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
-
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(CategoriesActivity.this, ProductDetailsActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
-                            }
-                        });
-                    }
-
-                    @NonNull
-                    @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout, parent, false);
-                        ProductViewHolder holder = new ProductViewHolder(view);
-                        return holder;
-                    }
-                };
-
-                buscarCategorias.setAdapter(adapter);
-                adapter.startListening();
+                elegirCategoria("Papelería");
             }
         });
 
+    }
+
+    private void elegirCategoria(String caterory) {
+        Toast.makeText(CategoriesActivity.this, caterory, Toast.LENGTH_SHORT).show();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
+
+        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("category").equalTo(caterory), Products.class).build();
+
+        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
+                holder.txtProductoNombre.setText(model.getPname());
+                holder.txtProductoDescripcion.setText(model.getDescription());
+                holder.txtNombreTienda.setText(model.getSellerName());
+                holder.txtCategoria.setText(model.getCategory());
+                holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
+                Picasso.get().load(model.getImage()).into(holder.imageView);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(CategoriesActivity.this, ProductDetailsActivity.class);
+                        intent.putExtra("pid", model.getPid());
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout, parent, false);
+                ProductViewHolder holder = new ProductViewHolder(view);
+                return holder;
+            }
+        };
+
+        buscarCategorias.setAdapter(adapter);
+        adapter.startListening();
     }
 }

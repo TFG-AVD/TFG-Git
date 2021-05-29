@@ -75,7 +75,11 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
         confirmarPedidoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // METER EN IF CUANDO EL PAYPAL LO HAYA CONFIRMADO
+                Check();
                 PaypalPaymentMethod();
+
+
 
 
             }

@@ -59,8 +59,8 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
         setContentView(R.layout.activity_confirm_final_order);
         getSupportActionBar().hide();
 
-        totalAmount = getIntent().getStringExtra("Precio Total");
-        //Toast.makeText(this, "Precio Total: " + totalAmount + " €", Toast.LENGTH_LONG).show();
+        totalAmount = getIntent().getStringExtra("Precio Total: ");
+        Toast.makeText(this, "Precio Total: " + totalAmount + " €", Toast.LENGTH_LONG).show();
 
         confirmarPedidoBtn = (Button) findViewById(R.id.confirmar_pedido_btn);
         nombreEditText = (EditText) findViewById(R.id.envio_nombre);
@@ -76,6 +76,8 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
             @Override
             public void onClick(View v) {
                 PaypalPaymentMethod();
+
+
             }
         });
     }
@@ -93,6 +95,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
             ConfirmarPedido();
         }
     }
+
 
     private void ConfirmarPedido() {
         final String saveDate, saveTime;
@@ -150,7 +153,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
 
     private void PaypalPaymentMethod() {
 
-        PayPalPayment payment = new PayPalPayment(new BigDecimal(1), "EUR", "HowiPop", PayPalPayment.PAYMENT_INTENT_SALE);
+        PayPalPayment payment = new PayPalPayment(new BigDecimal(totalAmount), "EUR", "HowiPop", PayPalPayment.PAYMENT_INTENT_SALE);
 
         Intent intent = new Intent(this, PaymentActivity.class);
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, payPalConfiguration);

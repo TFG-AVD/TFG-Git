@@ -51,6 +51,8 @@ public class CategoriesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
+        getSupportActionBar().hide();
+
         botanicaBtn = (Button) findViewById(R.id.botanica_foto);
         bricolajeBtn = (Button) findViewById(R.id.bricolaje_foto);
         comidaBtn = (Button) findViewById(R.id.comida_foto);
@@ -66,6 +68,8 @@ public class CategoriesActivity extends AppCompatActivity {
 
         buscarCategorias = findViewById(R.id.buscar_categorias);
         buscarCategorias.setLayoutManager(new LinearLayoutManager(CategoriesActivity.this));
+
+
 
         botanicaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,5 +194,6 @@ public class CategoriesActivity extends AppCompatActivity {
 
         buscarCategorias.setAdapter(adapter);
         adapter.startListening();
+
     }
 }

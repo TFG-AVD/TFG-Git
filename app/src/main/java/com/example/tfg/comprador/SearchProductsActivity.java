@@ -44,6 +44,7 @@ import com.squareup.picasso.Picasso;
                          holder.txtProductoNombre.setText(model.getPname());
                          holder.txtProductoDescripcion.setText(model.getDescription());
                          holder.txtNombreTienda.setText(model.getSellerName());
+                         holder.txtCategoria.setText(model.getCategory());
                          holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
                          Picasso.get().load(model.getImage()).into(holder.imageView);
 

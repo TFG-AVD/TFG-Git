@@ -12,8 +12,7 @@
         android:layout_height="100dp"
         android:src="@drawable/logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        />
+        android:layout_marginTop="100dp" />
 
     <EditText
         android:id="@+id/registro_username_input"
@@ -29,8 +28,7 @@
         android:textSize="16dp"
         android:textStyle="bold"
         android:drawablePadding="15dp"
-        android:drawableStart="@drawable/user"
-        />
+        android:drawableStart="@drawable/user" />
 
     <EditText
         android:id="@+id/registro_telefono"

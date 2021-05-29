@@ -15,12 +15,12 @@
         android:background="@drawable/input_design">
 
         <TextView
+            android:layout_marginTop="10dp"
             android:id="@+id/producto_nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nombre del Producto"
             android:textAlignment="center"
-            android:layout_marginTop="7dp"
             android:textSize="20dp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_below="@+id/producto_nombre"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="5dp"
             android:scaleType="centerInside" />
 
         <TextView
@@ -49,7 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/producto_precio"
             android:text="Descripción del Producto"
-            android:layout_marginTop="2dp"
+            android:textStyle="italic"
+            android:layout_marginTop="5dp"
             android:textAlignment="center"
             android:textSize="16dp"
             android:textColor="@color/black"/>
@@ -60,22 +61,22 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/producto_descripcion"
             android:text="Nombre de la tienda"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="5dp"
             android:textAlignment="center"
-            android:textSize="16dp"
+            android:textSize="13dp"
             android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/categoria_nombre"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/tienda_nombre"
             android:text="Categoria"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
             android:textAlignment="center"
             android:textSize="16dp"
-            android:textColor="@color/black"
-            />
+            android:textColor="@color/black"/>
 
 
 

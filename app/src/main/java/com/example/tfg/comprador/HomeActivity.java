@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         holder.txtProductoDescripcion.setText(model.getDescription());
                         holder.txtProductoPrecio.setText("Precio: " + model.getPrice() + "€");
                         holder.txtNombreTienda.setText(model.getSellerName());
-                        holder.txtCategoria.setText(model.getCategory());
+                        holder.txtCategoria.setText("("+model.getCategory()+")");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener(){
@@ -103,7 +103,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Paper.init(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if(!type.equals("Admin")){
+        if (!type.equals("Admin")){
             toolbar.setTitle(Prevalent.usuarioOnline.getName());
             setSupportActionBar(toolbar);
         } else {

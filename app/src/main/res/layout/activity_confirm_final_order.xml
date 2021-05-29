@@ -16,9 +16,7 @@
         android:textColor="@color/black"
         android:layout_margin="25dp"
         android:textAlignment="center"
-        android:textStyle="bold"
-
-        />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/envio_nombre"
@@ -30,8 +28,7 @@
         android:layout_marginRight="20dp"
         android:hint="Nombre..."
         android:paddingStart="10dp"
-        android:background="@drawable/input_design"
-        />
+        android:background="@drawable/input_design" />
 
     <EditText
         android:id="@+id/envio_telefono"
@@ -43,8 +40,7 @@
         android:layout_marginRight="20dp"
         android:hint="Número de teléfono..."
         android:paddingStart="10dp"
-        android:background="@drawable/input_design"
-        />
+        android:background="@drawable/input_design" />
 
     <EditText
         android:id="@+id/envio_direccion"
@@ -56,8 +52,7 @@
         android:layout_marginRight="20dp"
         android:hint="Dirección..."
         android:paddingStart="10dp"
-        android:background="@drawable/input_design"
-        />
+        android:background="@drawable/input_design" />
 
     <EditText
         android:id="@+id/envio_ciudad"
@@ -69,8 +64,7 @@
         android:layout_marginRight="20dp"
         android:hint="Ciudad..."
         android:paddingStart="10dp"
-        android:background="@drawable/input_design"
-        />
+        android:background="@drawable/input_design" />
 
     <Button
         android:id="@+id/confirmar_pedido_btn"
@@ -81,8 +75,7 @@
         android:background="@color/principal"
         android:textColor="@color/white"
         android:textSize="20dp"
-        android:text="Confirmar"
-        />
+        android:text="Confirmar" />
 
 </RelativeLayout>
 

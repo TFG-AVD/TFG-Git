@@ -61,7 +61,7 @@ import com.squareup.picasso.Picasso;
             protected void onBindViewHolder(@NonNull CartViewHolder cartViewHolder, int i, @NonNull Cart cart ) {
                 Products products = null;
                 cartViewHolder.txtProductoCantidad.setText("Cantidad: " + cart.getQuantity());
-                cartViewHolder.txtProductoPrecio.setText("Precio: " + cart.getPrice()+" €");
+                cartViewHolder.txtProductoPrecio.setText("Precio: " + cart.getPrice()+"€");
                 cartViewHolder.txtProductoNombre.setText(cart.getPname());
                 cartViewHolder.txtNombreTienda.setText(cart.getSellerName());
 
@@ -136,7 +136,7 @@ import com.squareup.picasso.Picasso;
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtTotal.setText("Precio Total: " + String.valueOf(precioTotal) + " €");
+                txtTotal.setText("Precio Total: " + String.valueOf(precioTotal) + "€");
 
                 Intent intent= new Intent(CartActivity.this, ConfirmFinalOrderActivity.class);
                 intent.putExtra("Precio Total:", String.valueOf(precioTotal));

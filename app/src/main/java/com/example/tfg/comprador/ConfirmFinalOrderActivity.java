@@ -92,8 +92,6 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
             Toast.makeText(this, "por favor, introduzca su dirección...", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(ciudadEditText.getText().toString())){
             Toast.makeText(this, "por favor, introduzca su ciudad...", Toast.LENGTH_SHORT).show();
-        } else {
-            ConfirmarPedido();
         }
     }
 
@@ -145,6 +143,8 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
         builder.setTitle("ID");
         builder.setMessage(s);
         builder.show();
+
+        ConfirmarPedido();
     }
 
     @Override
@@ -162,6 +162,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
 
 
         startActivityForResult(intent, PAYPAL_REQ_CODE);
+
     }
 
     @Override

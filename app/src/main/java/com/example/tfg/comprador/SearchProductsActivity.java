@@ -75,6 +75,7 @@ import com.squareup.picasso.Picasso;
      protected void onCreate(Bundle savedInstanceState) {
          super.onCreate(savedInstanceState);
          setContentView(R.layout.activity_search_products);
+         getSupportActionBar().hide();
 
          inputText = findViewById(R.id.buscar_producto_nombre);
          buscarBtn = findViewById(R.id.buscar_btn);

@@ -190,8 +190,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
                                 builder.show();
                             }
                         }
-                        else {
-                            Toast.makeText(ResetPasswordActivity.this, "No has contestado las preguntas de seguridad", Toast.LENGTH_SHORT).show();
+                        else{
+                            Toast.makeText(ResetPasswordActivity.this, "Este usuario no tiene las preguntas de seguridad completadas", Toast.LENGTH_SHORT).show();
                         }
                     }else {
                         Toast.makeText(ResetPasswordActivity.this, "Este número de teléfono no existe", Toast.LENGTH_SHORT).show();

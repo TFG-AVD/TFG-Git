@@ -40,7 +40,8 @@
         android:layout_marginRight="20dp"
         android:hint="Número de teléfono..."
         android:paddingStart="10dp"
-        android:background="@drawable/input_design" />
+        android:background="@drawable/input_design"
+        android:maxLength="9"/>
 
     <EditText
         android:id="@+id/envio_direccion"

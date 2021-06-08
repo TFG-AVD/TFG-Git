@@ -3,12 +3,10 @@
     package="com.example.tfg">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-
 
     <application
         android:allowBackup="true"
@@ -17,12 +15,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".comprador.PaymentDetails"></activity>
+        <activity android:name=".comprador.PaymentMethodActivity" />
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
                app to run.
         -->
-
         <activity android:name=".comprador.CategoriesActivity" />
         <activity android:name=".admin.AdminCheckNewProductsActivity" />
         <activity
@@ -54,7 +52,6 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
         <activity

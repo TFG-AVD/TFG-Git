@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.tfg"
-        minSdkVersion 29
+        minSdkVersion 27
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -47,6 +47,7 @@ dependencies {
     implementation 'com.razorpay:checkout:1.6.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.wear:wear:1.0.0'
+    implementation fileTree(dir: 'C:\\Users\\Daniel\\Downloads\\SynapPay', include: ['*.aar', '*.jar'], exclude: [])
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -55,11 +56,11 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    implementation 'com.github.vimalcvs:Day-Night-Switch:1.0.3'
     implementation 'com.google.firebase:firebase-auth:19.4.0'
-    implementation('com.paypal.sdk:paypal-android-sdk:2.16.0') {
-        exclude group: 'io.card'
-    }
-
+    implementation 'com.braintreepayments.api:drop-in:4.6.0'
+    implementation 'com.paypal.sdk:rest-api-sdk:+'
+    implementation 'com.paypal.sdk:paypal-android-sdk:2.16.0'
 
 }
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'

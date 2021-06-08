@@ -43,6 +43,7 @@ import com.squareup.picasso.Picasso;
     private ImageView imgCarrito;
 
     private int precioTotal = 0;
+    DatabaseReference cartListRef;
 
     @Override
     protected void onStart() {
@@ -86,10 +87,11 @@ import com.squareup.picasso.Picasso;
                                     startActivity(intent);
                                 }
                                 if (i == 1){
-                                    cartListRef.child("User View").child(Prevalent.usuarioOnline.getPhone()).child("Products").child(cart.getPid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                   cartListRef.child("User View").child(Prevalent.usuarioOnline.getPhone()).child("Products").child(cart.getPid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()){
+
                                                         Toast.makeText(CartActivity.this, "Producto eliminado con éxito.", Toast.LENGTH_SHORT);
                                                         Intent intent = new Intent(CartActivity.this, HomeActivity.class);
                                                         startActivity(intent);
@@ -138,10 +140,14 @@ import com.squareup.picasso.Picasso;
             public void onClick(View v) {
                 txtTotal.setText("Precio Total: " + String.valueOf(precioTotal) + "€");
 
-                Intent intent= new Intent(CartActivity.this, ConfirmFinalOrderActivity.class);
-                intent.putExtra("Precio Total: ", String.valueOf(precioTotal));
-                startActivity(intent);
-                finish();
+                if (precioTotal != 0) {
+                    Intent intent = new Intent(CartActivity.this, ConfirmFinalOrderActivity.class);
+                    intent.putExtra("Precio Total: ", String.valueOf(precioTotal));
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Toast.makeText(CartActivity.this, "Debes añadir algo al carrito", Toast.LENGTH_SHORT);
+                }
             }
         });
 
@@ -165,7 +171,7 @@ import com.squareup.picasso.Picasso;
                         txtMsg1.setText("Felicidades, tu pedido ha sido enviado con éxito. Dentro de poco recibirás el pedido. ");
                         nextBtn.setVisibility(View.GONE);
 
-                        Toast.makeText(CartActivity.this, "puedes adquirir más productos en cuanto hayas recibido tu pedido", Toast.LENGTH_SHORT);
+                        Toast.makeText(CartActivity.this, "Puedes adquirir más productos en cuanto hayas recibido tu pedido", Toast.LENGTH_SHORT);
 
                     } else if (shippingState.equals("No Enviado")){
                         txtTotal.setText("Estado de pedido = No Enviado");

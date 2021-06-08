@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,6 +15,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.braintreepayments.api.BraintreeFragment;
+import com.braintreepayments.api.dropin.DropInRequest;
+import com.braintreepayments.api.exceptions.InvalidArgumentException;
+import com.braintreepayments.api.models.PayPalRequest;
 import com.example.tfg.R;
 import com.example.tfg.prevalent.Prevalent;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +29,7 @@ import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 
@@ -38,6 +44,7 @@ import java.util.HashMap;
 public class ConfirmFinalOrderActivity extends AppCompatActivity implements PaymentResultListener {
 
     private Button confirmarPedidoBtn;
+    private Button contrareembolsoBtn;
     private EditText nombreEditText;
     private EditText telefonoEditText;
     private EditText direccionEditText;
@@ -45,13 +52,20 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
 
     private String totalAmount = "";
 
+    private BraintreeFragment mBraintreeFragment ;
+    private int REQUEST_CODE = 2048;
+
     String sCantidad = "100";
 
     private int PAYPAL_REQ_CODE = 12;
+    public static final int PAYPAL_REQUEST_CODE = 7171;
+    private static PayPalConfiguration config = new PayPalConfiguration()
+            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) // Use the sandboxbecome a text
+            .clientId(PaypalClientIDConfigClass.PAYPAL_CLIENT_ID);
+
     private static PayPalConfiguration payPalConfiguration = new PayPalConfiguration()
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX).clientId(PaypalClientIDConfigClass.PAYPAL_CLIENT_ID);
 
-    long cantidad = Math.round(Float.parseFloat(sCantidad) * 1524.31);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +77,8 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
         Toast.makeText(this, "Precio Total: " + totalAmount + " €", Toast.LENGTH_LONG).show();
 
         confirmarPedidoBtn = (Button) findViewById(R.id.confirmar_pedido_btn);
+        contrareembolsoBtn = (Button) findViewById(R.id.contrareembolso_btn);
+
         nombreEditText = (EditText) findViewById(R.id.envio_nombre);
         telefonoEditText = (EditText) findViewById(R.id.envio_telefono);
         direccionEditText = (EditText) findViewById(R.id.envio_direccion);
@@ -76,13 +92,35 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
             @Override
             public void onClick(View v) {
                 // METER EN IF CUANDO EL PAYPAL LO HAYA CONFIRMADO
-                    Check();
 
-                    PaypalPaymentMethod();
+
+                    //onBraintreeSubmit();
+                    processPayment();
+
             }
         });
+        contrareembolsoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Check();
+
+            }
+        });
+
     }
 
+    private void processPayment() {
+
+        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(totalAmount)), "EUR",
+                "HowiPop", PayPalPayment.PAYMENT_INTENT_SALE);
+
+        Intent intent = new Intent(this, PaymentActivity.class);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payPalPayment);
+        startActivityForResult(intent, PAYPAL_REQUEST_CODE);
+
+
+    }
     private void Check() {
         if (TextUtils.isEmpty(nombreEditText.getText().toString())){
             Toast.makeText(this, "por favor, introduzca su nombre completo...", Toast.LENGTH_SHORT).show();
@@ -92,7 +130,43 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
             Toast.makeText(this, "por favor, introduzca su dirección...", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(ciudadEditText.getText().toString())){
             Toast.makeText(this, "por favor, introduzca su ciudad...", Toast.LENGTH_SHORT).show();
+        }else{
+           ConfirmarPedido();
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == PAYPAL_REQUEST_CODE){
+            if (resultCode == RESULT_OK){
+
+                PaymentConfirmation confirmation = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+
+                if (confirmation != null){
+
+                    try{
+
+                        String paymentDetails = confirmation.toJSONObject().toString(4);
+
+                        startActivity(new Intent(this, PaymentDetails.class)
+                                .putExtra("PaymentDetails", paymentDetails)
+                                .putExtra("PaymentAmount", totalAmount));
+
+
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                    }
+
+                }
+                else{
+                    Toast.makeText(this, "cancel", Toast.LENGTH_SHORT).show();
+                }
+
+            }else if (requestCode == Activity.RESULT_CANCELED)
+                Toast.makeText(this,"Invalid", Toast.LENGTH_SHORT).show();
+
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 
@@ -137,6 +211,22 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
         });
     }
 
+    public void onBraintreeSubmit() throws InvalidArgumentException {
+
+        DropInRequest dropInRequest = new DropInRequest()
+                .tokenizationKey("sandbox_ykqb274b_mvff8qnfg33dynj6");
+
+
+
+        mBraintreeFragment = BraintreeFragment.newInstance(ConfirmFinalOrderActivity.this, dropInRequest.getAuthorization());
+
+        PayPalRequest requestP = new PayPalRequest(totalAmount+"")
+                .currencyCode("EUR")
+                .intent(PayPalRequest.INTENT_AUTHORIZE);
+        dropInRequest.paypalRequest(requestP);
+        startActivityForResult(dropInRequest.getIntent(this), REQUEST_CODE);
+    }
+
     @Override
     public void onPaymentSuccess(String s) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -165,7 +255,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
 
     }
 
-    @Override
+/*    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PAYPAL_REQ_CODE){
@@ -175,7 +265,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
                 Toast.makeText(ConfirmFinalOrderActivity.this,"¡Tu pedido ha sido cancelado con éxito!",Toast.LENGTH_SHORT).show();
             }
         }
-    }
+    }*/
 
     @Override
     protected void onDestroy() {

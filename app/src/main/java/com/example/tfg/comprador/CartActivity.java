@@ -51,7 +51,7 @@ import com.squareup.picasso.Picasso;
 
         txtTotal.setText("Precio Total: " + String.valueOf(precioTotal) + "€");
 
-        comprobarEstadoPedido();
+        //comprobarEstadoPedido();
 
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart list");
 
@@ -92,7 +92,7 @@ import com.squareup.picasso.Picasso;
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()){
 
-                                                        Toast.makeText(CartActivity.this, "Producto eliminado con éxito.", Toast.LENGTH_SHORT);
+                                                        Toast.makeText(CartActivity.this, "Producto eliminado con éxito.", Toast.LENGTH_SHORT).show();
                                                         Intent intent = new Intent(CartActivity.this, HomeActivity.class);
                                                         startActivity(intent);
                                                     }
@@ -146,7 +146,7 @@ import com.squareup.picasso.Picasso;
                     startActivity(intent);
                     finish();
                 }else{
-                    Toast.makeText(CartActivity.this, "Debes añadir algo al carrito", Toast.LENGTH_SHORT);
+                    Toast.makeText(CartActivity.this, "Debes añadir algo al carrito", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -160,6 +160,7 @@ import com.squareup.picasso.Picasso;
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
+
                     String shippingState = snapshot.child("state").getValue().toString();
                     String userName = snapshot.child("name").getValue().toString();
 
@@ -168,19 +169,20 @@ import com.squareup.picasso.Picasso;
                         recyclerView.setVisibility(View.GONE);
 
                         txtMsg1.setVisibility(View.VISIBLE);
-                        txtMsg1.setText("Felicidades, tu pedido ha sido enviado con éxito. Dentro de poco recibirás el pedido. ");
+                        txtMsg1.setText("Felicidades, tu pedido ha sido enviado con éxito. Dentro de poco recibirás el pedido.");
                         nextBtn.setVisibility(View.GONE);
+                        //cartListRef.child("User View").child(Prevalent.usuarioOnline.getPhone()).child("Products").child().removeValue();
 
-                        Toast.makeText(CartActivity.this, "Puedes adquirir más productos en cuanto hayas recibido tu pedido", Toast.LENGTH_SHORT);
 
-                    } else if (shippingState.equals("No Enviado")){
-                        txtTotal.setText("Estado de pedido = No Enviado");
+
+                    } else if (shippingState.equals("no enviado")){
+                        txtTotal.setText("Estado de pedido: No Enviado");
                         recyclerView.setVisibility(View.GONE);
 
                         txtMsg1.setVisibility(View.VISIBLE);
                         nextBtn.setVisibility(View.GONE);
 
-                        Toast.makeText(CartActivity.this, "puedes adquirir más productos en cuanto hayas recibido tu pedido", Toast.LENGTH_SHORT);
+                        Toast.makeText(CartActivity.this, "Puedes adquirir más productos en cuanto hayas recibido tu pedido", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

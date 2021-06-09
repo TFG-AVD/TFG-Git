@@ -74,6 +74,15 @@
            android:layout_centerHorizontal="true"
            android:layout_marginTop="10dp"
            android:layout_below="@id/product_shop_details"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/number_btn">
+
+    </LinearLayout>
+
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_product_cart_btn"

@@ -24,12 +24,6 @@ import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentActivity;
-import com.paypal.android.sdk.payments.PaymentConfirmation;
-import com.razorpay.Checkout;
-import com.razorpay.PaymentResultListener;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -81,8 +75,6 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         confirmarPedidoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // METER EN IF CUANDO EL PAYPAL LO HAYA CONFIRMADO
-                //onBraintreeSubmit();
                 CheckPayPay();
             }
         });

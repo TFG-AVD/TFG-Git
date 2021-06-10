@@ -19,7 +19,7 @@
     <Button
         android:id="@+id/maintain_btn"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="52dp"
         android:layout_below="@+id/admin_welcome"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -34,7 +34,7 @@
     <Button
         android:id="@+id/revisar_pedidos_btn"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="52dp"
         android:layout_below="@+id/maintain_btn"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -48,7 +48,7 @@
     <Button
         android:id="@+id/revisar_aceptar_productos_btn"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="52dp"
         android:layout_below="@+id/revisar_pedidos_btn"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -62,7 +62,7 @@
     <Button
         android:id="@+id/admin_logout_btn"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="52dp"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"

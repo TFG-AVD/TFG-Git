@@ -17,8 +17,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TFG">
-        <activity android:name=".comprador.PaymentDetails"></activity>
-        <activity android:name=".comprador.PaymentMethodActivity" />
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
                app to run.
@@ -42,8 +40,7 @@
         <activity android:name=".comprador.SettingsActivity" />
         <activity android:name=".vendedor.SellerLoginActivity" />
         <activity android:name=".vendedor.SellerRegistrationActivity" />
-        <activity android:name=".comprador.MainActivity"
-            />
+        <activity android:name=".comprador.MainActivity" />
         <activity
             android:name=".comprador.HomeActivity"
             android:label="@string/title_activity_home"

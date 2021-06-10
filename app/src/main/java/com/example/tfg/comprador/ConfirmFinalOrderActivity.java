@@ -41,7 +41,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class ConfirmFinalOrderActivity extends AppCompatActivity implements PaymentResultListener {
+public class ConfirmFinalOrderActivity extends AppCompatActivity {
 
     private Button confirmarPedidoBtn;
     private Button contrareembolsoBtn;
@@ -146,38 +146,6 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == PAYPAL_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-
-                PaymentConfirmation confirmation = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
-
-                if (confirmation != null) {
-
-                    try {
-
-                        String paymentDetails = confirmation.toJSONObject().toString(4);
-
-                        startActivity(new Intent(this, PaymentDetails.class)
-                                .putExtra("PaymentDetails", paymentDetails)
-                                .putExtra("PaymentAmount", totalAmount));
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                } else {
-                    Toast.makeText(this, "cancel", Toast.LENGTH_SHORT).show();
-                }
-
-            } else if (requestCode == Activity.RESULT_CANCELED)
-                Toast.makeText(this, "Invalid", Toast.LENGTH_SHORT).show();
-
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
 
 
     private void ConfirmarPedido() {
@@ -236,33 +204,6 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
         startActivityForResult(dropInRequest.getIntent(this), REQUEST_CODE);
     }
 
-    @Override
-    public void onPaymentSuccess(String s) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("ID");
-        builder.setMessage(s);
-        builder.show();
-
-        ConfirmarPedido();
-    }
-
-    @Override
-    public void onPaymentError(int i, String s) {
-        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
-    }
-
-    private void PaypalPaymentMethod() {
-
-        PayPalPayment payment = new PayPalPayment(new BigDecimal(totalAmount), "EUR", "HowiPop", PayPalPayment.PAYMENT_INTENT_SALE);
-
-        Intent intent = new Intent(this, PaymentActivity.class);
-        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, payPalConfiguration);
-        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
-
-
-        startActivityForResult(intent, PAYPAL_REQ_CODE);
-
-    }
 
 /*    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {

@@ -57,8 +57,8 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     implementation 'com.google.firebase:firebase-auth:19.4.0'
-    implementation 'com.braintreepayments.api:drop-in:4.6.0'
-    implementation 'com.paypal.sdk:rest-api-sdk:+'
+    implementation 'com.braintreepayments.api:drop-in:5.2.1'
+    implementation 'com.paypal.sdk:rest-api-sdk:1.14.0'
     implementation 'com.paypal.sdk:paypal-android-sdk:2.16.0'
 
 }

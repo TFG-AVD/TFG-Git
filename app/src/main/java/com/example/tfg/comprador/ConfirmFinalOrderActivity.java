@@ -52,7 +52,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
 
     private String totalAmount = "";
 
-    private BraintreeFragment mBraintreeFragment ;
+    private BraintreeFragment mBraintreeFragment;
     private int REQUEST_CODE = 2048;
 
     String sCantidad = "100";
@@ -92,11 +92,8 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
             @Override
             public void onClick(View v) {
                 // METER EN IF CUANDO EL PAYPAL LO HAYA CONFIRMADO
-
-
-                    //onBraintreeSubmit();
-                    processPayment();
-
+                //onBraintreeSubmit();
+                CheckPayPay();
             }
         });
         contrareembolsoBtn.setOnClickListener(new View.OnClickListener() {
@@ -119,32 +116,46 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payPalPayment);
         startActivityForResult(intent, PAYPAL_REQUEST_CODE);
 
-
     }
+
     private void Check() {
-        if (TextUtils.isEmpty(nombreEditText.getText().toString())){
+        if (TextUtils.isEmpty(nombreEditText.getText().toString())) {
             Toast.makeText(this, "por favor, introduzca su nombre completo...", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(telefonoEditText.getText().toString())){
+        } else if (TextUtils.isEmpty(telefonoEditText.getText().toString())) {
             Toast.makeText(this, "por favor, introduzca su numero de telefono...", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(direccionEditText.getText().toString())){
+        } else if (TextUtils.isEmpty(direccionEditText.getText().toString())) {
             Toast.makeText(this, "por favor, introduzca su dirección...", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(ciudadEditText.getText().toString())){
+        } else if (TextUtils.isEmpty(ciudadEditText.getText().toString())) {
             Toast.makeText(this, "por favor, introduzca su ciudad...", Toast.LENGTH_SHORT).show();
-        }else{
-           ConfirmarPedido();
+        } else {
+            ConfirmarPedido();
+        }
+    }
+
+    private void CheckPayPay() {
+        if (TextUtils.isEmpty(nombreEditText.getText().toString())) {
+            Toast.makeText(this, "por favor, introduzca su nombre completo...", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(telefonoEditText.getText().toString())) {
+            Toast.makeText(this, "por favor, introduzca su numero de telefono...", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(direccionEditText.getText().toString())) {
+            Toast.makeText(this, "por favor, introduzca su dirección...", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(ciudadEditText.getText().toString())) {
+            Toast.makeText(this, "por favor, introduzca su ciudad...", Toast.LENGTH_SHORT).show();
+        } else {
+            processPayment();
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == PAYPAL_REQUEST_CODE){
-            if (resultCode == RESULT_OK){
+        if (requestCode == PAYPAL_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
 
                 PaymentConfirmation confirmation = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
 
-                if (confirmation != null){
+                if (confirmation != null) {
 
-                    try{
+                    try {
 
                         String paymentDetails = confirmation.toJSONObject().toString(4);
 
@@ -153,17 +164,16 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
                                 .putExtra("PaymentAmount", totalAmount));
 
 
-                    }catch (JSONException e){
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-                }
-                else{
+                } else {
                     Toast.makeText(this, "cancel", Toast.LENGTH_SHORT).show();
                 }
 
-            }else if (requestCode == Activity.RESULT_CANCELED)
-                Toast.makeText(this,"Invalid", Toast.LENGTH_SHORT).show();
+            } else if (requestCode == Activity.RESULT_CANCELED)
+                Toast.makeText(this, "Invalid", Toast.LENGTH_SHORT).show();
 
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -178,7 +188,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
         saveDate = fecha.format(calendario.getTime());
 
         SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss: a");
-        saveTime =  fecha.format(calendario.getTime());
+        saveTime = fecha.format(calendario.getTime());
 
         final DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders").child(Prevalent.usuarioOnline.getPhone());
 
@@ -195,11 +205,11 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
         ordersRef.updateChildren(ordersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     FirebaseDatabase.getInstance().getReference().child("Cart List").child("User View").child(Prevalent.usuarioOnline.getPhone()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(ConfirmFinalOrderActivity.this,"¡Tu pedido ha sido realizado con éxito!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ConfirmFinalOrderActivity.this, "¡Tu pedido ha sido realizado con éxito!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(ConfirmFinalOrderActivity.this, HomeActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
@@ -217,10 +227,9 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
                 .tokenizationKey("sandbox_ykqb274b_mvff8qnfg33dynj6");
 
 
-
         mBraintreeFragment = BraintreeFragment.newInstance(ConfirmFinalOrderActivity.this, dropInRequest.getAuthorization());
 
-        PayPalRequest requestP = new PayPalRequest(totalAmount+"")
+        PayPalRequest requestP = new PayPalRequest(totalAmount + "")
                 .currencyCode("EUR")
                 .intent(PayPalRequest.INTENT_AUTHORIZE);
         dropInRequest.paypalRequest(requestP);
@@ -239,7 +248,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
 
     @Override
     public void onPaymentError(int i, String s) {
-        Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
     }
 
     private void PaypalPaymentMethod() {

@@ -14,11 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.braintreepayments.api.BraintreeFragment;
-import com.braintreepayments.api.dropin.DropInRequest;
-import com.braintreepayments.api.exceptions.InvalidArgumentException;
-import com.braintreepayments.api.models.PayPalRequest;
 import com.example.tfg.R;
 import com.example.tfg.prevalent.Prevalent;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -52,15 +47,10 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
 
     private String totalAmount = "";
 
-    private BraintreeFragment mBraintreeFragment;
-    private int REQUEST_CODE = 2048;
 
-    String sCantidad = "100";
-
-    private int PAYPAL_REQ_CODE = 12;
     public static final int PAYPAL_REQUEST_CODE = 7171;
     private static PayPalConfiguration config = new PayPalConfiguration()
-            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) // Use the sandboxbecome a text
+            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
             .clientId(PaypalClientIDConfigClass.PAYPAL_CLIENT_ID);
 
     private static PayPalConfiguration payPalConfiguration = new PayPalConfiguration()
@@ -189,33 +179,6 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         });
     }
 
-    public void onBraintreeSubmit() throws InvalidArgumentException {
-
-        DropInRequest dropInRequest = new DropInRequest()
-                .tokenizationKey("sandbox_ykqb274b_mvff8qnfg33dynj6");
-
-
-        mBraintreeFragment = BraintreeFragment.newInstance(ConfirmFinalOrderActivity.this, dropInRequest.getAuthorization());
-
-        PayPalRequest requestP = new PayPalRequest(totalAmount + "")
-                .currencyCode("EUR")
-                .intent(PayPalRequest.INTENT_AUTHORIZE);
-        dropInRequest.paypalRequest(requestP);
-        startActivityForResult(dropInRequest.getIntent(this), REQUEST_CODE);
-    }
-
-
-/*    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PAYPAL_REQ_CODE){
-            if (resultCode == Activity.RESULT_OK){
-                Toast.makeText(ConfirmFinalOrderActivity.this,"¡Tu pedido ha sido realizado con éxito!",Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(ConfirmFinalOrderActivity.this,"¡Tu pedido ha sido cancelado con éxito!",Toast.LENGTH_SHORT).show();
-            }
-        }
-    }*/
 
     @Override
     protected void onDestroy() {

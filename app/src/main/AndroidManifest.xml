@@ -16,7 +16,7 @@
         tools:replace="android:icon,android:theme"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TFG">
+        android:theme="@style/Theme.TFG.NoActionBar">
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
                app to run.

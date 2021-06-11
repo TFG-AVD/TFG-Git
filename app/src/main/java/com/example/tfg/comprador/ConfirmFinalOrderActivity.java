@@ -41,7 +41,6 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
 
     private String totalAmount = "";
 
-
     public static final int PAYPAL_REQUEST_CODE = 7171;
     private static PayPalConfiguration config = new PayPalConfiguration()
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
@@ -49,6 +48,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
 
     private static PayPalConfiguration payPalConfiguration = new PayPalConfiguration()
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX).clientId(PaypalClientIDConfigClass.PAYPAL_CLIENT_ID);
+
 
 
     @Override

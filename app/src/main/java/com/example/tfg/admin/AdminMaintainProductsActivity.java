@@ -116,7 +116,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(AdminMaintainProductsActivity.this, "Cambios aplicados con éxito.", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(AdminMaintainProductsActivity.this, SellerProductCategoryActivity.class);
+                        Intent intent = new Intent(AdminMaintainProductsActivity.this, AdminHomeActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -129,7 +129,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         productoRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Intent intent = new Intent(AdminMaintainProductsActivity.this, SellerProductCategoryActivity.class);
+                Intent intent = new Intent(AdminMaintainProductsActivity.this, AdminHomeActivity.class);
                 startActivity(intent);
                 finish();
 

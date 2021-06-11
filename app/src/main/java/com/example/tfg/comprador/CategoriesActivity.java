@@ -51,7 +51,7 @@ public class CategoriesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
-        getSupportActionBar().hide();
+
 
         botanicaBtn = (Button) findViewById(R.id.botanica_foto);
         bricolajeBtn = (Button) findViewById(R.id.bricolaje_foto);

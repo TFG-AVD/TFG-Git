@@ -91,7 +91,7 @@ public class AdminNewOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_new_order);
-        getSupportActionBar().hide();
+
 
         pedidosRef = FirebaseDatabase.getInstance().getReference().child("Orders");
 

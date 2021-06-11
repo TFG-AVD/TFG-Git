@@ -24,7 +24,7 @@ public class SellerProductCategoryActivity extends AppCompatActivity {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_seller_add_category);
 
-        getSupportActionBar().hide();
+
 
 /*        LogoutBtn = (Button) findViewById(R.id.admin_logout_btn);
         CheckOrdersBtn = (Button) findViewById(R.id.check_orders_btn);

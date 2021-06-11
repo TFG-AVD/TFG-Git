@@ -124,7 +124,7 @@ import com.squareup.picasso.Picasso;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        getSupportActionBar().hide();
+
 
         recyclerView = findViewById(R.id.lista_carrito);
         recyclerView.setHasFixedSize(true);

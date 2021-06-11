@@ -35,8 +35,6 @@ public class SellerRegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_registration);
 
-        getSupportActionBar().hide();
-
         mAuth = FirebaseAuth.getInstance();
         loadingBar = new ProgressDialog(this);
 
@@ -71,7 +69,7 @@ public class SellerRegistrationActivity extends AppCompatActivity {
         String password = passwordInput.getText().toString();
         final String address = addressInput.getText().toString();
 
-        if (!name.equals("") && !phone.equals("") && !email.equals("") && !password.equals("") && !address.equals("")){
+        if (!name.equals("") && !phone.equals("") && !email.equals("") && !password.equals("") && !address.equals("")) {
 
             loadingBar.setTitle("Creando cuenta de vendedor");
             loadingBar.setMessage("Espere, estamos revisando las credenciales");
@@ -82,7 +80,7 @@ public class SellerRegistrationActivity extends AppCompatActivity {
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 final DatabaseReference rootRef;
                                 rootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -96,21 +94,21 @@ public class SellerRegistrationActivity extends AppCompatActivity {
                                 sellerMap.put("name", name);
 
                                 rootRef.child("Sellers").child(sid).updateChildren(sellerMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                loadingBar.dismiss();
-                                                Toast.makeText(SellerRegistrationActivity.this, "Registrado con éxito.", Toast.LENGTH_SHORT).show();
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        loadingBar.dismiss();
+                                        Toast.makeText(SellerRegistrationActivity.this, "Registrado con éxito.", Toast.LENGTH_SHORT).show();
 
-                                                Intent intent = new Intent(SellerRegistrationActivity.this, SellerHomeActivity.class);
-                                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                                startActivity(intent);
-                                                finish();
-                                            }
-                                        });
+                                        Intent intent = new Intent(SellerRegistrationActivity.this, SellerHomeActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                });
                             }
                         }
                     });
-        }else {
+        } else {
             Toast.makeText(this, "Por favor, complete el formulario", Toast.LENGTH_SHORT).show();
         }
     }

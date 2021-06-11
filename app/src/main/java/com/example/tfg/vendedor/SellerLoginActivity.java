@@ -29,7 +29,7 @@ public class SellerLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_login);
 
-        getSupportActionBar().hide();
+
 
         mAuth = FirebaseAuth.getInstance();
 

@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().hide();
+
 
         adminLink = (TextView) findViewById(R.id.admin);
         adminNotLink = (TextView) findViewById(R.id.no_admin);

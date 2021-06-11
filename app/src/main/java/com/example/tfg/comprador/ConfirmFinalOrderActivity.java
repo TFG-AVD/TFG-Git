@@ -55,7 +55,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_final_order);
-        getSupportActionBar().hide();
+
 
         totalAmount = getIntent().getStringExtra("Precio Total: ");
         Toast.makeText(this, "Precio Total: " + totalAmount + " €", Toast.LENGTH_LONG).show();

@@ -88,7 +88,7 @@ public class AdminCheckNewProductsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_check_new_products);
-        getSupportActionBar().hide();
+
 
         unverifiedProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
 

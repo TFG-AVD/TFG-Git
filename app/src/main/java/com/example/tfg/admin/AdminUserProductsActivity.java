@@ -57,7 +57,7 @@ public class AdminUserProductsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_user_products);
-        getSupportActionBar().hide();
+
 
         userID = getIntent().getStringExtra("uid");
         listaProductos = findViewById(R.id.productos_lista);
